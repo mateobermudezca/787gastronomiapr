@@ -199,9 +199,10 @@ function initSmoothScroll() {
 }
 
 /* ============================================================
-   RESERVATION FORM → n8n WEBHOOK
+   RESERVATION FORM → GOOGLE CALENDAR (GAS BRIDGE)
    ============================================================ */
-const WEBHOOK_URL = 'https://mateobermudez99.app.n8n.cloud/webhook-test/beb05773-feba-444f-835c-ff8e6ba84ac2';
+// URL de tu implementación de Google Apps Script (Sustituir después de desplegar)
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbzDANKfDwEqwwIVhhlRP1kVDDeMd5BgFFXrEQyoMP_QOG5Om4WrLautKfD77bf1fyFB/exec'; 
 
 // Festivos Colombia 2026 y 2027 (Ley Emiliani aplicada)
 const COLOMBIAN_HOLIDAYS = [
@@ -222,10 +223,12 @@ function initReservationForm() {
     const submitBtn = document.getElementById('submitReserva');
     const submitText = document.getElementById('submitText');
     const spinner = document.getElementById('submitSpinner');
+    const dateInput = document.getElementById('reservaFecha');
+    const timeSelect = document.getElementById('reservaHora');
+    
     if (!form) return;
 
     // Set minimum date to today
-    const dateInput = document.getElementById('reservaFecha');
     if (dateInput) {
         dateInput.min = new Date().toISOString().split('T')[0];
     }
@@ -238,6 +241,19 @@ function initReservationForm() {
         });
     });
 
+    // Check availability when date or time changes
+    [dateInput, timeSelect].forEach(input => {
+        if (input) {
+            input.addEventListener('change', async () => {
+                const fecha = dateInput.value;
+                const hora = timeSelect.value;
+                if (fecha && hora) {
+                    await checkSlotAvailability(fecha, hora);
+                }
+            });
+        }
+    });
+
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
@@ -245,7 +261,6 @@ function initReservationForm() {
         const valid = validateForm(form);
         if (!valid) return;
 
-        // Build JSON payload — one key per form variable
         const payload = {
             nombre: document.getElementById('reservaNombre').value.trim(),
             telefono: document.getElementById('reservaTelefono').value.trim(),
@@ -255,52 +270,80 @@ function initReservationForm() {
             personas: document.getElementById('reservaPersonas').value,
             ocasion: document.getElementById('reservaOcasion').value || 'Ninguna',
             mensaje: document.getElementById('reservaMensaje').value.trim() || '',
-            restaurante: '787 Gastronomía Puertorriqueña',
-            timestamp: new Date().toISOString()
+            restaurante: '787 Gastronomía Puertorriqueña'
         };
 
-        // Loading state
+        // Final availability check before submitting
         setLoading(true, submitBtn, submitText, spinner);
+        submitText.textContent = 'Verificando...';
 
         try {
-            const response = await fetch(WEBHOOK_URL, {
+            const isAvailable = await checkSlotAvailability(payload.fecha, payload.hora);
+            if (!isAvailable) {
+                setLoading(false, submitBtn, submitText, spinner);
+                submitText.textContent = 'Reservar Mesa';
+                return;
+            }
+
+            submitText.textContent = 'Procesando...';
+            
+            const response = await fetch(GAS_URL, {
                 method: 'POST',
-                // 'no-cors' evita errores CORS al abrir desde file:// o sin cabeceras CORS en n8n.
-                // La respuesta será de tipo 'opaque' — no podemos leer el status,
-                // pero el payload SÍ llega al servidor.
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                mode: 'no-cors', // Necesario para GAS Apps Script
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             });
 
-            // Con no-cors, response.type === 'opaque' y response.ok === false
-            // siempre, aunque el envío fue exitoso. Tratamos ambos casos como éxito.
-            const sent = response.ok || response.type === 'opaque';
-
-            if (sent) {
-                showConfirmModal(payload);
-                form.reset();
-                // Limpiar estados visuales de validación
-                form.querySelectorAll('.form-input').forEach(inp => {
-                    inp.classList.remove('input-valid', 'input-error');
-                });
-                form.querySelectorAll('.form-error').forEach(err => {
-                    err.textContent = '';
-                    err.classList.remove('visible');
-                });
-            } else {
-                throw new Error(`HTTP ${response.status}`);
-            }
+            // En modo no-cors no podemos leer la respuesta, pero si no hay error de red, asumimos éxito
+            showConfirmModal(payload);
+            form.reset();
+            form.querySelectorAll('.form-input').forEach(inp => inp.classList.remove('input-valid', 'input-error'));
+            
         } catch (err) {
-            console.error('Webhook error:', err);
-            showToast('error', '❌', 'Ocurrió un error de red. Verifica tu conexión o contáctanos por WhatsApp.');
+            console.error('Reservation error:', err);
+            showToast('error', '❌', 'Error al conectar con el sistema. Inténtalo de nuevo.');
         } finally {
             setLoading(false, submitBtn, submitText, spinner);
+            submitText.textContent = 'Reservar Mesa';
         }
     });
 }
+
+/** 
+ * Checks if a slot is busy in Google Calendar via GAS bridge
+ */
+async function checkSlotAvailability(fecha, hora) {
+    const errorHora = document.getElementById('errorHora');
+    const timeSelect = document.getElementById('reservaHora');
+    
+    if (GAS_URL === 'URL_DE_TU_SCRIPT_AQUI') return true; // Debug simple
+
+    try {
+        const response = await fetch(`${GAS_URL}?fecha=${fecha}&hora=${hora}`);
+        const data = await response.json();
+        
+        if (!data.available) {
+            if (errorHora) {
+                errorHora.textContent = '⚠️ Este horario ya está reservado. Por favor elige otro.';
+                errorHora.classList.add('visible');
+            }
+            timeSelect.classList.add('input-error');
+            showToast('warning', '📅', 'El horario seleccionado ya no está disponible.');
+            return false;
+        } else {
+            if (errorHora && errorHora.textContent.includes('ya está reservado')) {
+                errorHora.textContent = '';
+                errorHora.classList.remove('visible');
+            }
+            timeSelect.classList.remove('input-error');
+            return true;
+        }
+    } catch (err) {
+        console.warn('Could not verify availability:', err);
+        return true; // Si falla la red, permitimos intentar el registro
+    }
+}
+
 
 /** Toggle loading state on the submit button */
 function setLoading(isLoading, btn, textEl, spinnerEl) {
