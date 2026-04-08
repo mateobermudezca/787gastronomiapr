@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>787 Gastronomía Puertorriqueña – Sabor Boricua en Medellín</title>
+    <meta name="description"
+        content="787 Gastronomía Puertorriqueña: el único restaurante de comida típica puertorriqueña en Medellín, Colombia. Mofongo, Pernil, Arroz con Gandules y más.">
+    <meta name="keywords"
+        content="restaurante puertorriqueño, gastronomía puertorriqueña, Medellín, mofongo, pernil, comida caribeña, boricua">
+    <meta name="author" content="787 Gastronomía Puertorriqueña">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="787 Gastronomía Puertorriqueña">
+    <meta property="og:description" content="Sabor boricua auténtico en el corazón de Medellín.">
+    <meta property="og:type" content="website">
+
+    <!-- Preconnect Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Preloads for Performance -->
+    <link rel="preload" href="images/logo.png" as="image">
+    <link rel="preload" href="images/hero_bg_sanjuan.jpg" as="image">
+
+    <!-- Favicon placeholder -->
+    <link rel="icon" href="images/logo.png" type="image/png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- ============================================================
+     MOBILE NAV OVERLAY
+     ============================================================ -->
+    <nav id="mobileNav" class="mobile-nav" aria-label="Menú móvil">
+        <a href="#inicio">Inicio</a>
+        <a href="#platillos">Platillos</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#resenas">Califícanos</a>
+        <a href="https://drive.google.com/file/d/1VSGPszlCJiIkliUln1LGAMReY7vU1A-o/view" target="_blank" rel="noopener noreferrer">Menú</a>
+        <a href="#contacto" class="btn btn-primary">Reservar Mesa</a>
+    </nav>
+
+    <!-- ============================================================
+     NAVBAR
+     ============================================================ -->
+    <header id="navbar" class="navbar" role="banner">
+        <div class="container">
+            <div class="navbar-inner">
+
+                <!-- Logo -->
+                <a href="#inicio" class="nav-logo" aria-label="787 Gastronomía Puertorriqueña">
+                    <img src="images/logo.png" alt="Logo 787 Gastronomía Puertorriqueña" width="44" height="44" fetchpriority="high" decoding="async">
+                    <div class="logo-text">
+                        <span>787</span> Gastronomía
+                    </div>
+                </a>
+
+                <!-- Desktop links -->
+                <ul class="nav-links" role="list">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#platillos">Platillos</a></li>
+                    <li><a href="https://drive.google.com/file/d/1VSGPszlCJiIkliUln1LGAMReY7vU1A-o/view" target="_blank" rel="noopener noreferrer">Menú</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#resenas">Califícanos</a></li>
+                </ul>
+
+                <!-- Desktop CTA -->
+                <div class="nav-cta">
+                    <a href="#contacto" class="btn btn-primary" id="navReservarBtn"><i class="fa-solid fa-utensils"></i> Reservar Mesa</a>
+                </div>
+
+                <!-- Mobile toggle -->
+                <button id="mobileMenuToggle" class="mobile-menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================
+     HERO SECTION
+     ============================================================ -->
+    <main id="inicio">
+        <section class="hero section">
+
+            <!-- Background gradient -->
+            <div class="hero-bg-gradient"></div>
+
+            <!-- Particles -->
+            <div id="particles" class="particles-container" aria-hidden="true"></div>
+
+            <div class="container">
+                <div class="hero-grid">
+
+                    <!-- Content -->
+                    <div class="hero-content">
+                        <h1 class="hero-title">
+                            El Alma de<br>
+                            <span class="brand-name">Puerto Rico</span>
+                            en tu Mesa
+                        </h1>
+
+                        <p class="hero-subtitle">
+                            Somos el único restaurante especializado en gastronomía puertorriqueña en Medellín,
+                            Colombia. Disfruta de mofongo, pernil, arroz con gandules y una experiencia cultural única.
+                        </p>
+
+                        <div class="hero-actions">
+                            <a href="https://drive.google.com/file/d/1VSGPszlCJiIkliUln1LGAMReY7vU1A-o/view" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg pulse" id="heroMenuBtn">
+                                Ver Menú Completo
+                            </a>
+                            <a href="#platillos" class="btn btn-outline btn-lg" id="heroPlatillosBtn">
+                                Nuestros Platillos
+                            </a>
+                        </div>
+
+                        <!-- Stats -->
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <span class="stat-number" data-counter="50" data-suffix="+" id="statPlatos">0+</span>
+                                <span class="stat-label">Platillos en menú</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" data-counter="500" data-suffix="+" id="statClientes">0+</span>
+                                <span class="stat-label">Familias satisfechas</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" data-counter="100" data-suffix="%"
+                                    id="statAutentico">0%</span>
+                                <span class="stat-label">Recetas auténticas</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Visual: Floating Dish Carousel -->
+                    <div class="hero-visual" aria-hidden="true">
+                        <div class="hero-carousel-wrap">
+
+                            <!-- Ambient glow behind carousel -->
+                            <div class="carousel-ambient-glow"></div>
+
+                            <!-- Floating badge: Abierto Hoy -->
+                            <div class="hero-img-badge badge-top-right">
+                                <span class="badge-dot"></span>
+                                Abierto Hoy
+                            </div>
+
+
+                            <!-- Carousel track -->
+                            <div class="dish-carousel" id="dishCarousel">
+                                <div class="dish-track" id="dishTrack">
+
+                                    <!-- Slide 1: Mofongo -->
+                                    <div class="dish-slide">
+                                        <div class="dish-card">
+                                            <div class="dish-img-wrap">
+                                                <img src="images/service_1.png" alt="Mofongo Puertorriqueño" class="dish-img" width="520" height="390" decoding="async">
+                                                <div class="dish-shine"></div>
+                                                <div class="dish-img-glow"></div>
+                                            </div>
+                                            <div class="dish-info">
+                                                <span class="dish-tag">⭐ Platillo Estrella</span>
+                                                <h3 class="dish-name">Mofongo</h3>
+                                                <p class="dish-desc">Plátano verde, ajo & chicharrón al estilo boricua</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Slide 2: Pernil -->
+                                    <div class="dish-slide">
+                                        <div class="dish-card">
+                                            <div class="dish-img-wrap">
+                                                <img src="images/service_2.png" alt="Pernil al Horno" class="dish-img" width="520" height="390" decoding="async">
+                                                <div class="dish-shine"></div>
+                                                <div class="dish-img-glow"></div>
+                                            </div>
+                                            <div class="dish-info">
+                                                <span class="dish-tag">🔥 Marinado 24h</span>
+                                                <h3 class="dish-name">Pernil al Horno</h3>
+                                                <p class="dish-desc">Cerdo marinado en adobo criollo, piel dorada y crujiente</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Slide 3: Arroz con Gandules -->
+                                    <div class="dish-slide">
+                                        <div class="dish-card">
+                                            <div class="dish-img-wrap">
+                                                <img src="images/service_3.png" alt="Arroz con Gandules" class="dish-img" width="520" height="390" decoding="async">
+                                                <div class="dish-shine"></div>
+                                                <div class="dish-img-glow"></div>
+                                            </div>
+                                            <div class="dish-info">
+                                                <span class="dish-tag">🇵🇷 Plato Nacional</span>
+                                                <h3 class="dish-name">Arroz con Gandules</h3>
+                                                <p class="dish-desc">Sofrito casero, sazón y el sabor de la isla</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Slide 4: Tostones -->
+                                    <div class="dish-slide">
+                                        <div class="dish-card">
+                                            <div class="dish-img-wrap">
+                                                <img src="images/service_4.png" alt="Tostones Crujientes" class="dish-img" width="520" height="390" decoding="async">
+                                                <div class="dish-shine"></div>
+                                                <div class="dish-img-glow"></div>
+                                            </div>
+                                            <div class="dish-info">
+                                                <span class="dish-tag">🍌 Doble Freído</span>
+                                                <h3 class="dish-name">Tostones</h3>
+                                                <p class="dish-desc">Crujientes por fuera, suaves por dentro, con mayo-kétchup</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div><!-- /dish-track -->
+                            </div><!-- /dish-carousel -->
+
+                            <!-- Dots navigation -->
+                            <div class="carousel-dots" id="carouselDots">
+                                <button class="carousel-dot active" data-index="0" aria-label="Platillo 1"></button>
+                                <button class="carousel-dot" data-index="1" aria-label="Platillo 2"></button>
+                                <button class="carousel-dot" data-index="2" aria-label="Platillo 3"></button>
+                                <button class="carousel-dot" data-index="3" aria-label="Platillo 4"></button>
+                            </div>
+
+                        </div><!-- /hero-carousel-wrap -->
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+     PLATILLOS / FLIP CARDS
+     ============================================================ -->
+        <section id="platillos" class="section services-section">
+            <div class="container">
+
+                <div class="text-center reveal">
+                    <div class="section-label">🍴 Nuestros Platillos Estrella</div>
+                    <h2 class="section-title">
+                        Sabores que <span class="gold">Enamoran</span>
+                    </h2>
+                    <p class="section-subtitle">
+                        Cada platillo es una historia. Recetas transmitidas de generación en generación, preparadas con
+                        los ingredientes más selectos para traerte el auténtico sabor de la Isla del Encanto.
+                    </p>
+                </div>
+
+                <!-- Tip for desktop -->
+                <p style="text-align:center; font-size:0.8125rem; color:var(--text-quaternary); margin-top:16px; margin-bottom:0;"
+                    class="reveal reveal-delay-1">
+                    💡 Pasa el cursor sobre cada platillo para descubrir sus detalles
+                </p>
+
+                <div class="services-grid">
+
+                    <!-- Card 1: Bandeja Boricua -->
+                    <div class="service-card-flip reveal reveal-delay-1" role="article"
+                        aria-label="Bandeja Boricua - haz clic para más información">
+                        <div class="service-card-inner">
+                            <div class="service-card-front">
+                                <img src="images/bandeja_boricua.jpg" alt="Bandeja Boricua" class="service-image"
+                                    width="400" height="420" loading="lazy" decoding="async">
+                                <div class="service-overlay">
+                                    <div class="service-emoji-front">🍛</div>
+                                    <h3 class="service-title-front">Bandeja Boricua</h3>
+                                    <span class="service-hint-front">✦ Ver detalles</span>
+                                </div>
+                            </div>
+                            <div class="service-card-back">
+                                <div class="service-back-icon">🇵🇷</div>
+                                <h3 class="service-title-back">Bandeja Boricua</h3>
+                                <p class="service-description">
+                                    Bandeja típica boricua de arroz con gándules, pernil, tostones y mini alcapurrias
+                                </p>
+                                <div class="service-features">
+                                    <span class="feature-tag">Plato Grande</span>
+                                    <span class="feature-tag">Tradición</span>
+                                    <span class="feature-tag">Variado</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Chuleta Kan kan -->
+                    <div class="service-card-flip reveal reveal-delay-2" role="article"
+                        aria-label="Chuleta Kan kan - haz clic para más información">
+                        <div class="service-card-inner">
+                            <div class="service-card-front">
+                                <img src="images/chuleta_kankan.jpg" alt="Chuleta Kan-kan" class="service-image"
+                                    width="400" height="420" loading="lazy" decoding="async">
+                                <div class="service-overlay">
+                                    <div class="service-emoji-front">🍖</div>
+                                    <h3 class="service-title-front">Chuleta Kan-kan</h3>
+                                    <span class="service-hint-front">✦ Ver detalles</span>
+                                </div>
+                            </div>
+                            <div class="service-card-back">
+                                <div class="service-back-icon">🍖</div>
+                                <h3 class="service-title-back">Chuleta Kan-kan</h3>
+                                <p class="service-description">
+                                    Chuleta extra grande frita & crujiente acompañada con mamposteado de habichuelas y tostones
+                                </p>
+                                <div class="service-features">
+                                    <span class="feature-tag">Corte Gigante</span>
+                                    <span class="feature-tag">Piel Crujiente</span>
+                                    <span class="feature-tag">Para Valientes</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Mar de Mi Tierra -->
+                    <div class="service-card-flip reveal reveal-delay-3" role="article"
+                        aria-label="Mar de Mi Tierra - haz clic para más información">
+                        <div class="service-card-inner">
+                            <div class="service-card-front">
+                                <img src="images/mar_de_mi_tierra.jpg" alt="Mar de Mi Tierra" class="service-image"
+                                    width="400" height="420" style="object-position: center 80%;" loading="lazy" decoding="async">
+                                <div class="service-overlay">
+                                    <div class="service-emoji-front">🥩</div>
+                                    <h3 class="service-title-front">Mar de Mi Tierra</h3>
+                                    <span class="service-hint-front">✦ Ver detalles</span>
+                                </div>
+                            </div>
+                            <div class="service-card-back">
+                                <div class="service-back-icon">🥩</div>
+                                <h3 class="service-title-back">Mar de Mi Tierra</h3>
+                                <p class="service-description">
+                                    Churrasco, camarones bañados en salsa de ajo y trifongo.
+                                </p>
+                                <div class="service-features">
+                                    <span class="feature-tag">Surf & Turf</span>
+                                    <span class="feature-tag">Premium</span>
+                                    <span class="feature-tag">Salsa Cremosa</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Mofongo Relleno -->
+                    <div class="service-card-flip reveal reveal-delay-1" role="article"
+                        aria-label="Mofongo Relleno - haz clic para más información">
+                        <div class="service-card-inner">
+                            <div class="service-card-front">
+                                <img src="images/mofongo_relleno.jpg" alt="Mofongo Relleno" class="service-image"
+                                    width="400" height="420" loading="lazy" decoding="async">
+                                <div class="service-overlay">
+                                    <div class="service-emoji-front">🫚</div>
+                                    <h3 class="service-title-front">Mofongo Relleno</h3>
+                                    <span class="service-hint-front">✦ Ver detalles</span>
+                                </div>
+                            </div>
+                            <div class="service-card-back">
+                                <div class="service-back-icon">🫚</div>
+                                <h3 class="service-title-back">Mofongo Relleno</h3>
+                                <p class="service-description">
+                                    Frescos plátanos majados con tocineta, mantequilla, ajo y salsa a escoger<br>
+                                    Elige la proteína de tu preferencia:<br>
+                                    Carne frita o de res.<br>
+                                    Pollo a la plancha.<br>
+                                    Camarones. Mar y tierra. Mariscada.
+                                </p>
+                                <div class="service-features">
+                                    <span class="feature-tag">Insignia</span>
+                                    <span class="feature-tag">Sabor Intenso</span>
+                                    <span class="feature-tag">Súper Relleno</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Pechuga Rellena -->
+                    <div class="service-card-flip reveal reveal-delay-2" role="article"
+                        aria-label="Pechuga Rellena - haz clic para más información">
+                        <div class="service-card-inner">
+                            <div class="service-card-front">
+                                <img src="images/pechuga_rellena.jpg" alt="Pechuga Rellena" class="service-image"
+                                    width="400" height="420" loading="lazy" decoding="async">
+                                <div class="service-overlay">
+                                    <div class="service-emoji-front">🍗</div>
+                                    <h3 class="service-title-front">Pechuga Rellena</h3>
+                                    <span class="service-hint-front">✦ Ver detalles</span>
+                                </div>
+                            </div>
+                            <div class="service-card-back">
+                                <div class="service-back-icon">🍗</div>
+                                <h3 class="service-title-back">Pechuga Rellena</h3>
+                                <p class="service-description">
+                                    Tierna pechuga rellena de mofongo de plátano verde envuelta en tocineta
+                                </p>
+                                <div class="service-features">
+                                    <span class="feature-tag">Jugosa</span>
+                                    <span class="feature-tag">Con Tocineta</span>
+                                    <span class="feature-tag">Salsa Especial</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 6: Pescado Frito -->
+                    <div class="service-card-flip reveal reveal-delay-3" role="article"
+                        aria-label="Pescado Frito - haz clic para más información">
+                        <div class="service-card-inner">
+                            <div class="service-card-front">
+                                <img src="images/pescado_frito.jpg" alt="Pescado Frito" class="service-image"
+                                    width="400" height="420" loading="lazy" decoding="async">
+                                <div class="service-overlay">
+                                    <div class="service-emoji-front">🐟</div>
+                                    <h3 class="service-title-front">Pescado Frito</h3>
+                                    <span class="service-hint-front">✦ Ver detalles</span>
+                                </div>
+                            </div>
+                            <div class="service-card-back">
+                                <div class="service-back-icon">🐟</div>
+                                <h3 class="service-title-back">Pescado Frito</h3>
+                                <p class="service-description">
+                                    Pescado entero empanizado y frito.
+                                </p>
+                                <div class="service-features">
+                                    <span class="feature-tag">Pescado Fresco</span>
+                                    <span class="feature-tag">Crujiente</span>
+                                    <span class="feature-tag">Con Mofongo</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!-- /services-grid -->
+            </div>
+        </section>
+
+        <!-- ============================================================
+     DESAYUNO INTERNACIONAL
+     ============================================================ -->
+        <section id="brunch" class="section brunch-section relative">
+            <div class="brunch-ambient-glow" aria-hidden="true"></div>
+            
+            <div class="container">
+                <div class="text-center reveal">
+                    <div class="section-label pulse" style="border-color: var(--warning); color: var(--warning); background: rgba(245, 158, 11, 0.1);">
+                        ✨ HORARIO DE 8:00 A.M. A 10:00 P.M.
+                    </div>
+                    <h2 class="section-title" style="margin-top: 16px;">
+                        <span class="gold">Desayuno Internacional</span>
+                    </h2>
+                    <p class="section-subtitle">
+                        Despierta tus sentidos con nuestras opciones exclusivas de desayuno. Sabores vibrantes y combinaciones perfectas para comenzar tu día con toda la energía.
+                    </p>
+                </div>
+
+                <!-- Animated Staggered Gallery -->
+                <div class="brunch-gallery reveal reveal-delay-1">
+                    
+                    <!-- Col 1 -->
+                    <div class="brunch-col">
+                        <div class="brunch-card reveal-up">
+                            <img src="images/desayuno_fit_bowl.jpg" alt="Fit Bowl" width="380" height="475" loading="lazy" decoding="async">
+                            <div class="brunch-card-overlay">
+                                <h4>FIT BOWL</h4>
+                                <p>Con yogurt griego, frutas y granola es perfecto para empezar el día con energía.</p>
+                            </div>
+                        </div>
+                        <div class="brunch-card reveal-up">
+                            <img src="images/desayuno_waffle_sandwich_tuna.jpg" alt="Waffle Sandwich de Tuna" width="380" height="380" loading="lazy" decoding="async">
+                            <div class="brunch-card-overlay">
+                                <h4>WAFFLE SANDWICH DE TUNA</h4>
+                                <p>¡Prueba nuestros desayunos ahora!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Col 2 (Staggered) -->
+                    <div class="brunch-col staggered">
+                        <div class="brunch-card reveal-up">
+                            <img src="images/desayuno_amanecer_dulce.jpg" alt="Amanecer Dulce" width="380" height="380" loading="lazy" decoding="async">
+                            <div class="brunch-card-overlay">
+                                <h4>AMANECER DULCE</h4>
+                                <p>Con pancakes y frutas es el plan perfecto.</p>
+                            </div>
+                        </div>
+                        <div class="brunch-card reveal-up">
+                            <img src="images/desayuno_el_pollo.jpg" alt="El Pollo al Estilo Brunch" width="380" height="475" loading="lazy" decoding="async">
+                            <div class="brunch-card-overlay">
+                                <h4>EL POLLO</h4>
+                                <p>Al estilo brunch. Pollo empanizado con waffles y ensalada fresca.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Col 3 -->
+                    <div class="brunch-col">
+                        <div class="brunch-card reveal-up">
+                            <img src="images/desayuno_las_mananas.jpg" alt="Las Mañanas" width="380" height="475" loading="lazy" decoding="async">
+                            <div class="brunch-card-overlay">
+                                <h4>LAS MAÑANAS</h4>
+                                <p>También tienen su momento en 787.</p>
+                            </div>
+                        </div>
+                        <div class="brunch-card reveal-up">
+                            <img src="images/desayuno_general_hero.jpg" alt="Nuestros Desayunos" width="380" height="380" loading="lazy" decoding="async">
+                            <div class="brunch-card-overlay">
+                                <h4>NUESTROS DESAYUNOS</h4>
+                                <p>Diferentes opciones para cada gusto.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+
+        <!-- ============================================================
+     ABOUT / EXPERIENCIA
+     ============================================================ -->
+        <section id="nosotros" class="section experience-section">
+            <div class="container">
+                <div class="experience-grid">
+
+                    <!-- Image -->
+                    <div class="experience-img-wrap reveal">
+                        <img src="images/nosotros_visual.png" alt="Interior del Restaurante 787 Gastronomía"
+                            class="experience-img" loading="lazy">
+                        <div class="experience-img-glow"></div>
+
+                        <!-- Floating stats -->
+                        <div class="experience-stats-float">
+                            <div class="exp-stat-card">
+                                <span class="exp-stat-number" data-counter="5" data-suffix="+" id="statAnos">0+</span>
+                                <span class="exp-stat-label">Años de Sazón</span>
+                            </div>
+                            <div class="exp-stat-card">
+                                <span class="exp-stat-number" data-counter="50" data-suffix="+"
+                                    id="statRecetas">0+</span>
+                                <span class="exp-stat-label">Recetas Auténticas</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="experience-content reveal reveal-delay-2">
+                        <div class="section-label"><i class="fa-solid fa-book"></i> Nuestra Historia</div>
+                        <h2 class="section-title">
+                            Más que un Restaurante,<br>
+                            <span class="gold">un Hogar Boricua</span>
+                        </h2>
+                        <p style="margin-top:20px; margin-bottom:8px; color:var(--text-tertiary); line-height:1.8;">
+                            787 Gastronomía Puertorriqueña nació del amor por la cultura y la cocina de la Isla del
+                            Encanto. Llegamos a Medellín con una misión: compartir la riqueza gastronómica de Puerto
+                            Rico con Colombia y el mundo.
+                        </p>
+                        <p style="color:var(--text-tertiary); line-height:1.8;">
+                            Cada platillo que servimos es preparado según recetas familiares auténticas, usando especias
+                            y técnicas traídas directamente de la isla. Aquí no hay atajos: solo sazón de verdad,
+                            corazón y el orgullo de lo boricua.
+                        </p>
+
+                        <div class="experience-points">
+                            <div class="exp-point">
+                                <div class="exp-point-icon"><i class="fa-solid fa-pepper-hot"></i></div>
+                                <div class="exp-point-text">
+                                    <h4>Ingredientes Auténticos</h4>
+                                    <p>Sofrito, sazón, achiote y especias traídas de Puerto Rico para un sabor genuino.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="exp-point">
+                                <div class="exp-point-icon"><i class="fa-solid fa-kitchen-set"></i></div>
+                                <div class="exp-point-text">
+                                    <h4>Chefs con Herencia Boricua</h4>
+                                    <p>Nuestro equipo de cocina lleva la tradición culinaria puertorriqueña en la
+                                        sangre.</p>
+                                </div>
+                            </div>
+                            <div class="exp-point">
+                                <div class="exp-point-icon"><i class="fa-solid fa-music"></i></div>
+                                <div class="exp-point-text">
+                                    <h4>Ambiente Cultural Único</h4>
+                                    <p>Música, decoración y hospitalidad boricua. Un viaje a Puerto Rico sin salir de
+                                        Medellín.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="experience-actions">
+                            <a href="#contacto" class="btn btn-primary" id="nosotrosContactoBtn"><i class="fa-solid fa-phone"></i> Contáctanos</a>
+                            <a href="https://drive.google.com/file/d/1VSGPszlCJiIkliUln1LGAMReY7vU1A-o/view" target="_blank" rel="noopener noreferrer" class="btn btn-outline" id="nosotrosMenuBtn">Nuestro Menú</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- ============================================================
+     RESERVACIONES / CTA FINAL
+     ============================================================ -->
+        <section id="contacto" class="section cta-section">
+            <div class="cta-bg-radial" aria-hidden="true"></div>
+            <div id="particles-cta" class="particles-container" aria-hidden="true"></div>
+
+            <div class="container reserva-container">
+
+                <!-- Left: Info & contacto directo -->
+                <div class="reserva-info reveal">
+                    <div class="section-label"><i class="fa-solid fa-calendar-check"></i> Reserva tu Mesa</div>
+                    <h2 class="section-title">
+                        Reserva una<br>
+                        <span class="gold">Mesa</span>
+                    </h2>
+                    <p class="reserva-info-desc">
+                        Completa el formulario y recibe confirmación inmediata. También puedes contactarnos
+                        directamente.
+                    </p>
+
+                    <div class="reserva-contact-items">
+                        <div class="reserva-contact-item">
+                            <div class="reserva-contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                            <div>
+                                <div class="reserva-contact-label">Dirección</div>
+                                <div class="reserva-contact-value">Cra. 36 #8a-12, El Poblado,<br>Medellín, Antioquia, Colombia</div>
+                            </div>
+                        </div>
+                        <div class="reserva-contact-item">
+                            <div class="reserva-contact-icon"><i class="fa-solid fa-clock"></i></div>
+                            <div>
+                                <div class="reserva-contact-label">Horario</div>
+                                <div class="reserva-contact-value">Mar – Dom: 8:00 AM – 10:00 PM</div>
+                            </div>
+                        </div>
+                        <div class="reserva-contact-item">
+                            <div class="reserva-contact-icon"><i class="fa-solid fa-phone"></i></div>
+                            <div>
+                                <div class="reserva-contact-label">Teléfono</div>
+                                <a href="tel:+573153597524" class="reserva-contact-value reserva-link">+57 315 3597524</a>
+                            </div>
+                        </div>
+                        <div class="reserva-contact-item">
+                            <div class="reserva-contact-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                            <div>
+                                <div class="reserva-contact-label">WhatsApp</div>
+                                <a href="https://api.whatsapp.com/message/746MFPD3TP6MO1?autoload=1&app_absent=0" target="_blank" rel="noopener noreferrer"
+                                    class="reserva-contact-value reserva-link">Escríbenos ahora</a>
+                            </div>
+                        </div>
+                        <div class="reserva-contact-item">
+                            <div class="reserva-contact-icon"><i class="fa-brands fa-instagram"></i></div>
+                            <div>
+                                <div class="reserva-contact-label">Instagram</div>
+                                <a href="https://www.instagram.com/787gastronomiapr/" target="_blank" rel="noopener noreferrer"
+                                    class="reserva-contact-value reserva-link">@787gastronomiapr</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Reservation Form -->
+                <div class="reserva-form-wrap reveal reveal-delay-2">
+                    <form id="reservaForm" class="reserva-form glass-card" novalidate
+                        aria-label="Formulario de reserva">
+
+                        <div class="form-header">
+                            <h3 class="form-title">Detalles de tu Reserva</h3>
+                            <p class="form-subtitle">Todos los campos marcados con <span
+                                    style="color:var(--primary-400);">*</span> son obligatorios</p>
+                        </div>
+
+                        <!-- Row 1: Nombre + Teléfono -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="reservaNombre" class="form-label">Nombre completo <span
+                                        class="req">*</span></label>
+                                <input type="text" id="reservaNombre" name="nombre" class="form-input"
+                                    placeholder="Tu nombre" required autocomplete="name">
+                                <span class="form-error" id="errorNombre"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="reservaTelefono" class="form-label">Teléfono <span
+                                        class="req">*</span></label>
+                                <input type="tel" id="reservaTelefono" name="telefono" class="form-input"
+                                    placeholder="+57 300 000 0000" required autocomplete="tel">
+                                <span class="form-error" id="errorTelefono"></span>
+                            </div>
+                        </div>
+
+                        <!-- Row 2: Email -->
+                        <div class="form-group">
+                            <label for="reservaEmail" class="form-label">Correo electrónico <span
+                                    class="req">*</span></label>
+                            <input type="email" id="reservaEmail" name="email" class="form-input"
+                                placeholder="tu@correo.com" required autocomplete="email">
+                            <span class="form-error" id="errorEmail"></span>
+                        </div>
+
+                        <!-- Row 3: Fecha + Hora -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="reservaFecha" class="form-label">Fecha <span class="req">*</span></label>
+                                <input type="date" id="reservaFecha" name="fecha" class="form-input" required>
+                                <span class="form-error" id="errorFecha"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="reservaHora" class="form-label">Hora <span class="req">*</span></label>
+                                <select id="reservaHora" name="hora" class="form-input form-select" required>
+                                    <option value="">Selecciona hora</option>
+                                    <option value="08:00">8:00 AM</option>
+                                    <option value="08:30">8:30 AM</option>
+                                    <option value="09:00">9:00 AM</option>
+                                    <option value="09:30">9:30 AM</option>
+                                    <option value="10:00">10:00 AM</option>
+                                    <option value="10:30">10:30 AM</option>
+                                    <option value="11:00">11:00 AM</option>
+                                    <option value="11:30">11:30 AM</option>
+                                    <option value="12:00">12:00 PM</option>
+                                    <option value="12:30">12:30 PM</option>
+                                    <option value="13:00">1:00 PM</option>
+                                    <option value="13:30">1:30 PM</option>
+                                    <option value="14:00">2:00 PM</option>
+                                    <option value="14:30">2:30 PM</option>
+                                    <option value="15:00">3:00 PM</option>
+                                    <option value="15:30">3:30 PM</option>
+                                    <option value="16:00">4:00 PM</option>
+                                    <option value="16:30">4:30 PM</option>
+                                    <option value="17:00">5:00 PM</option>
+                                    <option value="17:30">5:30 PM</option>
+                                    <option value="18:00">6:00 PM</option>
+                                    <option value="18:30">6:30 PM</option>
+                                    <option value="19:00">7:00 PM</option>
+                                    <option value="19:30">7:30 PM</option>
+                                    <option value="20:00">8:00 PM</option>
+                                    <option value="20:30">8:30 PM</option>
+                                    <option value="21:00">9:00 PM</option>
+                                    <option value="21:30">9:30 PM</option>
+                                    <option value="22:00">10:00 PM</option>
+                                </select>
+                                <span class="form-error" id="errorHora"></span>
+                            </div>
+                        </div>
+
+                        <!-- Row 4: Personas + Ocasión -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="reservaPersonas" class="form-label">N.° de personas <span
+                                        class="req">*</span></label>
+                                <select id="reservaPersonas" name="personas" class="form-input form-select" required>
+                                    <option value="">Cuántos serán</option>
+                                    <option value="1">1 persona</option>
+                                    <option value="2">2 personas</option>
+                                    <option value="3">3 personas</option>
+                                    <option value="4">4 personas</option>
+                                    <option value="5">5 personas</option>
+                                    <option value="6">6 personas</option>
+                                    <option value="7-10">7–10 personas</option>
+                                    <option value="11+">Más de 10 (evento)</option>
+                                </select>
+                                <span class="form-error" id="errorPersonas"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="reservaOcasion" class="form-label">Ocasión especial</label>
+                                <select id="reservaOcasion" name="ocasion" class="form-input form-select">
+                                    <option value="">Ninguna en particular</option>
+                                    <option value="Cumpleaños">🎂 Cumpleaños</option>
+                                    <option value="Aniversario">💍 Aniversario</option>
+                                    <option value="Reunión de negocios">💼 Reunión de negocios</option>
+                                    <option value="Cena romántica">🌹 Cena romántica</option>
+                                    <option value="Celebración familiar">👨‍👩‍👧‍👦 Celebración familiar</option>
+                                    <option value="Evento corporativo">🏢 Evento corporativo</option>
+                                    <option value="Otra">✨ Otra</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Row 5: Mensaje -->
+                        <div class="form-group">
+                            <label for="reservaMensaje" class="form-label">Mensaje o solicitudes especiales</label>
+                            <textarea id="reservaMensaje" name="mensaje" class="form-input form-textarea"
+                                placeholder="Alergias, preferencias, peticiones especiales..." rows="3"></textarea>
+                        </div>
+
+                        <!-- Submit -->
+                        <button type="submit" id="submitReserva" class="btn btn-primary btn-lg form-submit">
+                            <span id="submitText"><i class="fa-solid fa-check"></i> Confirmar Reserva</span>
+                            <span id="submitSpinner" class="form-spinner" aria-hidden="true"
+                                style="display:none;"></span>
+                        </button>
+
+                        <p class="form-privacy">
+                            <i class="fa-solid fa-lock"></i> Tus datos están seguros. Solo los usamos para gestionar tu reserva.
+                        </p>
+
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Toast (error only) -->
+        <div id="toast" class="toast" role="alert" aria-live="polite" aria-atomic="true">
+            <span id="toastIcon" class="toast-icon"></span>
+            <span id="toastMsg" class="toast-msg"></span>
+        </div>
+
+        <!-- ============================================================
+     CONFIRMATION MODAL
+     ============================================================ -->
+        <div id="confirmModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle"
+            aria-hidden="true">
+            <div class="modal-box">
+
+                <!-- Close button -->
+                <button id="modalClose" class="modal-close" aria-label="Cerrar confirmación">✕</button>
+
+                <!-- Success animation -->
+                <div class="modal-icon-wrap" aria-hidden="true">
+                    <div class="modal-icon-ring"></div>
+                    <div class="modal-icon"><i class="fa-solid fa-champagne-glasses"></i></div>
+                </div>
+
+                <h2 id="modalTitle" class="modal-title">¡Reserva Confirmada!</h2>
+                <p class="modal-subtitle">
+                    Hemos recibido tu solicitud. Nuestro equipo te contactará en breve para confirmar los detalles de tu
+                    mesa.
+                </p>
+
+                <!-- Summary card -->
+                <div class="modal-summary">
+                    <div class="modal-summary-row">
+                        <span class="modal-summary-label"><i class="fa-solid fa-user"></i> Nombre</span>
+                        <span class="modal-summary-value" id="mNombre">—</span>
+                    </div>
+                    <div class="modal-summary-row">
+                        <span class="modal-summary-label"><i class="fa-solid fa-calendar"></i> Fecha</span>
+                        <span class="modal-summary-value" id="mFecha">—</span>
+                    </div>
+                    <div class="modal-summary-row">
+                        <span class="modal-summary-label"><i class="fa-regular fa-clock"></i> Hora</span>
+                        <span class="modal-summary-value" id="mHora">—</span>
+                    </div>
+                    <div class="modal-summary-row">
+                        <span class="modal-summary-label"><i class="fa-solid fa-users"></i> Personas</span>
+                        <span class="modal-summary-value" id="mPersonas">—</span>
+                    </div>
+                    <div class="modal-summary-row" id="mOcasionRow">
+                        <span class="modal-summary-label"><i class="fa-solid fa-wand-magic-sparkles"></i> Ocasión</span>
+                        <span class="modal-summary-value" id="mOcasion">—</span>
+                    </div>
+                    <div class="modal-summary-row">
+                        <span class="modal-summary-label"><i class="fa-solid fa-mobile-screen-button"></i> Contacto</span>
+                        <span class="modal-summary-value" id="mTelefono">—</span>
+                    </div>
+                </div>
+
+                <p class="modal-note">
+                    ¿Tienes alguna pregunta? Escríbenos por
+                    <a href="https://api.whatsapp.com/message/746MFPD3TP6MO1?autoload=1&app_absent=0" target="_blank" rel="noopener noreferrer"
+                        class="modal-wa-link">WhatsApp <i class="fa-brands fa-whatsapp"></i></a>
+                </p>
+
+                <button id="modalCloseBtn" class="btn btn-primary btn-lg modal-cta">
+                    🍽️ ¡Nos vemos pronto!
+                </button>
+
+            </div>
+        </div>
+
+    </main>
+
+        <!-- ============================================================
+     GOOGLE REVIEWS CTA
+     ============================================================ -->
+        <section id="resenas" class="section reviews-cta-section">
+            <div class="reviews-cta-bg" aria-hidden="true"></div>
+            <div class="container relative">
+                <div class="text-center reveal">
+                    <div class="reviews-stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <h2 class="section-title">
+                        Tu Experiencia es nuestra <span class="gold">mayor Recompensa</span>
+                    </h2>
+                    <p class="section-subtitle">
+                        Ayúdanos a seguir creciendo compartiendo tu opinión sobre nuestra sazón boricua en Google.
+                    </p>
+                    <div class="reviews-cta-action">
+                        <a href="https://www.google.com/maps/place/787+Gastronomia+Puertorriqueña/@6.2077093,-75.5664357,17z/data=!4m8!3m7!1s0x8e4429686ecab509:0x7198886694c55953!8m2!3d6.2077093!4d-75.5664357!9m1!1b1!16s%2Fg%2F11qb099df_?entry=ttu&g_ep=EgoyMDI2MDQwNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer"
+                            class="btn btn-primary btn-lg pulse">
+                            <i class="fa-brands fa-google"></i> Calificar en Google
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+     FOOTER
+     ============================================================ -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+
+            <div class="footer-top">
+
+                <!-- Brand -->
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="Logo 787 Gastronomía Puertorriqueña" width="40" height="40"
+                            loading="lazy">
+                        <span class="footer-logo-text">787 Gastronomía</span>
+                    </div>
+                    <p>El único restaurante de gastronomía puertorriqueña auténtica en Medellín, Colombia. Sabor
+                        boricua, corazón colombiano.</p>
+                    <div class="social-links" aria-label="Redes sociales">
+                        <a href="https://www.instagram.com/787gastronomiapr/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram" title="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="https://api.whatsapp.com/message/746MFPD3TP6MO1?autoload=1&app_absent=0" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp" title="WhatsApp">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+
+
+
+                <!-- Restaurante -->
+                <div class="footer-col">
+                    <h5>Restaurante</h5>
+                    <ul>
+                        <li><a href="#nosotros">Nuestra Historia</a></li>
+                        <li><a href="#menu">Ver Menú</a></li>
+                        <li><a href="https://www.google.com/maps/place/787+Gastronomia+Puertorriqueña/@6.2077093,-75.5664357,17z/data=!4m8!3m7!1s0x8e4429686ecab509:0x7198886694c55953!8m2!3d6.2077093!4d-75.5664357!9m1!1b1!16s%2Fg%2F11qb099df_?entry=ttu&g_ep=EgoyMDI2MDQwNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">Reseñas</a></li>
+                        <li><a href="#contacto">Reservaciones</a></li>
+                        <li><a href="#contacto">Eventos Privados</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contacto -->
+                <div class="footer-col">
+                    <h5>Contacto</h5>
+                    <ul>
+                        <li><a href="tel:+573153597524"><i class="fa-solid fa-phone"></i> +57 315 3597524</a></li>
+                        <li><a href="https://api.whatsapp.com/message/746MFPD3TP6MO1?autoload=1&app_absent=0" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp Reservas</a></li>
+                        <li><a href="https://www.instagram.com/787gastronomiapr/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i> @787gastronomiapr</a></li>
+                        <li><a href="#contacto"><i class="fa-solid fa-location-dot"></i> Cra. 36 #8a-12, Medellín</a></li>
+                        <li><a href="#contacto"><i class="fa-solid fa-clock"></i> Mar–Dom: 8AM–10PM</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">
+                    © 2026 787 Gastronomía Puertorriqueña. Todos los derechos reservados. 🇵🇷
+                </p>
+                <div class="footer-bottom-links">
+                    <a href="#">Política de Privacidad</a>
+                    <a href="#">Términos de Uso</a>
+                    <a href="#">Hecho con ❤️ en Medellín</a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- Smooth Scroll Engine -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
