@@ -143,97 +143,182 @@
                         </div>
                     </div>
 
-                    <!-- Visual: Floating Dish Carousel -->
+                    <!-- Visual: 3D Dish Slider -->
                     <div class="hero-visual" aria-hidden="true">
                         <div class="hero-carousel-wrap">
 
-                            <!-- Ambient glow behind carousel -->
+                            <!-- Ambient glow -->
                             <div class="carousel-ambient-glow"></div>
 
-                            <!-- Floating badge: Abierto Hoy -->
-                            <div class="hero-img-badge badge-top-right">
+                            <!-- Floating badge -->
+                            <div class="hero-img-badge badge-top-right" id="statusBadge">
                                 <span class="badge-dot"></span>
-                                Abierto Hoy
+                                Abierto ahora
                             </div>
 
+                            <!-- 3D Slider -->
+                            <div class="dish-3d-slider" id="dish3dSlider">
 
-                            <!-- Carousel track -->
-                            <div class="dish-carousel" id="dishCarousel">
-                                <div class="dish-track" id="dishTrack">
+                                <!-- Arrow prev -->
+                                <button class="slider-arrow slider-arrow--prev" id="sliderPrev" aria-label="Anterior">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                                </button>
+                                <!-- Arrow next -->
+                                <button class="slider-arrow slider-arrow--next" id="sliderNext" aria-label="Siguiente">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                                </button>
 
-                                    <!-- Slide 1: Mofongo -->
-                                    <div class="dish-slide">
-                                        <div class="dish-card">
-                                            <div class="dish-img-wrap">
-                                                <img src="images/service_1.png" alt="Mofongo Puertorriqueño" class="dish-img" width="520" height="390" decoding="async">
-                                                <div class="dish-shine"></div>
-                                                <div class="dish-img-glow"></div>
+                                            <div class="slider-viewport" id="sliderViewport">
+
+                                    <!-- Card 1: Tradición Boricua 1 -->
+                                    <div class="slider-card" data-index="0">
+                                        <div class="slider-card__inner">
+                                            <div class="slider-card__img-wrap">
+                                                <img src="images/platillo_1.jpg" alt="Mofongo Tradicional" class="slider-card__img" width="520" height="390" decoding="async">
+                                                <div class="slider-card__shine"></div>
                                             </div>
-                                            <div class="dish-info">
-                                                <span class="dish-tag">⭐ Platillo Estrella</span>
-                                                <h3 class="dish-name">Mofongo</h3>
-                                                <p class="dish-desc">Plátano verde, ajo & chicharrón al estilo boricua</p>
+                                            <div class="slider-card__info">
+                                                <span class="dish-tag">🇵🇷 Sabores Auténticos</span>
+                                                <h3 class="dish-name">Tradición Boricua</h3>
+                                                <p class="dish-desc">Experiencia gastronómica que te transporta directo a la isla.</p>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- Slide 2: Pernil -->
-                                    <div class="dish-slide">
-                                        <div class="dish-card">
-                                            <div class="dish-img-wrap">
-                                                <img src="images/service_2.png" alt="Pernil al Horno" class="dish-img" width="520" height="390" decoding="async">
-                                                <div class="dish-shine"></div>
-                                                <div class="dish-img-glow"></div>
+                                    <!-- Card 2: Tradición Boricua 2 -->
+                                    <div class="slider-card" data-index="1">
+                                        <div class="slider-card__inner">
+                                            <div class="slider-card__img-wrap">
+                                                <img src="images/platillo_2.jpg" alt="Platillos Puertorriqueños" class="slider-card__img" width="520" height="390" decoding="async">
+                                                <div class="slider-card__shine"></div>
                                             </div>
-                                            <div class="dish-info">
-                                                <span class="dish-tag">🔥 Marinado 24h</span>
-                                                <h3 class="dish-name">Pernil al Horno</h3>
-                                                <p class="dish-desc">Cerdo marinado en adobo criollo, piel dorada y crujiente</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Slide 3: Arroz con Gandules -->
-                                    <div class="dish-slide">
-                                        <div class="dish-card">
-                                            <div class="dish-img-wrap">
-                                                <img src="images/service_3.png" alt="Arroz con Gandules" class="dish-img" width="520" height="390" decoding="async">
-                                                <div class="dish-shine"></div>
-                                                <div class="dish-img-glow"></div>
-                                            </div>
-                                            <div class="dish-info">
-                                                <span class="dish-tag">🇵🇷 Plato Nacional</span>
-                                                <h3 class="dish-name">Arroz con Gandules</h3>
-                                                <p class="dish-desc">Sofrito casero, sazón y el sabor de la isla</p>
+                                            <div class="slider-card__info">
+                                                <span class="dish-tag">🇵🇷 Sabores Auténticos</span>
+                                                <h3 class="dish-name">Experiencia Boricua</h3>
+                                                <p class="dish-desc">Una explosión de cultura en cada bocado de nuestros platos tradicionales.</p>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- Slide 4: Tostones -->
-                                    <div class="dish-slide">
-                                        <div class="dish-card">
-                                            <div class="dish-img-wrap">
-                                                <img src="images/service_4.png" alt="Tostones Crujientes" class="dish-img" width="520" height="390" decoding="async">
-                                                <div class="dish-shine"></div>
-                                                <div class="dish-img-glow"></div>
+                                    <!-- Card 3: Coctelería 1 -->
+                                    <div class="slider-card" data-index="2">
+                                        <div class="slider-card__inner">
+                                            <div class="slider-card__img-wrap">
+                                                <img src="images/coctel_1.jpg" alt="Coctel Tropical" class="slider-card__img" width="520" height="390" decoding="async">
+                                                <div class="slider-card__shine"></div>
                                             </div>
-                                            <div class="dish-info">
-                                                <span class="dish-tag">🍌 Doble Freído</span>
-                                                <h3 class="dish-name">Tostones</h3>
-                                                <p class="dish-desc">Crujientes por fuera, suaves por dentro, con mayo-kétchup</p>
+                                            <div class="slider-card__info">
+                                                <span class="dish-tag">🍹 Mixología de Autor</span>
+                                                <h3 class="dish-name">Esencia Tropical</h3>
+                                                <p class="dish-desc">Refrescantes creaciones con frutas de la isla y el toque premium de nuestra barra.</p>
                                             </div>
                                         </div>
                                     </div>
 
-                                </div><!-- /dish-track -->
-                            </div><!-- /dish-carousel -->
+                                    <!-- Card 4: Coctelería 2 -->
+                                    <div class="slider-card" data-index="3">
+                                        <div class="slider-card__inner">
+                                            <div class="slider-card__img-wrap">
+                                                <img src="images/coctel_2.jpg" alt="Mixología Boricua" class="slider-card__img" width="520" height="390" decoding="async">
+                                                <div class="slider-card__shine"></div>
+                                            </div>
+                                            <div class="slider-card__info">
+                                                <span class="dish-tag">🍹 Coctelería Boricua</span>
+                                                <h3 class="dish-name">Mixología Boricua</h3>
+                                                <p class="dish-desc">Sabores caribeños elevados a la alta coctelería.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Card 5: Coctelería 3 -->
+                                    <div class="slider-card" data-index="4">
+                                        <div class="slider-card__inner">
+                                            <div class="slider-card__img-wrap">
+                                                <img src="images/coctel_3.jpg" alt="Trago de la Isla" class="slider-card__img" width="520" height="390" decoding="async">
+                                                <div class="slider-card__shine"></div>
+                                            </div>
+                                            <div class="slider-card__info">
+                                                <span class="dish-tag">🍹 Barra Premium</span>
+                                                <h3 class="dish-name">Brindis Caribeño</h3>
+                                                <p class="dish-desc">El acompañamiento perfecto para tu noche en 787.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Card 6: Desayunos -->
+                                    <div class="slider-card" data-index="5">
+                                        <div class="slider-card__inner">
+                                            <div class="slider-card__img-wrap">
+                                                <img src="images/desayuno.jpg" alt="Desayuno Internacional" class="slider-card__img" width="520" height="390" decoding="async">
+                                                <div class="slider-card__shine"></div>
+                                            </div>
+                                            <div class="slider-card__info">
+                                                <span class="dish-tag">✨ Novedad</span>
+                                                <h3 class="dish-name">Desayuno Internacional</h3>
+                                                <p class="dish-desc">Comienza tu día con sabores que trascienden fronteras.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Card 7: Calidad -->
+                                    <div class="slider-card" data-index="6">
+                                        <div class="slider-card__inner">
+                                            <div class="slider-card__img-wrap">
+                                                <img src="images/calidad.jpg" alt="Productos de Calidad" class="slider-card__img" width="520" height="390" decoding="async">
+                                                <div class="slider-card__shine"></div>
+                                            </div>
+                                            <div class="slider-card__info">
+                                                <span class="dish-tag">💎 Selección Premium</span>
+                                                <h3 class="dish-name">Calidad de Origen</h3>
+                                                <p class="dish-desc">Solo lo mejor llega a nuestra mesa para garantizar excelencia.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Card 8: Surtido Boricua -->
+                                    <div class="slider-card" data-index="7">
+                                        <div class="slider-card__inner">
+                                            <div class="slider-card__img-wrap">
+                                                <img src="images/surtido_boricua.jpg" alt="Surtido Boricua" class="slider-card__img" width="520" height="390" decoding="async">
+                                                <div class="slider-card__shine"></div>
+                                            </div>
+                                            <div class="slider-card__info">
+                                                <span class="dish-tag">⭐ Recomendado (4-5 pers)</span>
+                                                <h3 class="dish-name">Surtido Boricua</h3>
+                                                <p class="dish-desc">Carne frita, chicharrón de pollo, tostones, alcapurrias y mofongo.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Card 9: Aguacate Relleno -->
+                                    <div class="slider-card" data-index="8">
+                                        <div class="slider-card__inner">
+                                            <div class="slider-card__img-wrap">
+                                                <img src="images/aguacate_relleno.jpg" alt="Aguacate Relleno" class="slider-card__img" width="520" height="390" decoding="async">
+                                                <div class="slider-card__shine"></div>
+                                            </div>
+                                            <div class="slider-card__info">
+                                                <span class="dish-tag">🆕 Nuevos Sabores</span>
+                                                <h3 class="dish-name">Aguacate Relleno</h3>
+                                                <p class="dish-desc">Cremoso aguacate relleno bañando en salsa artesanal.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div> <!-- /slider-viewport -->
+                            </div><!-- /dish-3d-slider -->
 
                             <!-- Dots navigation -->
                             <div class="carousel-dots" id="carouselDots">
-                                <button class="carousel-dot active" data-index="0" aria-label="Platillo 1"></button>
-                                <button class="carousel-dot" data-index="1" aria-label="Platillo 2"></button>
-                                <button class="carousel-dot" data-index="2" aria-label="Platillo 3"></button>
-                                <button class="carousel-dot" data-index="3" aria-label="Platillo 4"></button>
+                                <button class="carousel-dot active" data-index="0" aria-label="Plato 1"></button>
+                                <button class="carousel-dot" data-index="1" aria-label="Plato 2"></button>
+                                <button class="carousel-dot" data-index="2" aria-label="Plato 3"></button>
+                                <button class="carousel-dot" data-index="3" aria-label="Plato 4"></button>
+                                <button class="carousel-dot" data-index="4" aria-label="Plato 5"></button>
+                                <button class="carousel-dot" data-index="5" aria-label="Plato 6"></button>
+                                <button class="carousel-dot" data-index="6" aria-label="Plato 7"></button>
+                                <button class="carousel-dot" data-index="7" aria-label="Plato 8"></button>
+                                <button class="carousel-dot" data-index="8" aria-label="Plato 9"></button>
                             </div>
 
                         </div><!-- /hero-carousel-wrap -->
@@ -983,8 +1068,6 @@
         </div>
     </footer>
 
-    <!-- Smooth Scroll Engine -->
-    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
     <script src="script.js"></script>
 </body>
 

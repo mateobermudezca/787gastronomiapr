@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initFlipCards();
     initScrollReveal();
     initCounters();
-    initSmoothScroll();
     initDishCarousel();
+    initStatusBadge(); // Dynamic Open/Closed badge
 });
 
 /* ============================================================
@@ -181,41 +181,21 @@ function animateCounter(el, target, suffix = '', prefix = '', duration = 2000) {
 }
 
 /* ============================================================
-   SMOOTH SCROLL
-   ============================================================ */
-function initSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', (e) => {
-            const id = anchor.getAttribute('href');
-            if (id === '#') return;
-            const target = document.querySelector(id);
-            if (!target) return;
-            e.preventDefault();
-            const offset = 80; // navbar height
-            const top = target.getBoundingClientRect().top + window.scrollY - offset;
-            window.scrollTo({ top, behavior: 'smooth' });
-        });
-    });
-}
-
-/* ============================================================
    RESERVATION FORM → GOOGLE CALENDAR (GAS BRIDGE)
    ============================================================ */
 // URL de tu implementación de Google Apps Script (Sustituir después de desplegar)
 const GAS_URL = 'https://script.google.com/macros/s/AKfycbzDANKfDwEqwwIVhhlRP1kVDDeMd5BgFFXrEQyoMP_QOG5Om4WrLautKfD77bf1fyFB/exec'; 
 
-// Festivos Colombia 2026 y 2027 (Ley Emiliani aplicada)
+// Festivos Colombia 2024-2027 (Ley Emiliani aplicada)
 const COLOMBIAN_HOLIDAYS = [
+    // 2024
+    '2024-01-01', '2024-01-08', '2024-03-25', '2024-03-28', '2024-03-29', '2024-05-01', '2024-05-13', '2024-06-03', '2024-06-10', '2024-07-01', '2024-07-20', '2024-08-07', '2024-08-19', '2024-10-14', '2024-11-04', '2024-11-11', '2024-12-08', '2024-12-25',
+    // 2025
+    '2025-01-01', '2025-01-06', '2025-03-24', '2025-04-17', '2025-04-18', '2025-05-01', '2025-06-02', '2025-06-23', '2025-06-30', '2025-07-20', '2025-08-07', '2025-08-18', '2025-10-13', '2025-11-03', '2025-11-17', '2025-12-08', '2025-12-25',
     // 2026
-    '2026-01-01', '2026-01-12', '2026-03-23', '2026-04-02', '2026-04-03',
-    '2026-05-01', '2026-05-18', '2026-06-08', '2026-06-15', '2026-06-29',
-    '2026-07-20', '2026-08-07', '2026-08-17', '2026-10-12', '2026-11-02',
-    '2026-11-16', '2026-12-08', '2026-12-25',
+    '2026-01-01', '2026-01-12', '2026-03-23', '2026-04-02', '2026-04-03', '2026-05-01', '2026-05-18', '2026-06-08', '2026-06-15', '2026-06-29', '2026-07-20', '2026-08-07', '2026-08-17', '2026-10-12', '2026-11-02', '2026-11-16', '2026-12-08', '2026-12-25',
     // 2027
-    '2027-01-01', '2027-01-11', '2027-03-22', '2027-03-25', '2027-03-26',
-    '2027-05-01', '2027-05-10', '2027-05-31', '2027-06-07', '2027-06-28',
-    '2027-07-20', '2027-08-07', '2027-08-16', '2027-10-18', '2027-11-01',
-    '2027-11-15', '2027-12-08', '2027-12-25'
+    '2027-01-01', '2027-01-11', '2027-03-22', '2027-03-25', '2027-03-26', '2027-05-01', '2027-05-10', '2027-05-31', '2027-06-07', '2027-06-28', '2027-07-20', '2027-08-07', '2027-08-16', '2027-10-18', '2027-11-01', '2027-11-15', '2027-12-08', '2027-12-25'
 ];
 
 function initReservationForm() {
@@ -513,146 +493,183 @@ function formatHora(hora) {
 }
 
 /* ============================================================
-   HERO DISH CAROUSEL
+   HERO 3D DISH SLIDER
    ============================================================ */
 function initDishCarousel() {
-    const track    = document.getElementById('dishTrack');
-    const dots     = document.querySelectorAll('.carousel-dot');
-    const slides   = document.querySelectorAll('.dish-slide');
-    const carousel = document.getElementById('dishCarousel');
-    if (!track || !slides.length) return;
+    const cards   = Array.from(document.querySelectorAll('.slider-card'));
+    const dots    = Array.from(document.querySelectorAll('.carousel-dot'));
+    const prevBtn = document.getElementById('sliderPrev');
+    const nextBtn = document.getElementById('sliderNext');
+    const viewport = document.getElementById('sliderViewport');
+    if (!cards.length) return;
 
-    let current   = 0;
-    let autoTimer = null;
-    const total   = slides.length;
-    const INTERVAL = 3000;
+    const total    = cards.length;
+    let   current  = 0;
+    let   autoTimer = null;
+    const INTERVAL  = 3500;
 
-    function goTo(index) {
-        if (!slides[current]) return;
-        // Remove active from previous slide
-        slides[current].classList.remove('active');
-        if (dots[current]) dots[current].classList.remove('active');
+    /* ── Layout constants ── */
+    const SIDE_ROTATE_Y = 45;
+    const SIDE_SCALE    = 0.80;
+    const SIDE_OFFSET   = 48;
+    const FAR_SCALE     = 0.65;
+    const FAR_OFFSET    = 110;
+    const TILT_MAX      = 8; // max tilt degrees
 
-        current = (index + total) % total;
+    /* ─────────────────────────────────────────────
+       OPTIMIZATION 1 — IMAGE PRELOADER
+       Avoids layout jumps and broken 3D on first paint.
+       Uses native Image() + Promise.all — no external lib.
+    ───────────────────────────────────────────── */
+    function preloadImages() {
+        if (viewport) viewport.classList.add('is-loading');
 
-        // Slide the track
-        track.style.transform = `translateX(-${current * 100}%)`;
+        const imgEls = cards
+            .map(c => c.querySelector('.slider-card__img'))
+            .filter(Boolean);
 
-        // Mark active slide and dot
-        if (slides[current]) slides[current].classList.add('active');
-        if (dots[current]) dots[current].classList.add('active');
-    }
-    
-    function startAuto() {
-        stopAuto();
-        autoTimer = setInterval(() => {
-            goTo(current + 1);
-        }, INTERVAL);
-    }
-
-    function stopAuto() {
-        if (autoTimer) clearInterval(autoTimer);
-    }
-
-    // Initialise first slide as active
-    if (slides[0]) slides[0].classList.add('active');
-
-    // Dot clicks
-    dots.forEach((dot, i) => {
-        dot.addEventListener('click', () => {
-            goTo(i);
-            startAuto(); // restart timer after manual navigation
-        });
-    });
-
-    // Touch swipe support
-    let touchStartX = 0;
-    track.addEventListener('touchstart', (e) => {
-        touchStartX = e.touches[0].clientX;
-        stopAuto();
-    }, { passive: true });
-    track.addEventListener('touchend', (e) => {
-        const diff = touchStartX - e.changedTouches[0].clientX;
-        if (Math.abs(diff) > 40) {
-            goTo(diff > 0 ? current + 1 : current - 1);
-        }
-        startAuto();
-    }, { passive: true });
-
-    startAuto();
-}
-
-/* ============================================================
-   SMOOTH SCROLL (LENIS ENGINE)
-   ============================================================ */
-let lenis;
-
-function initSmoothScroll() {
-    // Initialize Lenis
-    lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4ba6
-        direction: 'vertical',
-        gestureDirection: 'vertical',
-        smooth: true,
-        mouseMultiplier: 1,
-        smoothTouch: false,
-        touchMultiplier: 2,
-        infinite: false,
-    });
-
-    // Integrated RAF loop for better performance
-    function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    // Link handling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', (e) => {
-            const id = anchor.getAttribute('href');
-            if (id === '#') return;
-            const target = document.querySelector(id);
-            if (!target) return;
-            
-            e.preventDefault();
-            lenis.scrollTo(target, {
-                offset: -80,
-                duration: 1.5
+        const promises = imgEls.map(img => {
+            // Already in cache — resolve immediately, no flash
+            if (img.complete && img.naturalWidth > 0) return Promise.resolve();
+            return new Promise(resolve => {
+                const loader = new Image();
+                loader.src     = img.src;
+                loader.onload  = resolve;
+                loader.onerror = resolve; // fail gracefully — never block the UI
             });
         });
-    });
 
-    // Navbar Scroll Spy (Active Links)
-    initScrollSpy();
-}
-
-/**
- * Automatically highlights the current section in the navbar
- */
-function initScrollSpy() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
-
-    const options = {
-        threshold: 0.3,
-        rootMargin: '-80px 0px -20% 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const id = entry.target.getAttribute('id');
-                navLinks.forEach(link => {
-                    link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-                });
-            }
+        return Promise.all(promises).then(() => {
+            if (viewport) viewport.classList.remove('is-loading');
         });
-    }, options);
+    }
 
-    sections.forEach(section => observer.observe(section));
+    /* ─────────────────────────────────────────────
+       OPTIMIZATION 2 — 3D TILT with toFixed(2)
+       Writing values like "7.834729374deg" to the DOM on every
+       mousemove frame forces the browser to parse a 16-char string.
+       toFixed(2) → "7.83deg" (7 chars) — ~56% shorter string,
+       measurably faster style recalc on lower-end devices.
+    ───────────────────────────────────────────── */
+    let tiltRafId   = null;
+    let pendingTX   = 0;
+    let pendingTY   = 0;
+
+    function flushTilt() {
+        const inner = cards[current]?.querySelector('.slider-card__inner');
+        if (inner) {
+            // toFixed(2) is the key micro-optimization
+            inner.style.setProperty('--tilt-x', pendingTX.toFixed(2) + 'deg');
+            inner.style.setProperty('--tilt-y', pendingTY.toFixed(2) + 'deg');
+        }
+        tiltRafId = null;
+    }
+
+    function clearTilt(cardIndex) {
+        const inner = cards[cardIndex]?.querySelector('.slider-card__inner');
+        if (inner) {
+            inner.style.setProperty('--tilt-x', '0.00deg');
+            inner.style.setProperty('--tilt-y', '0.00deg');
+        }
+    }
+
+    if (viewport) {
+        viewport.addEventListener('mousemove', (e) => {
+            const r  = viewport.getBoundingClientRect();
+            const nx = (e.clientX - r.left)  / r.width  - 0.5; // -0.5 → 0.5
+            const ny = (e.clientY - r.top)   / r.height - 0.5;
+            pendingTX = ny * -TILT_MAX; // pitch
+            pendingTY = nx *  TILT_MAX; // yaw
+            // Schedule one RAF — skip frames automatically
+            if (!tiltRafId) tiltRafId = requestAnimationFrame(flushTilt);
+        }, { passive: true });
+
+        viewport.addEventListener('mouseleave', () => {
+            if (tiltRafId) { cancelAnimationFrame(tiltRafId); tiltRafId = null; }
+            clearTilt(current);
+        }, { passive: true });
+    }
+
+    function applyPositions() {
+        cards.forEach((card, i) => {
+            const wrap = ((i - current) + total) % total;
+            const half = Math.floor(total / 2);
+            const norm = wrap > half ? wrap - total : wrap;
+
+            let tx, ry, sc, op, zi;
+
+            if (norm === 0) {
+                tx = -50; ry = 0; sc = 1; op = 1; zi = 10;
+            } else if (norm === -1) {
+                tx = -(50 + SIDE_OFFSET); ry =  SIDE_ROTATE_Y; sc = SIDE_SCALE; op = 0.5; zi = 8;
+            } else if (norm === 1) {
+                tx = -(50 - SIDE_OFFSET); ry = -SIDE_ROTATE_Y; sc = SIDE_SCALE; op = 0.5; zi = 8;
+            } else if (norm === -2) {
+                tx = -(50 + FAR_OFFSET); ry = SIDE_ROTATE_Y; sc = FAR_SCALE; op = 0.15; zi = 6;
+            } else if (norm === 2) {
+                tx = -(50 - FAR_OFFSET); ry = -SIDE_ROTATE_Y; sc = FAR_SCALE; op = 0.15; zi = 6;
+            } else {
+                tx = norm < 0 ? -(50 + (FAR_OFFSET * 1.5)) : -(50 - (FAR_OFFSET * 1.5));
+                ry = norm < 0 ?  SIDE_ROTATE_Y     : -SIDE_ROTATE_Y;
+                sc = FAR_SCALE * 0.8; op = 0; zi = 1;
+            }
+
+            card.style.transform = `translateX(${tx}%) rotateY(${ry}deg) scale(${sc})`;
+            card.style.opacity   = op;
+            card.style.zIndex    = zi;
+            card.classList.toggle('is-active', norm === 0);
+
+            // Reset tilt vars on card change to avoid stale tilt on incoming card
+            clearTilt(i);
+        });
+
+        dots.forEach((dot, i) => dot.classList.toggle('active', i === current));
+    }
+
+    function goTo(index) {
+        current = ((index % total) + total) % total;
+        applyPositions();
+    }
+
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
+
+    function startAuto() { stopAuto(); autoTimer = setInterval(next, INTERVAL); }
+    function stopAuto()  { if (autoTimer) clearInterval(autoTimer); }
+
+    // Arrows
+    if (nextBtn) nextBtn.addEventListener('click', () => { next(); startAuto(); });
+    if (prevBtn) prevBtn.addEventListener('click', () => { prev(); startAuto(); });
+
+    // Dots
+    dots.forEach((dot, i) => dot.addEventListener('click', () => { goTo(i); startAuto(); }));
+
+    // Side-card click → navigate
+    cards.forEach((card, i) => card.addEventListener('click', () => {
+        if (i !== current) { goTo(i); startAuto(); }
+    }));
+
+    // Touch swipe
+    let touchStartX = 0;
+    if (viewport) {
+        viewport.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX; stopAuto();
+        }, { passive: true });
+        viewport.addEventListener('touchend', (e) => {
+            const diff = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 40) diff > 0 ? next() : prev();
+            startAuto();
+        }, { passive: true });
+    }
+
+    /* ── Boot: preload → render → autoplay ── */
+    preloadImages().then(() => {
+        applyPositions();
+        startAuto();
+    });
 }
+
+
 
 /* ============================================================
    UTILITIES
@@ -663,4 +680,54 @@ function debounce(fn, wait) {
         clearTimeout(timer);
         timer = setTimeout(() => fn(...args), wait);
     };
+}
+
+/* ============================================================
+   STATUS BADGE (Open / Closed Logic - Colombia)
+   ============================================================ */
+function initStatusBadge() {
+    const badge = document.getElementById('statusBadge');
+    if (!badge) return;
+
+    function checkStatus() {
+        // Get Colombia local time (UTC-5)
+        const bogotaDateStr = new Date().toLocaleString("en-US", {timeZone: "America/Bogota"});
+        const bogotaDate = new Date(bogotaDateStr);
+        
+        const day = bogotaDate.getDay(); // 0: Sun, 1: Mon...
+        const hour = bogotaDate.getHours();
+        
+        // Format to YYYY-MM-DD for matching COLOMBIAN_HOLIDAYS
+        const y = bogotaDate.getFullYear();
+        const m = String(bogotaDate.getMonth() + 1).padStart(2, '0');
+        const d = String(bogotaDate.getDate()).padStart(2, '0');
+        const dateKey = `${y}-${m}-${d}`;
+        
+        const isHoliday = COLOMBIAN_HOLIDAYS.includes(dateKey);
+        
+        let isOpen = true;
+
+        // Rule: Closed on Mondays unless it's a Holiday Monday
+        if (day === 1 && !isHoliday) {
+            isOpen = false;
+        }
+
+        // Rule: Open Hours (8 AM - 10 PM)
+        if (hour < 8 || hour >= 22) {
+            isOpen = false;
+        }
+
+        // Update UI
+        if (isOpen) {
+            badge.classList.remove('is-hidden');
+        } else {
+            badge.classList.add('is-hidden');
+        }
+    }
+
+    // Initial check
+    checkStatus();
+
+    // Check every minute
+    setInterval(checkStatus, 60000);
 }

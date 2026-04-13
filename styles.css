@@ -59,22 +59,6 @@
     --transition-slow: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Lenis Smooth Scroll Base Styles */
-html.lenis, html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
 
 /* Scroll Progress Line (Highly Optimized) */
 .scroll-progress-container {
@@ -562,15 +546,19 @@ img {
 
 .hero-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.1fr 0.9fr;
     align-items: center;
-    gap: 60px;
+    gap: 100px;
     position: relative;
     z-index: 1;
 }
 
 .hero-content {
+    position: relative;
+    z-index: 10;
     opacity: 0;
+    padding-right: 48px;
+    margin-left: -60px;
     animation: fade-in-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
 }
 
@@ -697,6 +685,13 @@ img {
     font-weight: 600;
     color: var(--text-primary);
     white-space: nowrap;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.hero-img-badge.is-hidden {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
 }
 
 .hero-img-badge .badge-dot {
@@ -718,19 +713,20 @@ img {
 }
 
 /* ============================================================
-   HERO FLOATING DISH CAROUSEL
+   HERO 3D DISH SLIDER
    ============================================================ */
 
-/* Wrapper — replaces .hero-img-wrap */
+/* Wrapper */
 .hero-carousel-wrap {
     position: relative;
     width: 100%;
-    max-width: 520px;
-    margin: 0 auto;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: 0;
     animation: float 7s ease-in-out infinite;
 }
 
-/* Pulsing ambient glow behind the whole carousel */
+/* Ambient glow behind the whole slider */
 .carousel-ambient-glow {
     position: absolute;
     inset: -40px;
@@ -744,63 +740,175 @@ img {
     pointer-events: none;
 }
 
-/* Carousel viewport */
-.dish-carousel {
+/* ─── SLIDER CONTAINER ─── */
+.dish-3d-slider {
     position: relative;
     z-index: 1;
+    width: 100%;
+    padding-bottom: 40px; /* room for dots */
+}
+
+/* Viewport with perspective */
+.slider-viewport {
+    position: relative;
+    width: 100%;
+    height: 380px;
+    perspective: 1200px;
+    perspective-origin: 50% 50%;
+    overflow: visible;
+}
+
+/* ─── CARDS ─── */
+.slider-card {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 70%;
+    height: 100%;
+    transform-origin: center center;
+    transform-style: preserve-3d; /* required for child tilt */
+    border-radius: var(--radius-xl);
+    cursor: pointer;
+    will-change: transform, opacity;
+    transition:
+        transform 0.65s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity   0.65s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slider-card__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
     border-radius: var(--radius-xl);
     overflow: hidden;
-    box-shadow:
-        0 0 0 1px rgba(var(--primary-rgb), 0.18),
-        0 32px 80px -12px rgba(0, 0, 0, 0.8),
-        0 0 60px rgba(var(--primary-rgb), 0.15);
-}
-
-/* Sliding track */
-.dish-track {
-    display: flex;
-    width: 100%;
-    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform;
-}
-
-/* Each slide */
-.dish-slide {
-    flex: 0 0 100%;
-    min-width: 100%;
-}
-
-/* ---------- DISH CARD ---------- */
-.dish-card {
-    position: relative;
     background: var(--bg-card);
+    /* Tilt effect via CSS vars set by JS with toFixed(2) */
+    transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+    transition:
+        transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow:
+        0 0 0 1px rgba(var(--primary-rgb), 0.12),
+        0 24px 60px -8px rgba(0, 0, 0, 0.8),
+        0 0 40px rgba(var(--primary-rgb), 0.10);
+}
+
+/* Active / center card */
+.slider-card.is-active {
+    z-index: 3;
+}
+
+.slider-card.is-active .slider-card__inner {
+    box-shadow:
+        0 0 0 1.5px rgba(var(--primary-rgb), 0.45),
+        0 32px 80px -12px rgba(0, 0, 0, 0.9),
+        0 0 60px rgba(var(--primary-rgb), 0.25);
+}
+
+/* Tilt glow enhancement on hover */
+.slider-card.is-active:hover .slider-card__inner {
+    box-shadow:
+        0 0 0 2px rgba(var(--primary-rgb), 0.60),
+        0 40px 100px -12px rgba(0, 0, 0, 0.95),
+        0 0 80px rgba(var(--primary-rgb), 0.35);
+}
+
+/* ─── SKELETON LOADER ─── */
+/* Shows during preloadImages() → hides once Promise.all resolves */
+.slider-viewport.is-loading {
+    background: var(--bg-tertiary);
     border-radius: var(--radius-xl);
     overflow: hidden;
 }
 
-/* Image container */
-.dish-img-wrap {
+.slider-viewport.is-loading::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    border-radius: var(--radius-xl);
+    background: linear-gradient(
+        90deg,
+        var(--bg-tertiary) 0%,
+        var(--bg-tertiary) 35%,
+        rgba(var(--primary-rgb), 0.08) 50%,
+        var(--bg-tertiary) 65%,
+        var(--bg-tertiary) 100%
+    );
+    background-size: 300% 100%;
+    animation: skeleton-shimmer 1.8s ease-in-out infinite;
+}
+
+/* Spinner icon centered in skeleton */
+.slider-viewport.is-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 21;
+    width: 36px;
+    height: 36px;
+    margin: -18px 0 0 -18px;
+    border: 3px solid rgba(var(--primary-rgb), 0.15);
+    border-top-color: var(--primary-400);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+/* Hides the cards while loading so layout doesn't flash */
+.slider-viewport.is-loading .slider-card {
+    opacity: 0 !important;
+    pointer-events: none;
+}
+
+@keyframes skeleton-shimmer {
+    0%   { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ─── IMAGE ─── */
+.slider-card__img-wrap {
     position: relative;
     width: 100%;
-    aspect-ratio: 4 / 3;
+    height: 100%;
     overflow: hidden;
 }
 
-.dish-img {
+.slider-card__img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    transform: scale(1.04);
+    transform: scale(1.06);
     transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.dish-slide.active .dish-img {
+.slider-card.is-active .slider-card__img {
     transform: scale(1);
 }
 
-/* Gold shimmer sweep — the "brillo" effect */
-.dish-shine {
+/* Gradient overlay for text legibility - subtle fade out at the bottom */
+.slider-card__img-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        transparent 50%,
+        rgba(0, 0, 0, 0.65) 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Gold shimmer sweep */
+.slider-card__shine {
     position: absolute;
     inset: 0;
     background: linear-gradient(
@@ -823,84 +931,94 @@ img {
     100% { background-position: 200% 0; }
 }
 
-/* Inner glow on the image */
-.dish-img-glow {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 50% 80%,
-        rgba(var(--primary-rgb), 0.22) 0%,
-        transparent 60%);
-    z-index: 1;
-    pointer-events: none;
-    animation: pulse-glow-bg 3s ease-in-out infinite;
-}
-
-/* Gradient overlay so text is always readable */
-.dish-img-wrap::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.82) 0%,
-        rgba(0, 0, 0, 0.30) 50%,
-        transparent 100%
-    );
-    z-index: 3;
-    pointer-events: none;
-}
-
-/* ---------- DISH INFO ---------- */
-.dish-info {
+/* ─── INFO PANEL ─── */
+.slider-card__info {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 28px 24px 24px;
+    padding: 24px 22px 20px;
     z-index: 4;
     display: flex;
     flex-direction: column;
     gap: 6px;
+    background: transparent;
+    backdrop-filter: none;
+    transition: transform 0.6s ease, opacity 0.6s ease;
 }
 
 .dish-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 0.6875rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--primary-300);
-    background: rgba(var(--primary-rgb), 0.15);
-    border: 1px solid rgba(var(--primary-rgb), 0.30);
-    padding: 4px 10px;
-    border-radius: var(--radius-full);
-    backdrop-filter: blur(8px);
-    width: fit-content;
+    letter-spacing: 0.1em;
+    color: var(--primary-400);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
 .dish-name {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1.625rem;
-    font-weight: 800;
-    color: #ffffff;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    text-shadow: 0 2px 12px rgba(0,0,0,0.8);
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.2;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.8);
 }
 
 .dish-desc {
     font-size: 0.875rem;
-    color: rgba(255,255,255,0.70);
+    color: rgba(255, 255, 255, 0.9);
+    margin: 4px 0 0;
     line-height: 1.5;
-    margin: 0;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-/* ---------- DOTS NAVIGATION ---------- */
+/* ─── ARROWS ─── */
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(calc(-50% - 20px));
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(var(--primary-rgb), 0.35);
+    background: rgba(0, 0, 0, 0.60);
+    backdrop-filter: blur(12px);
+    color: var(--primary-400);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: all 0.25s ease;
+}
+
+.slider-arrow svg {
+    width: 18px;
+    height: 18px;
+}
+
+.slider-arrow--prev { left: -20px; }
+.slider-arrow--next { right: -20px; }
+
+.slider-arrow:hover {
+    background: rgba(var(--primary-rgb), 0.20);
+    border-color: rgba(var(--primary-rgb), 0.70);
+    box-shadow: 0 0 18px rgba(var(--primary-rgb), 0.40);
+    transform: translateY(calc(-50% - 20px)) scale(1.08);
+}
+
+/* ─── DOTS ─── */
 .carousel-dots {
     position: absolute;
-    bottom: -28px;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -930,7 +1048,7 @@ img {
     background: rgba(var(--primary-rgb), 0.6);
 }
 
-/* Adjust badge positions to hero-carousel-wrap */
+/* Badge positions */
 .hero-carousel-wrap .badge-top-right {
     top: -14px;
     right: 12px;
@@ -942,6 +1060,9 @@ img {
     left: -14px;
     z-index: 10;
 }
+
+
+
 
 /* ============================================================
    TRUST BAR
