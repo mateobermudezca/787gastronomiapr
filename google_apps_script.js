@@ -32,7 +32,50 @@ function doGet(e) {
 function doPost(e) {
   try {
     const data = JSON.parse(e.postData.contents);
+    const originEmail = data.email ? data.email.toLowerCase().trim() : 'desconocido';
+
+    // 1. SISTEMA DE RATE LIMITING (Anti-abuso de solicitudes por Email)
+    const cache = CacheService.getScriptCache();
+    const cacheKey = 'RATE_LIMIT_' + originEmail;
+    let attempts = cache.get(cacheKey);
     
+    attempts = attempts ? parseInt(attempts) + 1 : 1;
+    // Si intenta más de 3 veces (limite) ...
+    if (attempts > 3) {
+      return createResponse({ success: false, error: 'Has excedido el límite de reservas. Por favor, intenta dentro de 10 minutos.' });
+    }
+    // Guardamos que hubo un intento; 600 segundos = 10 minutos
+    cache.put(cacheKey, attempts.toString(), 600);
+
+    // 2. VALIDACIONES DE FLUJO ESTRICTAS (Regex)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(originEmail)) {
+      return createResponse({ success: false, error: 'Por favor proporciona una dirección de email válida.' });
+    }
+
+    const phoneRegex = /^[\d\s\+\-\(\)]{10,15}$/; // Permite números, espacios, el signo más y paréntesis
+    if (!data.telefono || !phoneRegex.test(data.telefono)) {
+      return createResponse({ success: false, error: 'El número de teléfono proporcionado contiene caracteres no permitidos.' });
+    }
+
+    // 3. SANITIZACIÓN PARA EVITAR ATAQUES XSS
+    // Función simple de escape de HTML
+    const escapeHTML = (str) => {
+      if (!str) return '';
+      return str.toString()
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    };
+
+    // Sobreescribimos la variable para desarmar etiquetas <script> e imágenes maliciosas
+    data.nombre = escapeHTML(data.nombre);
+    data.mensaje = escapeHTML(data.mensaje);
+    data.ocasion = escapeHTML(data.ocasion);
+
+    // 4. FLUJO ORIGINAL DE RESERVA
     // Verificar disponibilidad por última vez antes de insertar
     if (!checkAvailability(data.fecha, data.hora)) {
       return createResponse({ success: false, error: 'Lo sentimos, el horario ya se ha ocupado.' });

@@ -211,6 +211,41 @@ function initReservationForm() {
     // Set minimum date to today
     if (dateInput) {
         dateInput.min = new Date().toISOString().split('T')[0];
+        
+        const updateAvailableTimes = () => {
+            if (!dateInput.value) return;
+            const todayStr = new Date().toLocaleString("en-CA", {timeZone: "America/Bogota"}).split(',')[0]; 
+            // Usa formato local YYYY-MM-DD para Colombia en base a la IP local (en-CA arroja YYYY-MM-DD)
+            
+            const isToday = (dateInput.value === todayStr) || 
+                            (dateInput.value === new Date().toISOString().split('T')[0]);
+            
+            const now = new Date();
+            
+            Array.from(timeSelect.options).forEach(opt => {
+                if (!opt.value) return; // Placeholder
+                
+                if (isToday) {
+                    const optTime = new Date(`${dateInput.value}T${opt.value}:00`);
+                    // Disables times shorter than 60 mins from now
+                    if (optTime.getTime() < now.getTime() + (60 * 60 * 1000)) {
+                        opt.disabled = true;
+                        opt.style.display = 'none';
+                        if (timeSelect.value === opt.value) timeSelect.value = '';
+                    } else {
+                        opt.disabled = false;
+                        opt.style.display = '';
+                    }
+                } else {
+                    opt.disabled = false;
+                    opt.style.display = '';
+                }
+            });
+        };
+
+        dateInput.addEventListener('change', updateAvailableTimes);
+        // Call it immediately in case browser pre-fills today's date
+        updateAvailableTimes();
     }
 
     // Real-time validation on blur
@@ -240,6 +275,15 @@ function initReservationForm() {
         // Full form validation
         const valid = validateForm(form);
         if (!valid) return;
+
+        // NUEVO: Validación de Anti-Spam Turnstile Frontend
+        const formData = new FormData(form);
+        const cfToken = formData.get('cf-turnstile-response');
+        
+        if (!cfToken) {
+            showToast('error', '🤖', 'Por favor verifica que eres humano para continuar.');
+            return;
+        }
 
         const payload = {
             nombre: document.getElementById('reservaNombre').value.trim(),
@@ -359,6 +403,23 @@ function validateField(input) {
             msg = 'Los lunes no abrimos (excepto si es festivo).';
             // Mostrar pop-up como solicitó el usuario
             showToast('warning', '📅', 'Este día no es válido para reservar. Los lunes solo abrimos si es festivo.');
+        } else {
+            // Re-validar la hora si la fecha cambia (ej: si cambian de mañana a hoy)
+            const timeInput = document.getElementById('reservaHora');
+            if (timeInput && timeInput.value && input === document.getElementById('reservaFecha')) {
+                validateField(timeInput);
+            }
+        }
+    } else if (id === 'reservaHora' && val) {
+        const dateInput = document.getElementById('reservaFecha');
+        if (dateInput && dateInput.value) {
+            const selectedDateTime = new Date(`${dateInput.value}T${val}:00`);
+            const now = new Date();
+            
+            // Requerir al menos 1 hora (60 minutos) de anticipación
+            if (selectedDateTime.getTime() < now.getTime() + (60 * 60 * 1000)) {
+                msg = 'Las reservas deben hacerse con al menos 1 hora de anticipación.';
+            }
         }
     }
 

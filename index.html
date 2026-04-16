@@ -25,13 +25,16 @@
 
     <!-- Preloads for Performance -->
     <link rel="preload" href="images/logo.webp" as="image">
-    <link rel="preload" href="images/hero_bg_sanjuan.webp" as="image">
+    <link rel="preload" href="images/herobg.webp" as="image">
 
     <!-- Favicon placeholder -->
     <link rel="icon" href="images/logo.webp" type="image/png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Cargar Cloudflare Turnstile -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 
 <body>
@@ -881,6 +884,11 @@
                                 placeholder="Alergias, preferencias, peticiones especiales..." rows="3"></textarea>
                         </div>
 
+                        <!-- Widget Cloudflare Turnstile -->
+                        <div style="margin-bottom: 20px; display: flex; justify-content: center;">
+                            <div class="cf-turnstile" data-sitekey="0x4AAAAAAC-qTAs8FMyeQKgb" data-theme="dark"></div>
+                        </div>
+
                         <!-- Submit -->
                         <button type="submit" id="submitReserva" class="btn btn-primary btn-lg form-submit">
                             <span id="submitText"><i class="fa-solid fa-check"></i> Confirmar Reserva</span>
@@ -888,9 +896,11 @@
                                 style="display:none;"></span>
                         </button>
 
-                        <p class="form-privacy">
-                            <i class="fa-solid fa-lock"></i> Tus datos están seguros. Solo los usamos para gestionar tu reserva.
-                        </p>
+                        <!-- Trust Badge -->
+                        <div class="trust-badge">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <span>Tus datos están encriptados bajo certificado SSL y son utilizados estrictamente para gestionar tu reserva.</span>
+                        </div>
 
                     </form>
                 </div>
