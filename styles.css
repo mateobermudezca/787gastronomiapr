@@ -259,6 +259,7 @@ img {
         0 25px 50px -12px rgba(var(--primary-rgb), 0.25),
         inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
     transform: translateY(-4px);
+    will-change: transform, box-shadow;
 }
 
 /* ---- BUTTONS ---- */
@@ -514,6 +515,7 @@ img {
     border-radius: 50%;
     animation: float-particle 20s infinite ease-in-out;
     box-shadow: 0 0 6px rgba(var(--primary-rgb), 0.8);
+    will-change: transform, opacity;
 }
 
 .particle:nth-child(even) {
@@ -540,7 +542,7 @@ img {
     inset: 0;
     background:
         linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)),
-        url('images/hero_bg_sanjuan.jpg') center/cover no-repeat;
+        url('images/hero_bg_sanjuan.webp') center/cover no-repeat;
     z-index: 0;
 }
 
@@ -792,6 +794,8 @@ img {
         0 0 0 1px rgba(var(--primary-rgb), 0.12),
         0 24px 60px -8px rgba(0, 0, 0, 0.8),
         0 0 40px rgba(var(--primary-rgb), 0.10);
+    will-change: transform;
+    backface-visibility: hidden;
 }
 
 /* Active / center card */
