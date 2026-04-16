@@ -73,11 +73,10 @@ Mensaje: ${data.mensaje || 'Sin mensaje adicional'}
 Reservado desde la Web.
   `.trim();
 
-  // FIX: Hemos eliminado el campo 'guests' y desactivado 'sendInvites'
-  // Esto evita la creación automática de Google Meet y el envío de invitaciones de Calendar.
   return calendar.createEvent(title, start, end, {
     description: description,
-    sendInvites: false 
+    guests: data.email, // Añade al cliente como invitado (opcional)
+    sendInvites: true   // Envía invitación por email al cliente
   });
 }
 
