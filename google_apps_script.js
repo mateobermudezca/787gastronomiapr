@@ -20,6 +20,7 @@ const MAX_SIMULTANEOUS_RESERVATIONS = 3; // Máximo de reservas permitidas por f
 // Configuración de Email Profesional
 const SENDER_NAME = '787 Gastronomía - Reservas';
 const MENU_URL = 'https://drive.google.com/file/d/1VSGPszlCJiIkliUln1LGAMReY7vU1A-o/view';
+const LOGO_URL = 'https://raw.githubusercontent.com/mateobermudezca/787gastronomiapr/main/images/logo.png';
 const BRAND_COLOR = '#D4A017'; // Dorado de la web
 const BG_COLOR = '#09090B';    // Fondo oscuro premium
 
@@ -83,23 +84,40 @@ Mensaje: ${data.mensaje || 'Sin mensaje adicional'}
 Reservado desde la Web.
   `.trim();
 
-  // Se añade el cliente como invitado pero SE DESACTIVAN las invitaciones automáticas
-  // para evitar la creación de Google Meet y el correo genérico de Calendar.
+  // REMOVEMOS el parámetro 'guests' para evitar que Google Calendar sea "demasiado atento"
+  // y cree links de Meet o envíe correos de RSVP automáticos que no podemos controlar.
   return calendar.createEvent(title, start, end, {
     description: description,
-    guests: data.email,
-    sendInvites: false // DESACTIVADO: Evita Meet y correos automáticos
+    sendInvites: false // No se envían invitaciones automáticas
   });
+}
+
+/**
+ * Formatea una fecha para el link de Google Calendar (YYYYMMDDTHHmmSSZ)
+ */
+function formatDateForCalendar(date) {
+  return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
 }
 
 /**
  * Envía un correo electrónico con estética Dark Luxury
  */
 function sendProfessionalEmail(data) {
+  const start = new Date(data.fecha + 'T' + data.hora + ':00');
+  const end = new Date(start.getTime() + (RESERVATION_DURATION_HOURS * 60 * 60 * 1000));
+  
+  const calendarTitle = encodeURIComponent('787 Gastronomía - Mi Reserva');
+  const calendarDetails = encodeURIComponent(`Reserva para ${data.personas} personas.\nOcasión: ${data.ocasion || 'General'}\n¡Te esperamos!`);
+  const calendarLocation = encodeURIComponent('Cra. 36 #8a-12, El Poblado, Medellín');
+  const calendarDates = formatDateForCalendar(start) + '/' + formatDateForCalendar(end);
+  
+  const googleCalendarLink = `https://www.google.com/calendar/render?action=TEMPLATE&text=${calendarTitle}&dates=${calendarDates}&details=${calendarDetails}&location=${calendarLocation}`;
+
   const htmlBody = `
     <div style="background-color: ${BG_COLOR}; color: #ffffff; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; padding: 40px; max-width: 600px; margin: auto; border: 1px solid ${BRAND_COLOR}; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
       <div style="text-align: center; margin-bottom: 30px;">
-        <h1 style="color: ${BRAND_COLOR}; font-size: 32px; margin: 0; letter-spacing: 2px;">787 GASTRONOMÍA</h1>
+        <img src="${LOGO_URL}" alt="787 Gastronomía" style="width: 100px; height: auto; margin-bottom: 10px;">
+        <h1 style="color: ${BRAND_COLOR}; font-size: 28px; margin: 0; letter-spacing: 2px;">787 GASTRONOMÍA</h1>
         <p style="color: #e4e4e7; font-size: 14px; margin-top: 5px; text-transform: uppercase; letter-spacing: 1px;">Confirmación de Reserva</p>
       </div>
       
@@ -114,9 +132,13 @@ function sendProfessionalEmail(data) {
           ${data.ocasion ? `<p style="margin: 5px 0;"><strong>✨ Ocasión:</strong> ${data.ocasion}</p>` : ''}
         </div>
       </div>
+
+      <div style="text-align: center; margin-bottom: 40px;">
+        <a href="${googleCalendarLink}" target="_blank" style="color: ${BRAND_COLOR}; text-decoration: none; font-size: 14px; border: 1px solid ${BRAND_COLOR}; padding: 8px 16px; border-radius: 4px; display: inline-block;">📅 Añadir a mi Calendario</a>
+      </div>
       
       <div style="text-align: center; margin-bottom: 30px;">
-        <p style="color: #a1a1aa; font-size: 14px; margin-bottom: 20px;">¿Quieres ir antojándote?</p>
+        <p style="color: #a1a1aa; font-size: 14px; margin-bottom: 20px;">¿Quieres ir antojándote de nuestro sabor?</p>
         <a href="${MENU_URL}" style="background-color: ${BRAND_COLOR}; color: #000000; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block; transition: background 0.3s;">VER MENÚ COMPLETO</a>
       </div>
       
