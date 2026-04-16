@@ -74,9 +74,7 @@ Reservado desde la Web.
   `.trim();
 
   return calendar.createEvent(title, start, end, {
-    description: description,
-    guests: data.email, // Añade al cliente como invitado (opcional)
-    sendInvites: true   // Envía invitación por email al cliente
+    description: description
   });
 }
 
