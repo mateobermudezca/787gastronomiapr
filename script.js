@@ -184,7 +184,7 @@ function animateCounter(el, target, suffix = '', prefix = '', duration = 2000) {
    RESERVATION FORM → GOOGLE CALENDAR (GAS BRIDGE)
    ============================================================ */
 // URL de tu implementación de Google Apps Script (Sustituir después de desplegar)
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbx83_277jQi2ZNx8VjLaE4HvM_XfGuZYBvLO5GbnKotKdE_3CSDM5g9B7a9GVYwe-YC/exec'; 
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbx83_277jQi2ZNx8VjLaE4HvM_XfGuZYBvLO5GbnKotKdE_3CSDM5g9B7a9GVYwe-YC/exechttps://script.google.com/macros/s/AKfycbx83_277jQi2ZNx8VjLaE4HvM_XfGuZYBvLO5GbnKotKdE_3CSDM5g9B7a9GVYwe-YC/exec';
 
 // Festivos Colombia 2024-2027 (Ley Emiliani aplicada)
 const COLOMBIAN_HOLIDAYS = [
@@ -205,7 +205,7 @@ function initReservationForm() {
     const spinner = document.getElementById('submitSpinner');
     const dateInput = document.getElementById('reservaFecha');
     const timeSelect = document.getElementById('reservaHora');
-    
+
     if (!form) return;
 
     // Set minimum date to today
@@ -266,7 +266,7 @@ function initReservationForm() {
             }
 
             submitText.textContent = 'Procesando...';
-            
+
             const response = await fetch(GAS_URL, {
                 method: 'POST',
                 mode: 'no-cors', // Necesario para GAS Apps Script
@@ -278,7 +278,7 @@ function initReservationForm() {
             showConfirmModal(payload);
             form.reset();
             form.querySelectorAll('.form-input').forEach(inp => inp.classList.remove('input-valid', 'input-error'));
-            
+
         } catch (err) {
             console.error('Reservation error:', err);
             showToast('error', '❌', 'Error al conectar con el sistema. Inténtalo de nuevo.');
@@ -295,13 +295,13 @@ function initReservationForm() {
 async function checkSlotAvailability(fecha, hora) {
     const errorHora = document.getElementById('errorHora');
     const timeSelect = document.getElementById('reservaHora');
-    
+
     if (GAS_URL === 'URL_DE_TU_SCRIPT_AQUI') return true; // Debug simple
 
     try {
         const response = await fetch(`${GAS_URL}?fecha=${fecha}&hora=${hora}`);
         const data = await response.json();
-        
+
         if (!data.available) {
             if (errorHora) {
                 errorHora.textContent = '⚠️ Este horario ya está reservado. Por favor elige otro.';
@@ -496,25 +496,25 @@ function formatHora(hora) {
    HERO 3D DISH SLIDER
    ============================================================ */
 function initDishCarousel() {
-    const cards   = Array.from(document.querySelectorAll('.slider-card'));
-    const dots    = Array.from(document.querySelectorAll('.carousel-dot'));
+    const cards = Array.from(document.querySelectorAll('.slider-card'));
+    const dots = Array.from(document.querySelectorAll('.carousel-dot'));
     const prevBtn = document.getElementById('sliderPrev');
     const nextBtn = document.getElementById('sliderNext');
     const viewport = document.getElementById('sliderViewport');
     if (!cards.length) return;
 
-    const total    = cards.length;
-    let   current  = 0;
-    let   autoTimer = null;
-    const INTERVAL  = 3500;
+    const total = cards.length;
+    let current = 0;
+    let autoTimer = null;
+    const INTERVAL = 3500;
 
     /* ── Layout constants ── */
     const SIDE_ROTATE_Y = 45;
-    const SIDE_SCALE    = 0.80;
-    const SIDE_OFFSET   = 48;
-    const FAR_SCALE     = 0.65;
-    const FAR_OFFSET    = 110;
-    const TILT_MAX      = 8; // max tilt degrees
+    const SIDE_SCALE = 0.80;
+    const SIDE_OFFSET = 48;
+    const FAR_SCALE = 0.65;
+    const FAR_OFFSET = 110;
+    const TILT_MAX = 8; // max tilt degrees
 
     /* ─────────────────────────────────────────────
        OPTIMIZATION 1 — IMAGE PRELOADER
@@ -533,8 +533,8 @@ function initDishCarousel() {
             if (img.complete && img.naturalWidth > 0) return Promise.resolve();
             return new Promise(resolve => {
                 const loader = new Image();
-                loader.src     = img.src;
-                loader.onload  = resolve;
+                loader.src = img.src;
+                loader.onload = resolve;
                 loader.onerror = resolve; // fail gracefully — never block the UI
             });
         });
@@ -551,9 +551,9 @@ function initDishCarousel() {
        toFixed(2) → "7.83deg" (7 chars) — ~56% shorter string,
        measurably faster style recalc on lower-end devices.
     ───────────────────────────────────────────── */
-    let tiltRafId   = null;
-    let pendingTX   = 0;
-    let pendingTY   = 0;
+    let tiltRafId = null;
+    let pendingTX = 0;
+    let pendingTY = 0;
 
     function flushTilt() {
         const inner = cards[current]?.querySelector('.slider-card__inner');
@@ -575,11 +575,11 @@ function initDishCarousel() {
 
     if (viewport) {
         viewport.addEventListener('mousemove', (e) => {
-            const r  = viewport.getBoundingClientRect();
-            const nx = (e.clientX - r.left)  / r.width  - 0.5; // -0.5 → 0.5
-            const ny = (e.clientY - r.top)   / r.height - 0.5;
+            const r = viewport.getBoundingClientRect();
+            const nx = (e.clientX - r.left) / r.width - 0.5; // -0.5 → 0.5
+            const ny = (e.clientY - r.top) / r.height - 0.5;
             pendingTX = ny * -TILT_MAX; // pitch
-            pendingTY = nx *  TILT_MAX; // yaw
+            pendingTY = nx * TILT_MAX; // yaw
             // Schedule one RAF — skip frames automatically
             if (!tiltRafId) tiltRafId = requestAnimationFrame(flushTilt);
         }, { passive: true });
@@ -601,7 +601,7 @@ function initDishCarousel() {
             if (norm === 0) {
                 tx = -50; ry = 0; sc = 1; op = 1; zi = 10;
             } else if (norm === -1) {
-                tx = -(50 + SIDE_OFFSET); ry =  SIDE_ROTATE_Y; sc = SIDE_SCALE; op = 0.5; zi = 8;
+                tx = -(50 + SIDE_OFFSET); ry = SIDE_ROTATE_Y; sc = SIDE_SCALE; op = 0.5; zi = 8;
             } else if (norm === 1) {
                 tx = -(50 - SIDE_OFFSET); ry = -SIDE_ROTATE_Y; sc = SIDE_SCALE; op = 0.5; zi = 8;
             } else if (norm === -2) {
@@ -610,13 +610,13 @@ function initDishCarousel() {
                 tx = -(50 - FAR_OFFSET); ry = -SIDE_ROTATE_Y; sc = FAR_SCALE; op = 0.15; zi = 6;
             } else {
                 tx = norm < 0 ? -(50 + (FAR_OFFSET * 1.5)) : -(50 - (FAR_OFFSET * 1.5));
-                ry = norm < 0 ?  SIDE_ROTATE_Y     : -SIDE_ROTATE_Y;
+                ry = norm < 0 ? SIDE_ROTATE_Y : -SIDE_ROTATE_Y;
                 sc = FAR_SCALE * 0.8; op = 0; zi = 1;
             }
 
             card.style.transform = `translateX(${tx}%) rotateY(${ry}deg) scale(${sc})`;
-            card.style.opacity   = op;
-            card.style.zIndex    = zi;
+            card.style.opacity = op;
+            card.style.zIndex = zi;
             card.classList.toggle('is-active', norm === 0);
 
             // Reset tilt vars on card change to avoid stale tilt on incoming card
@@ -635,7 +635,7 @@ function initDishCarousel() {
     function prev() { goTo(current - 1); }
 
     function startAuto() { stopAuto(); autoTimer = setInterval(next, INTERVAL); }
-    function stopAuto()  { if (autoTimer) clearInterval(autoTimer); }
+    function stopAuto() { if (autoTimer) clearInterval(autoTimer); }
 
     // Arrows
     if (nextBtn) nextBtn.addEventListener('click', () => { next(); startAuto(); });
@@ -691,20 +691,20 @@ function initStatusBadge() {
 
     function checkStatus() {
         // Get Colombia local time (UTC-5)
-        const bogotaDateStr = new Date().toLocaleString("en-US", {timeZone: "America/Bogota"});
+        const bogotaDateStr = new Date().toLocaleString("en-US", { timeZone: "America/Bogota" });
         const bogotaDate = new Date(bogotaDateStr);
-        
+
         const day = bogotaDate.getDay(); // 0: Sun, 1: Mon...
         const hour = bogotaDate.getHours();
-        
+
         // Format to YYYY-MM-DD for matching COLOMBIAN_HOLIDAYS
         const y = bogotaDate.getFullYear();
         const m = String(bogotaDate.getMonth() + 1).padStart(2, '0');
         const d = String(bogotaDate.getDate()).padStart(2, '0');
         const dateKey = `${y}-${m}-${d}`;
-        
+
         const isHoliday = COLOMBIAN_HOLIDAYS.includes(dateKey);
-        
+
         let isOpen = true;
 
         // Rule: Closed on Mondays unless it's a Holiday Monday
