@@ -22,27 +22,29 @@ document.addEventListener('DOMContentLoaded', () => {
    PARTICLE SYSTEM
    ============================================================ */
 function initParticles() {
-    const container = document.getElementById('particles');
-    if (!container) return;
+    const containers = document.querySelectorAll('.particles-container');
+    if (!containers.length) return;
 
-    const count = window.innerWidth < 768 ? 25 : 50;
+    containers.forEach(container => {
+        const count = window.innerWidth < 768 ? 25 : 50;
 
-    for (let i = 0; i < count; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.top = Math.random() * 100 + '%';
-        particle.style.animationDelay = (Math.random() * 20) + 's';
-        particle.style.animationDuration = (15 + Math.random() * 12) + 's';
+        for (let i = 0; i < count; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = (Math.random() * 20) + 's';
+            particle.style.animationDuration = (15 + Math.random() * 12) + 's';
 
-        // Vary sizes slightly
-        const size = 1.5 + Math.random() * 3;
-        particle.style.width = size + 'px';
-        particle.style.height = size + 'px';
-        particle.style.opacity = (0.2 + Math.random() * 0.6).toString();
+            // Vary sizes slightly
+            const size = 1.5 + Math.random() * 3;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.opacity = (0.2 + Math.random() * 0.6).toString();
 
-        container.appendChild(particle);
-    }
+            container.appendChild(particle);
+        }
+    });
 }
 
 /* ============================================================
