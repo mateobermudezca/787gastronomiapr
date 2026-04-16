@@ -575,7 +575,7 @@
                 <div class="text-center reveal">
                     <div class="section-label pulse"
                         style="border-color: var(--warning); color: var(--warning); background: rgba(245, 158, 11, 0.1);">
-                        ✨ HORARIO DE 8:00 A.M. A 10:00 P.M.
+                        ✨ HORARIO DE 8:00 A.M. A 12:00 P.M.
                     </div>
                     <h2 class="section-title" style="margin-top: 16px;">
                         <span class="gold">Desayuno Internacional</span>
@@ -863,7 +863,9 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="reservaFecha" class="form-label">Fecha <span class="req">*</span></label>
-                                <input type="date" id="reservaFecha" name="fecha" class="form-input" required>
+                                <input type="text" id="reservaFecha" name="fecha" class="form-input" required
+                                    placeholder="dd/mm/aa" onfocus="(this.type='date')"
+                                    onblur="if(!this.value)this.type='text'">
                                 <span class="form-error" id="errorFecha"></span>
                             </div>
                             <div class="form-group">

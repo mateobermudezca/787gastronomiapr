@@ -2861,6 +2861,12 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
     .hero-grid {
         grid-template-columns: 1fr;
         text-align: center;
+        gap: 60px;
+    }
+
+    .hero-content {
+        margin-left: 0;
+        padding-right: 0;
     }
 
     .hero-visual {
@@ -2919,6 +2925,10 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
         --section-padding: 80px 0;
     }
 
+    .morphing-badge {
+        display: none !important;
+    }
+
     h1 {
         font-size: 2.25rem;
     }
@@ -2929,6 +2939,16 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
 
     .hero-grid {
         grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .hero-content {
+        margin-left: 0;
+        padding-right: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .hero-visual {
@@ -2938,6 +2958,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
     .hero-stats {
         flex-wrap: wrap;
         gap: 20px;
+        justify-content: center;
     }
 
     .hero-actions {
@@ -2951,6 +2972,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
 
     .hero-subtitle {
         max-width: 100%;
+        margin: 0 auto 40px;
     }
 
     .nav-links,
@@ -3186,12 +3208,18 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
         height: auto;
         min-height: 550px;
     }
+
     .morphing-card .morphing-img {
         height: 40%;
     }
+
     .morphing-card .morphing-content {
         transform: translateY(0);
         opacity: 1;
         padding: 24px;
+    }
+
+    .morphing-badge {
+        display: none !important;
     }
 }
