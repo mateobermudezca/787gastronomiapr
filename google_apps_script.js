@@ -143,6 +143,13 @@ function saveToSheet(data) {
       throw new Error(`No se encontró la pestaña "${SHEET_NAME}" en el Google Sheet. Verifica que la pestaña existe y se llama exactamente así.`);
     }
 
+    // Si la hoja está completamente vacía (borraron los encabezados), volver a crearlos
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow(['Nombre', 'Teléfono', 'Email']);
+      // Opcional: darle formato a los encabezados
+      sheet.getRange("A1:C1").setFontWeight("bold");
+    }
+
     sheet.appendRow([
       data.nombre,
       data.telefono,
