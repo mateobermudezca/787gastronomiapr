@@ -14,6 +14,8 @@
  */
 
 const CALENDAR_ID = 'primary'; // Cambia esto si usas un calendario específico
+const SPREADSHEET_ID = '1SiJNikHQKErBM2pkdb_2BTs5VRz9846G5gkR8CNdpd4'; // ID de la hoja de cálculo de Google Sheets
+const SHEET_NAME = 'Clientes'; // Nombre de la pestaña
 const RESERVATION_DURATION_HOURS = 2; // Duración predeterminada de cada reserva
 const MAX_SIMULTANEOUS_RESERVATIONS = 3; // Máximo de reservas permitidas por franja horaria
 
@@ -82,6 +84,14 @@ function doPost(e) {
     }
 
     const event = createCalendarEvent(data);
+
+    // Intentar guardar en Google Sheets de forma independiente
+    try {
+      saveToSheet(data);
+    } catch (sheetError) {
+      console.error('Error al guardar en Google Sheets:', sheetError.message);
+    }
+
     return createResponse({ success: true, eventId: event.getId() });
     
   } catch (error) {
@@ -119,6 +129,28 @@ Reservado desde la Web.
   return calendar.createEvent(title, start, end, {
     description: description
   });
+}
+
+function saveToSheet(data) {
+  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  const sheet = ss.getSheetByName(SHEET_NAME);
+  
+  if (!sheet) {
+    throw new Error(`No se encontró la pestaña "${SHEET_NAME}" en el Google Sheet.`);
+  }
+
+  const timestamp = new Date();
+  sheet.appendRow([
+    timestamp,
+    data.nombre,
+    data.telefono,
+    data.email,
+    data.fecha,
+    data.hora,
+    data.personas,
+    data.ocasion || 'Ninguna',
+    data.mensaje || 'Sin mensaje adicional'
+  ]);
 }
 
 function createResponse(payload) {

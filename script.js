@@ -196,7 +196,7 @@ function animateCounter(el, target, suffix = '', prefix = '', duration = 2000) {
    RESERVATION FORM → GOOGLE CALENDAR (GAS BRIDGE)
    ============================================================ */
 // URL de tu implementación de Google Apps Script (Sustituir después de desplegar)
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbxanUW8uXeH-LGSqpx_s-qs_57dY7d0J-xasD2GJ5_zvoh9VOzzfdQOuKdEhEG4iS4/exec';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbw6TVEppoun9c8CvbVoEdOSVyJe_Pz4OTssZggFeu_7rY3pdZ8nMP_BC8Krf5FYF7yP/exec';
 
 // Festivos Colombia 2024-2027 (Ley Emiliani aplicada)
 const COLOMBIAN_HOLIDAYS = [
