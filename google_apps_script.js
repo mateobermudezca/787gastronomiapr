@@ -132,25 +132,27 @@ Reservado desde la Web.
 }
 
 function saveToSheet(data) {
-  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
-  const sheet = ss.getSheetByName(SHEET_NAME);
-  
-  if (!sheet) {
-    throw new Error(`No se encontró la pestaña "${SHEET_NAME}" en el Google Sheet.`);
-  }
+  try {
+    const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+    if (!ss) {
+      throw new Error('No se pudo abrir el Google Sheet con ID: ' + SPREADSHEET_ID);
+    }
+    const sheet = ss.getSheetByName(SHEET_NAME);
+    
+    if (!sheet) {
+      throw new Error(`No se encontró la pestaña "${SHEET_NAME}" en el Google Sheet. Verifica que la pestaña existe y se llama exactamente así.`);
+    }
 
-  const timestamp = new Date();
-  sheet.appendRow([
-    timestamp,
-    data.nombre,
-    data.telefono,
-    data.email,
-    data.fecha,
-    data.hora,
-    data.personas,
-    data.ocasion || 'Ninguna',
-    data.mensaje || 'Sin mensaje adicional'
-  ]);
+    sheet.appendRow([
+      data.nombre,
+      data.telefono,
+      data.email
+    ]);
+    console.log('Datos guardados en Google Sheets exitosamente');
+  } catch (err) {
+    console.error('Error en saveToSheet:', err.message);
+    throw err;
+  }
 }
 
 function createResponse(payload) {
