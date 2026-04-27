@@ -520,8 +520,20 @@ img {
     border-radius: 50%;
     animation: float-particle 20s infinite ease-in-out;
     box-shadow: 0 0 6px rgba(var(--primary-rgb), 0.8);
-    will-change: transform, opacity;
+    will-change: transform;
+    /* Posición inicial optimizada para GPU */
+    transform: translate3d(var(--start-x), var(--start-y), 0);
 }
+
+@keyframes float-particle {
+    0%, 100% {
+        transform: translate3d(var(--start-x), var(--start-y), 0);
+    }
+    50% {
+        transform: translate3d(calc(var(--start-x) + 20px), calc(var(--start-y) + 20px), 0);
+    }
+}
+
 
 .particle:nth-child(even) {
     width: 2px;
@@ -2294,6 +2306,15 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
     opacity: 0.7;
     cursor: not-allowed;
     transform: none !important;
+}
+
+/* Turnstile Widget */
+.turnstile-container {
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: center;
+    min-height: 65px; /* Altura estándar de Turnstile para evitar saltos */
+    width: 100%;
 }
 
 /* Loading spinner */

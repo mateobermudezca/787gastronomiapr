@@ -25,18 +25,28 @@ function initParticles() {
     const containers = document.querySelectorAll('.particles-container');
     if (!containers.length) return;
 
-    containers.forEach(container => {
-        const count = window.innerWidth < 768 ? 25 : 50;
+    // Reducción de carga para dispositivos móviles o usuarios que prefieren menos movimiento
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobile = window.innerWidth < 768;
+    
+    let count = 50;
+    if (prefersReducedMotion) count = 10;
+    else if (isMobile) count = 25;
 
+    containers.forEach(container => {
         for (let i = 0; i < count; i++) {
             const particle = document.createElement('div');
             particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.top = Math.random() * 100 + '%';
+            
+            // Usamos porcentajes para la posición inicial
+            const posX = Math.random() * 100;
+            const posY = Math.random() * 100;
+            particle.style.setProperty('--start-x', `${posX}%`);
+            particle.style.setProperty('--start-y', `${posY}%`);
+            
             particle.style.animationDelay = (Math.random() * 20) + 's';
             particle.style.animationDuration = (15 + Math.random() * 12) + 's';
 
-            // Vary sizes slightly
             const size = 1.5 + Math.random() * 3;
             particle.style.width = size + 'px';
             particle.style.height = size + 'px';
@@ -566,24 +576,25 @@ function initDishCarousel() {
     const viewport = document.getElementById('sliderViewport');
     if (!cards.length) return;
 
+    // Optimización: Respetar preferencia de reducción de movimiento del sistema
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     const total = cards.length;
     let current = 0;
     let autoTimer = null;
     const INTERVAL = 3500;
 
     /* ── Layout constants ── */
-    const SIDE_ROTATE_Y = 45;
+    const SIDE_ROTATE_Y = prefersReducedMotion ? 0 : 45;
     const SIDE_SCALE = 0.80;
     const SIDE_OFFSET = 48;
     const FAR_SCALE = 0.65;
     const FAR_OFFSET = 110;
-    const TILT_MAX = 8; // max tilt degrees
+    const TILT_MAX = prefersReducedMotion ? 0 : 8; // Desactivar tilt si hay preferencia de reducción
 
     /* ─────────────────────────────────────────────
        OPTIMIZATION 1 — IMAGE PRELOADER
-       Avoids layout jumps and broken 3D on first paint.
-       Uses native Image() + Promise.all — no external lib.
-    ───────────────────────────────────────────── */
+       ───────────────────────────────────────────── */
     function preloadImages() {
         if (viewport) viewport.classList.add('is-loading');
 
@@ -592,13 +603,12 @@ function initDishCarousel() {
             .filter(Boolean);
 
         const promises = imgEls.map(img => {
-            // Already in cache — resolve immediately, no flash
             if (img.complete && img.naturalWidth > 0) return Promise.resolve();
             return new Promise(resolve => {
                 const loader = new Image();
                 loader.src = img.src;
                 loader.onload = resolve;
-                loader.onerror = resolve; // fail gracefully — never block the UI
+                loader.onerror = resolve;
             });
         });
 
@@ -609,11 +619,7 @@ function initDishCarousel() {
 
     /* ─────────────────────────────────────────────
        OPTIMIZATION 2 — 3D TILT with toFixed(2)
-       Writing values like "7.834729374deg" to the DOM on every
-       mousemove frame forces the browser to parse a 16-char string.
-       toFixed(2) → "7.83deg" (7 chars) — ~56% shorter string,
-       measurably faster style recalc on lower-end devices.
-    ───────────────────────────────────────────── */
+       ───────────────────────────────────────────── */
     let tiltRafId = null;
     let pendingTX = 0;
     let pendingTY = 0;
@@ -621,7 +627,6 @@ function initDishCarousel() {
     function flushTilt() {
         const inner = cards[current]?.querySelector('.slider-card__inner');
         if (inner) {
-            // toFixed(2) is the key micro-optimization
             inner.style.setProperty('--tilt-x', pendingTX.toFixed(2) + 'deg');
             inner.style.setProperty('--tilt-y', pendingTY.toFixed(2) + 'deg');
         }
@@ -638,12 +643,13 @@ function initDishCarousel() {
 
     if (viewport) {
         viewport.addEventListener('mousemove', (e) => {
+            if (prefersReducedMotion) return; // No permitir tilt si se prefiere reducción de movimiento
+
             const r = viewport.getBoundingClientRect();
-            const nx = (e.clientX - r.left) / r.width - 0.5; // -0.5 → 0.5
+            const nx = (e.clientX - r.left) / r.width - 0.5;
             const ny = (e.clientY - r.top) / r.height - 0.5;
-            pendingTX = ny * -TILT_MAX; // pitch
-            pendingTY = nx * TILT_MAX; // yaw
-            // Schedule one RAF — skip frames automatically
+            pendingTX = ny * -TILT_MAX;
+            pendingTY = nx * TILT_MAX;
             if (!tiltRafId) tiltRafId = requestAnimationFrame(flushTilt);
         }, { passive: true });
 
@@ -682,7 +688,6 @@ function initDishCarousel() {
             card.style.zIndex = zi;
             card.classList.toggle('is-active', norm === 0);
 
-            // Reset tilt vars on card change to avoid stale tilt on incoming card
             clearTilt(i);
         });
 
@@ -700,19 +705,15 @@ function initDishCarousel() {
     function startAuto() { stopAuto(); autoTimer = setInterval(next, INTERVAL); }
     function stopAuto() { if (autoTimer) clearInterval(autoTimer); }
 
-    // Arrows
     if (nextBtn) nextBtn.addEventListener('click', () => { next(); startAuto(); });
     if (prevBtn) prevBtn.addEventListener('click', () => { prev(); startAuto(); });
 
-    // Dots
     dots.forEach((dot, i) => dot.addEventListener('click', () => { goTo(i); startAuto(); }));
 
-    // Side-card click → navigate
     cards.forEach((card, i) => card.addEventListener('click', () => {
         if (i !== current) { goTo(i); startAuto(); }
     }));
 
-    // Touch swipe
     let touchStartX = 0;
     if (viewport) {
         viewport.addEventListener('touchstart', (e) => {
@@ -725,12 +726,12 @@ function initDishCarousel() {
         }, { passive: true });
     }
 
-    /* ── Boot: preload → render → autoplay ── */
     preloadImages().then(() => {
         applyPositions();
         startAuto();
     });
 }
+
 
 
 

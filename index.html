@@ -15,6 +15,55 @@
     <meta property="og:title" content="787 Gastronomía Puertorriqueña">
     <meta property="og:description" content="Sabor boricua auténtico en el corazón de Medellín.">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://787gastronomiapr.vercel.app">
+    <meta property="og:image" content="https://787gastronomiapr.vercel.app/images/herobg.webp">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="787 Gastronomía Puertorriqueña">
+    <meta name="twitter:description" content="Sabor boricua auténtico en el corazón de Medellín.">
+    <meta name="twitter:image" content="https://787gastronomiapr.vercel.app/images/herobg.webp">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "787 Gastronomía Puertorriqueña",
+      "image": "https://787gastronomiapr.vercel.app/images/herobg.webp",
+      "@id": "https://787gastronomiapr.vercel.app",
+      "url": "https://787gastronomiapr.vercel.app",
+      "telephone": "+573153597524",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Cra. 36 #8a-12, El Poblado",
+        "addressLocality": "Medellín",
+        "addressRegion": "Antioquia",
+        "addressCountry": "CO"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 6.2077093,
+        "longitude": -75.5664357
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "08:00",
+          "closes": "22:00"
+        }
+      ],
+      "hasMenu": "https://drive.google.com/file/d/1VSGPszlCJiIkliUln1LGAMReY7vU1A-o/view"
+    }
+    </script>
 
     <!-- Preconnect Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -947,7 +996,7 @@
                         </div>
 
                         <!-- Widget Cloudflare Turnstile -->
-                        <div style="margin-bottom: 20px; display: flex; justify-content: center;">
+                        <div class="turnstile-container">
                             <div class="cf-turnstile" data-sitekey="0x4AAAAAAC-qTAs8FMyeQKgb" data-theme="dark"></div>
                         </div>
 
