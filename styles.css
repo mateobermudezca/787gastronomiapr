@@ -522,15 +522,21 @@ img {
     box-shadow: 0 0 6px rgba(var(--primary-rgb), 0.8);
     will-change: transform;
     /* Posición inicial optimizada para GPU */
-    transform: translate3d(var(--start-x), var(--start-y), 0);
+    transform: translate3d(0, 0, 0);
 }
 
 @keyframes float-particle {
     0%, 100% {
-        transform: translate3d(var(--start-x), var(--start-y), 0);
+        transform: translate3d(0, 0, 0);
+    }
+    25% {
+        transform: translate3d(40px, -60px, 0);
     }
     50% {
-        transform: translate3d(calc(var(--start-x) + 20px), calc(var(--start-y) + 20px), 0);
+        transform: translate3d(-30px, -100px, 0);
+    }
+    75% {
+        transform: translate3d(-45px, -40px, 0);
     }
 }
 
@@ -2793,29 +2799,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
     }
 }
 
-@keyframes float-particle {
 
-    0%,
-    100% {
-        transform: translate(0, 0);
-        opacity: 0.3;
-    }
-
-    25% {
-        transform: translate(80px, -120px);
-        opacity: 0.7;
-    }
-
-    50% {
-        transform: translate(-60px, -200px);
-        opacity: 0.5;
-    }
-
-    75% {
-        transform: translate(-90px, -80px);
-        opacity: 0.7;
-    }
-}
 
 @keyframes pulse-glow {
 

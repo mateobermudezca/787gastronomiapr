@@ -41,9 +41,8 @@ function initParticles() {
             // Usamos porcentajes para la posición inicial
             const posX = Math.random() * 100;
             const posY = Math.random() * 100;
-            particle.style.setProperty('--start-x', `${posX}%`);
-            particle.style.setProperty('--start-y', `${posY}%`);
-            
+            particle.style.left = `${posX}%`;
+            particle.style.top = `${posY}%`;
             particle.style.animationDelay = (Math.random() * 20) + 's';
             particle.style.animationDuration = (15 + Math.random() * 12) + 's';
 
