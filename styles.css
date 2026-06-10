@@ -2304,19 +2304,19 @@ img {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(var(--primary-rgb), 0.2);
 }
 
-.footer-col h5 {
+.footer-col h4 {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 0.8125rem;
     font-weight: 700;
     color: var(--text-primary);
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    margin-bottom: 40px;
+    margin-bottom: 48px;
     position: relative;
     padding-bottom: 12px;
 }
 
-.footer-col h5::after {
+.footer-col h4::after {
     content: '';
     position: absolute;
     bottom: 0;
