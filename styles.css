@@ -3364,6 +3364,15 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
         gap: 32px;
     }
 
+    .footer-col h4 {
+        margin-bottom: 24px;
+        font-size: 0.9375rem;
+    }
+
+    .footer-col ul {
+        gap: 12px;
+    }
+
     .footer-bottom {
         flex-direction: column;
         text-align: center;
