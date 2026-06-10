@@ -3317,6 +3317,15 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
         display: flex;
     }
 
+    .navbar {
+        transition: none;
+    }
+
+    .navbar.scrolled {
+        top: 24px;
+        padding: 12px 24px;
+    }
+
     .services-grid {
         grid-template-columns: 1fr;
     }
@@ -3357,6 +3366,10 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
     .footer-top {
         grid-template-columns: 1fr;
         gap: 32px;
+    }
+
+    .footer-col h4 {
+        margin-bottom: 24px;
     }
 
     .footer-bottom {
