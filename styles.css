@@ -484,7 +484,17 @@ img {
 .navbar-inner {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+}
+
+.nav-cta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+}
+
+.nav-links {
+    margin: 0 auto;
 }
 
 .nav-logo {
@@ -544,12 +554,6 @@ img {
 
 .nav-links a:hover::after {
     width: 100%;
-}
-
-.nav-cta {
-    display: flex;
-    align-items: center;
-    gap: 12px;
 }
 
 .nav-cta .btn-primary {
