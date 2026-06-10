@@ -1926,6 +1926,10 @@ img {
     padding: 0 12px;
 }
 
+.testimonials-marquee-wrap:hover .testimonials-marquee {
+    animation-play-state: paused;
+}
+
 @keyframes marquee-scroll {
     0% {
         transform: translate3d(0, 0, 0);
