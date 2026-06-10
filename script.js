@@ -16,6 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initCounters();
     initDishCarousel();
     initStatusBadge(); // Dynamic Open/Closed badge
+    initGlowOrbTracking();
+    initScrollProgress();
+
 });
 
 /* ============================================================
@@ -29,9 +32,9 @@ function initParticles() {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isMobile = window.innerWidth < 768;
     
-    let count = 50;
-    if (prefersReducedMotion) count = 10;
-    else if (isMobile) count = 25;
+    let count = 80;
+    if (prefersReducedMotion) count = 15;
+    else if (isMobile) count = 40;
 
     containers.forEach(container => {
         for (let i = 0; i < count; i++) {
@@ -46,10 +49,10 @@ function initParticles() {
             particle.style.animationDelay = (Math.random() * 20) + 's';
             particle.style.animationDuration = (15 + Math.random() * 12) + 's';
 
-            const size = 1.5 + Math.random() * 3;
+            const size = 2 + Math.random() * 4;
             particle.style.width = size + 'px';
             particle.style.height = size + 'px';
-            particle.style.opacity = (0.2 + Math.random() * 0.6).toString();
+            particle.style.opacity = (0.4 + Math.random() * 0.6).toString();
 
             container.appendChild(particle);
         }
@@ -794,3 +797,70 @@ function initStatusBadge() {
     // Check every minute
     setInterval(checkStatus, 60000);
 }
+
+
+
+/* ============================================================
+   GLOW ORB MOUSE TRACKING
+   Updates CSS --mouse-x / --mouse-y for ambient light radials
+   ============================================================ */
+function initGlowOrbTracking() {
+    const isMobile = window.matchMedia('(hover: none)').matches;
+    if (isMobile) return;
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    const heroSection = document.querySelector('.hero.section');
+    const ctaSection = document.getElementById('contacto');
+
+    function trackSection(section, orbId) {
+        if (!section) return;
+        const orb = document.getElementById(orbId);
+        if (!orb) return;
+
+        section.addEventListener('mousemove', (e) => {
+            const rect = section.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            orb.style.left = `${x}px`;
+            orb.style.top = `${y}px`;
+        }, { passive: true });
+    }
+
+    trackSection(heroSection, 'heroGlowOrb');
+    trackSection(ctaSection, 'reservaGlowOrb');
+}
+
+/* ============================================================
+   SCROLL PROGRESS BAR
+   Thin gold gradient bar at top of viewport tracking read progress
+   ============================================================ */
+function initScrollProgress() {
+    const bar = document.getElementById('scrollProgressBar');
+    if (!bar) return;
+
+    let ticking = false;
+
+    function updateProgress() {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        bar.style.width = `${Math.min(progress, 100)}%`;
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(updateProgress);
+            ticking = true;
+        }
+    }, { passive: true });
+
+    // Initial call
+    updateProgress();
+}
+
+
+

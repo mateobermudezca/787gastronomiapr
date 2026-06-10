@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>787 Gastronomía Puertorriqueña – Sabor Boricua en Medellín</title>
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://787gastronomiapr.vercel.app/">
+    <title>Restaurante 787 Gastronomía Puertorriqueña – Sabor Boricua en Medellín</title>
     <meta name="description"
         content="787 Gastronomía Puertorriqueña: el único restaurante de comida típica puertorriqueña en Medellín, Colombia. Mofongo, Pernil, Arroz con Gandules y más.">
     <meta name="keywords"
@@ -34,6 +36,16 @@
       "@id": "https://787gastronomiapr.vercel.app",
       "url": "https://787gastronomiapr.vercel.app",
       "telephone": "+573153597524",
+      "servesCuisine": "Puerto Rican",
+      "priceRange": "$$",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.2",
+        "reviewCount": "120"
+      },
+      "sameAs": [
+        "https://www.instagram.com/787gastronomiapr/"
+      ],
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Cra. 36 #8a-12, El Poblado",
@@ -79,15 +91,483 @@
     <!-- Favicon placeholder -->
     <link rel="icon" href="images/logo.webp" type="image/png">
 
+    <!-- Critical CSS inline (render-blocking eliminated) -->
+    <style>
+    :root {
+        --bg-primary: #000000;
+        --bg-secondary: #050507;
+        --bg-tertiary: #0a0a0d;
+        --bg-card: #0e0e12;
+        --primary-50: #FDF8E1;
+        --primary-100: #FAF0C0;
+        --primary-200: #F5E07A;
+        --primary-300: #EFD040;
+        --primary-400: #E8C030;
+        --primary-500: #D4A017;
+        --primary-600: #B8880F;
+        --primary-700: #9B700A;
+        --primary-800: #7A5506;
+        --primary-900: #573C03;
+        --primary-rgb: 212, 160, 23;
+        --text-primary: #FFFFFF;
+        --text-secondary: #E4E4E7;
+        --text-tertiary: #A1A1AA;
+        --text-quaternary: #71717A;
+        --success: #10B981;
+        --info: #3B82F6;
+        --warning: #F59E0B;
+        --section-padding: 140px 0;
+        --container-max: 1280px;
+        --radius-sm: 8px;
+        --radius-md: 16px;
+        --radius-lg: 24px;
+        --radius-xl: 32px;
+        --radius-full: 9999px;
+        --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+        --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+        --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
+        --transition-fast: all 0.2s var(--ease-out-expo);
+        --transition-normal: all 0.4s var(--ease-out-expo);
+        --transition-slow: all 0.8s var(--ease-out-expo);
+        --transition-premium: all 0.8s var(--ease-out-expo);
+        --transition-magnetic: all 0.5s var(--ease-out-expo);
+    }
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    html {
+        scroll-behavior: smooth;
+        font-size: 16px;
+        scroll-padding-top: 65px;
+    }
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.7;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+    h1 {
+        font-size: clamp(2.5rem, 6vw, 4.75rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+    }
+    h2 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 700;
+        letter-spacing: -0.01em;
+    }
+    h3 { font-size: 1.5rem; font-weight: 600; }
+    h4 { font-size: 1.125rem; font-weight: 600; }
+    p {
+        color: var(--text-tertiary);
+        font-size: 1rem;
+        line-height: 1.75;
+    }
+    a { text-decoration: none; color: inherit; }
+    img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+    .container {
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 0 24px;
+    }
+    .section {
+        padding: 80px 0 120px;
+        position: relative;
+        overflow: hidden;
+        content-visibility: auto;
+        contain-intrinsic-size: 1000px;
+    }
+    .section-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--primary-400);
+        background: rgba(var(--primary-rgb), 0.1);
+        border: 1px solid rgba(var(--primary-rgb), 0.2);
+        padding: 8px 16px;
+        border-radius: var(--radius-full);
+        margin-bottom: 24px;
+    }
+    .section-title {
+        color: var(--text-primary);
+        margin-bottom: 16px;
+    }
+    .section-title .gold {
+        background: linear-gradient(135deg, var(--primary-300) 0%, var(--primary-500) 50%, var(--primary-400) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    .section-subtitle {
+        font-size: 1.125rem;
+        color: var(--text-tertiary);
+        max-width: 600px;
+        line-height: 1.75;
+    }
+    .text-center { text-align: center; }
+    .text-center .section-subtitle { margin: 0 auto; }
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-weight: 700;
+        font-size: 0.9375rem;
+        padding: 12px 16px 12px 28px;
+        border-radius: var(--radius-md);
+        border: none;
+        cursor: pointer;
+        transition: var(--transition-normal);
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+        letter-spacing: -0.01em;
+    }
+    .btn-primary {
+        background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-500) 30%, var(--primary-400) 60%, var(--primary-500) 100%);
+        background-size: 200% 200%;
+        animation: gradient-shift 4s ease infinite;
+        color: #050507;
+        box-shadow: 0 0 0 1px rgba(var(--primary-rgb), 0.3), 0 4px 20px rgba(var(--primary-rgb), 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.12);
+        box-shadow: 0 0 0 2px rgba(var(--primary-rgb), 0.6), 0 8px 30px rgba(var(--primary-rgb), 0.45);
+    }
+    .btn-primary.pulse {
+        animation: gradient-shift 4s ease infinite, pulse-glow 3s ease-in-out infinite;
+    }
+    .btn-outline {
+        background: rgba(var(--primary-rgb), 0.03);
+        color: var(--primary-400);
+        border: 1px solid rgba(var(--primary-rgb), 0.35);
+        padding: 11px 16px 11px 28px;
+    }
+    .btn-outline:hover {
+        background: rgba(var(--primary-rgb), 0.1);
+        border-color: var(--primary-400);
+        color: var(--text-primary);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 20px rgba(var(--primary-rgb), 0.15);
+    }
+    .btn-lg { padding: 16px 28px; font-size: 1.0625rem; border-radius: var(--radius-lg); }
+    .btn-lg.btn-outline { padding: 15px 20px 15px 36px; }
+    .btn-icon-circle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        transition: var(--transition-magnetic);
+        flex-shrink: 0;
+        will-change: transform;
+    }
+    .btn-primary .btn-icon-circle {
+        background: rgba(0, 0, 0, 0.15);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        color: #050507;
+    }
+    .btn-primary:hover .btn-icon-circle {
+        transform: translateX(4px) scale(1.05);
+        background: rgba(0, 0, 0, 0.25);
+    }
+    .btn-outline .btn-icon-circle {
+        background: rgba(var(--primary-rgb), 0.1);
+        border: 1px solid rgba(var(--primary-rgb), 0.2);
+        color: var(--primary-400);
+    }
+    .btn-outline:hover .btn-icon-circle {
+        transform: translateX(4px) scale(1.05);
+        background: var(--primary-500);
+        color: #050507;
+        border-color: var(--primary-500);
+    }
+    .btn-icon-circle i { font-size: 0.875rem; transition: var(--transition-fast); }
+    .btn:hover .btn-icon-circle i { transform: translate3d(1px, -1px, 0); }
+    .navbar {
+        position: fixed;
+        top: 24px;
+        left: 50%;
+        transform: translate3d(-50%, 0, 0);
+        width: calc(100% - 48px);
+        max-width: var(--container-max);
+        z-index: 1000;
+        padding: 12px 24px;
+        border-radius: var(--radius-full);
+        background: rgba(5, 5, 7, 0.45);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        transition: var(--transition-premium);
+        will-change: transform, background, border-color, box-shadow, top, padding;
+    }
+    .navbar.scrolled {
+        top: 16px;
+        background: rgba(5, 5, 7, 0.82);
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
+        border-color: rgba(var(--primary-rgb), 0.22);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(var(--primary-rgb), 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        padding: 8px 32px;
+    }
+    .navbar-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-weight: 800;
+        font-size: 1.25rem;
+        color: var(--text-primary);
+        text-decoration: none;
+        letter-spacing: -0.01em;
+    }
+    .nav-logo img { height: 44px; width: 44px; object-fit: contain; border-radius: var(--radius-sm); }
+    .nav-logo .logo-text span { color: var(--primary-400); }
+    .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        list-style: none;
+    }
+    .nav-links a {
+        font-size: 0.9375rem;
+        font-weight: 500;
+        color: var(--text-tertiary);
+        transition: var(--transition-fast);
+        position: relative;
+        padding-bottom: 4px;
+    }
+    .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--primary-500), var(--primary-300));
+        border-radius: 2px;
+        transition: width 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--primary-300); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta { display: flex; align-items: center; gap: 12px; }
+    .mobile-menu-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 4px;
+        background: none;
+        border: none;
+    }
+    .mobile-menu-toggle span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--primary-400);
+        border-radius: 2px;
+        transition: var(--transition-normal);
+    }
+    .mobile-menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .mobile-menu-toggle.open span:nth-child(2) { opacity: 0; }
+    .mobile-menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(5, 5, 7, 0.94);
+        backdrop-filter: blur(32px);
+        -webkit-backdrop-filter: blur(32px);
+        z-index: 999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.5s var(--ease-out-expo);
+    }
+    .mobile-nav.open { opacity: 1; pointer-events: auto; }
+    .mobile-nav a {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: var(--text-secondary);
+        transition: var(--transition-normal);
+        transform: translate3d(0, 24px, 0);
+        opacity: 0;
+    }
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        padding-top: 100px;
+        overflow: hidden;
+    }
+    .hero-bg-gradient {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), url('images/herobg.webp') center/cover no-repeat;
+        z-index: 0;
+    }
+    .hero-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        align-items: center;
+        gap: 100px;
+        position: relative;
+        z-index: 1;
+    }
+    .hero-content {
+        position: relative;
+        z-index: 10;
+        opacity: 0;
+        padding-right: 48px;
+        margin-left: -60px;
+        animation: fade-in-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+    }
+    .hero-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--primary-400);
+        background: rgba(var(--primary-rgb), 0.1);
+        border: 1px solid rgba(var(--primary-rgb), 0.25);
+        padding: 8px 18px;
+        border-radius: var(--radius-full);
+        margin-bottom: 28px;
+    }
+    .hero-title {
+        font-size: clamp(2.75rem, 5.5vw, 5rem);
+        font-weight: 800;
+        line-height: 1.08;
+        letter-spacing: -0.03em;
+        margin-bottom: 24px;
+        color: var(--text-primary);
+    }
+    .word-mask {
+        display: block;
+        overflow: hidden;
+        height: auto;
+        padding-bottom: 0.05em;
+    }
+    .word-reveal {
+        display: block;
+        transform: translate3d(0, 110%, 0);
+        animation: reveal-word 1.4s var(--ease-out-expo) forwards;
+    }
+    .hero-title .word-mask:nth-child(1) .word-reveal { animation-delay: 0.1s; }
+    .hero-title .word-mask:nth-child(2) .word-reveal { animation-delay: 0.22s; }
+    .hero-title .word-mask:nth-child(3) .word-reveal { animation-delay: 0.34s; }
+    .hero-title .brand-name {
+        background: linear-gradient(135deg, var(--primary-200) 0%, var(--primary-500) 40%, var(--primary-400) 70%, var(--primary-300) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        display: inline-block;
+        padding-bottom: 0.05em;
+    }
+    .hero-subtitle {
+        font-size: 1.125rem;
+        color: var(--text-tertiary);
+        line-height: 1.75;
+        margin-bottom: 40px;
+        max-width: 500px;
+        opacity: 0;
+        animation: fade-in-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
+    }
+    .hero-actions {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        opacity: 0;
+        animation: scale-in 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.5s forwards;
+    }
+    .hero-stats {
+        display: flex;
+        gap: 32px;
+        margin-top: 48px;
+        padding-top: 32px;
+        border-top: 1px solid rgba(var(--primary-rgb), 0.12);
+    }
+    @keyframes reveal-word {
+        0% { transform: translate3d(0, 110%, 0); }
+        100% { transform: translate3d(0, 0, 0); }
+    }
+    @keyframes fade-in-up {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scale-in {
+        from { opacity: 0; transform: scale(0.85); }
+        to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes gradient-shift {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+    }
+    @keyframes pulse-glow {
+        0%, 100% { box-shadow: 0 0 0 1px rgba(var(--primary-rgb), 0.4), 0 4px 24px rgba(var(--primary-rgb), 0.35), 0 0 60px rgba(var(--primary-rgb), 0.2); }
+        50% { box-shadow: 0 0 0 2px rgba(var(--primary-rgb), 0.7), 0 8px 40px rgba(var(--primary-rgb), 0.55), 0 0 80px rgba(var(--primary-rgb), 0.4); }
+    }
+    </style>
+
+    <!-- Deferred stylesheets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
 
     <!-- Cargar Cloudflare Turnstile -->
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 
 <body>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress-container" aria-hidden="true">
+        <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+    </div>
+
+    <!-- Custom Cursor Follower -->
+
 
     <!-- ============================================================
      MOBILE NAV OVERLAY
@@ -99,7 +579,8 @@
         <a href="#resenas">Califícanos</a>
         <a href="https://drive.google.com/file/d/1VSGPszlCJiIkliUln1LGAMReY7vU1A-o/view" target="_blank"
             rel="noopener noreferrer">Menú</a>
-        <a href="#contacto" class="btn btn-primary">Reservar Mesa</a>
+        <a href="#contacto" class="btn btn-primary">Reservar Mesa <span class="btn-icon-circle"><i
+                    class="fa-solid fa-utensils"></i></span></a>
     </nav>
 
     <!-- ============================================================
@@ -130,8 +611,8 @@
 
                 <!-- Desktop CTA -->
                 <div class="nav-cta">
-                    <a href="#contacto" class="btn btn-primary" id="navReservarBtn"><i class="fa-solid fa-utensils"></i>
-                        Reservar Mesa</a>
+                    <a href="#contacto" class="btn btn-primary" id="navReservarBtn">Reservar Mesa <span
+                            class="btn-icon-circle"><i class="fa-solid fa-utensils"></i></span></a>
                 </div>
 
                 <!-- Mobile toggle -->
@@ -151,6 +632,9 @@
     <main id="inicio">
         <section class="hero section">
 
+            <!-- Ambient Dynamic Mouse-Glow Orb -->
+            <div class="bg-glow-orb" id="heroGlowOrb"></div>
+
             <!-- Background gradient -->
             <div class="hero-bg-gradient"></div>
 
@@ -163,9 +647,9 @@
                     <!-- Content -->
                     <div class="hero-content">
                         <h1 class="hero-title">
-                            El Alma de<br>
-                            <span class="brand-name">Puerto Rico</span>
-                            en tu Mesa
+                            <span class="word-mask"><span class="word-reveal">El Alma de</span></span>
+                            <span class="word-mask"><span class="word-reveal brand-name">Puerto Rico</span></span>
+                            <span class="word-mask"><span class="word-reveal">en tu Mesa</span></span>
                         </h1>
 
                         <p class="hero-subtitle">
@@ -177,10 +661,12 @@
                             <a href="https://drive.google.com/file/d/1VSGPszlCJiIkliUln1LGAMReY7vU1A-o/view"
                                 target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg pulse"
                                 id="heroMenuBtn">
-                                Ver Menú Completo
+                                Ver Menú Completo <span class="btn-icon-circle"><i
+                                        class="fa-solid fa-arrow-right"></i></span>
                             </a>
                             <a href="#platillos" class="btn btn-outline btn-lg" id="heroPlatillosBtn">
-                                Nuestros Platillos
+                                Nuestros Platillos <span class="btn-icon-circle"><i
+                                        class="fa-solid fa-utensils"></i></span>
                             </a>
                         </div>
 
@@ -240,7 +726,7 @@
                                         <div class="slider-card__inner">
                                             <div class="slider-card__img-wrap">
                                                 <img src="images/platillo_1.webp" alt="Mofongo Tradicional"
-                                                    class="slider-card__img" width="520" height="390" decoding="async">
+                                                    class="slider-card__img" width="520" height="390" loading="lazy" decoding="async">
                                                 <div class="slider-card__shine"></div>
                                             </div>
                                             <div class="slider-card__info">
@@ -257,7 +743,7 @@
                                         <div class="slider-card__inner">
                                             <div class="slider-card__img-wrap">
                                                 <img src="images/platillo_2.webp" alt="Platillos Puertorriqueños"
-                                                    class="slider-card__img" width="520" height="390" decoding="async">
+                                                    class="slider-card__img" width="520" height="390" loading="lazy" decoding="async">
                                                 <div class="slider-card__shine"></div>
                                             </div>
                                             <div class="slider-card__info">
@@ -274,7 +760,7 @@
                                         <div class="slider-card__inner">
                                             <div class="slider-card__img-wrap">
                                                 <img src="images/coctel_1.webp" alt="Coctel Tropical"
-                                                    class="slider-card__img" width="520" height="390" decoding="async">
+                                                    class="slider-card__img" width="520" height="390" loading="lazy" decoding="async">
                                                 <div class="slider-card__shine"></div>
                                             </div>
                                             <div class="slider-card__info">
@@ -291,7 +777,7 @@
                                         <div class="slider-card__inner">
                                             <div class="slider-card__img-wrap">
                                                 <img src="images/coctel_2.webp" alt="Mixología Boricua"
-                                                    class="slider-card__img" width="520" height="390" decoding="async">
+                                                    class="slider-card__img" width="520" height="390" loading="lazy" decoding="async">
                                                 <div class="slider-card__shine"></div>
                                             </div>
                                             <div class="slider-card__info">
@@ -308,7 +794,7 @@
                                         <div class="slider-card__inner">
                                             <div class="slider-card__img-wrap">
                                                 <img src="images/coctel_3.webp" alt="Trago de la Isla"
-                                                    class="slider-card__img" width="520" height="390" decoding="async">
+                                                    class="slider-card__img" width="520" height="390" loading="lazy" decoding="async">
                                                 <div class="slider-card__shine"></div>
                                             </div>
                                             <div class="slider-card__info">
@@ -325,7 +811,7 @@
                                         <div class="slider-card__inner">
                                             <div class="slider-card__img-wrap">
                                                 <img src="images/desayuno.webp" alt="Desayuno Internacional"
-                                                    class="slider-card__img" width="520" height="390" decoding="async">
+                                                    class="slider-card__img" width="520" height="390" loading="lazy" decoding="async">
                                                 <div class="slider-card__shine"></div>
                                             </div>
                                             <div class="slider-card__info">
@@ -342,7 +828,7 @@
                                         <div class="slider-card__inner">
                                             <div class="slider-card__img-wrap">
                                                 <img src="images/calidad.webp" alt="Productos de Calidad"
-                                                    class="slider-card__img" width="520" height="390" decoding="async">
+                                                    class="slider-card__img" width="520" height="390" loading="lazy" decoding="async">
                                                 <div class="slider-card__shine"></div>
                                             </div>
                                             <div class="slider-card__info">
@@ -359,7 +845,7 @@
                                         <div class="slider-card__inner">
                                             <div class="slider-card__img-wrap">
                                                 <img src="images/surtido_boricua.webp" alt="Surtido Boricua"
-                                                    class="slider-card__img" width="520" height="390" decoding="async">
+                                                    class="slider-card__img" width="520" height="390" loading="lazy" decoding="async">
                                                 <div class="slider-card__shine"></div>
                                             </div>
                                             <div class="slider-card__info">
@@ -376,7 +862,7 @@
                                         <div class="slider-card__inner">
                                             <div class="slider-card__img-wrap">
                                                 <img src="images/aguacate_relleno.webp" alt="Aguacate Relleno"
-                                                    class="slider-card__img" width="520" height="390" decoding="async">
+                                                    class="slider-card__img" width="520" height="390" loading="lazy" decoding="async">
                                                 <div class="slider-card__shine"></div>
                                             </div>
                                             <div class="slider-card__info">
@@ -415,6 +901,7 @@
      PLATILLOS / FLIP CARDS
      ============================================================ -->
         <section id="platillos" class="section services-section">
+            <div class="particles-container" aria-hidden="true"></div>
             <div class="container">
 
                 <div class="text-center reveal">
@@ -635,12 +1122,12 @@
                     </p>
                 </div>
 
-                <!-- Animated Staggered Gallery -->
+                <!-- Animated Staggered Bento Gallery -->
                 <div class="brunch-gallery reveal reveal-delay-1">
 
-                    <!-- Col 1 -->
-                    <div class="brunch-col">
-                        <div class="brunch-card reveal-up">
+                    <!-- Card 1 (2x2) -->
+                    <div class="brunch-card bento-card-1 reveal-up">
+                        <div class="brunch-card-inner">
                             <img src="images/desayuno_fit_bowl.webp" alt="Fit Bowl" width="380" height="475"
                                 loading="lazy" decoding="async">
                             <div class="brunch-card-overlay">
@@ -648,7 +1135,11 @@
                                 <p>Con yogurt griego, frutas y granola es perfecto para empezar el día con energía.</p>
                             </div>
                         </div>
-                        <div class="brunch-card reveal-up">
+                    </div>
+
+                    <!-- Card 2 (2x1) -->
+                    <div class="brunch-card bento-card-2 reveal-up">
+                        <div class="brunch-card-inner">
                             <img src="images/desayuno_waffle_sandwich_tuna.webp" alt="Waffle Sandwich de Tuna"
                                 width="380" height="380" loading="lazy" decoding="async">
                             <div class="brunch-card-overlay">
@@ -658,9 +1149,9 @@
                         </div>
                     </div>
 
-                    <!-- Col 2 (Staggered) -->
-                    <div class="brunch-col staggered">
-                        <div class="brunch-card reveal-up">
+                    <!-- Card 3 (1x1) -->
+                    <div class="brunch-card bento-card-3 reveal-up">
+                        <div class="brunch-card-inner">
                             <img src="images/desayuno_amanecer_dulce.webp" alt="Amanecer Dulce" width="380" height="380"
                                 loading="lazy" decoding="async">
                             <div class="brunch-card-overlay">
@@ -668,9 +1159,13 @@
                                 <p>Con pancakes y frutas es el plan perfecto.</p>
                             </div>
                         </div>
-                        <div class="brunch-card reveal-up">
-                            <img src="images/desayuno_el_pollo.webp" alt="Chicken & Waffles" width="380"
-                                height="475" loading="lazy" decoding="async">
+                    </div>
+
+                    <!-- Card 4 (1x2) -->
+                    <div class="brunch-card bento-card-4 reveal-up">
+                        <div class="brunch-card-inner">
+                            <img src="images/desayuno_el_pollo.webp" alt="Chicken & Waffles" width="380" height="475"
+                                loading="lazy" decoding="async">
                             <div class="brunch-card-overlay">
                                 <h4>CHICKEN & WAFFLES</h4>
                                 <p>Al estilo brunch. Pollo empanizado con waffles y ensalada fresca.</p>
@@ -678,17 +1173,21 @@
                         </div>
                     </div>
 
-                    <!-- Col 3 -->
-                    <div class="brunch-col">
-                        <div class="brunch-card reveal-up">
-                            <img src="images/desayuno_las_mananas.webp" alt="Desayuno Americano" width="380" height="475"
-                                loading="lazy" decoding="async">
+                    <!-- Card 5 (2x1) -->
+                    <div class="brunch-card bento-card-5 reveal-up">
+                        <div class="brunch-card-inner">
+                            <img src="images/desayuno_las_mananas.webp" alt="Desayuno Americano" width="380"
+                                height="475" loading="lazy" decoding="async">
                             <div class="brunch-card-overlay">
                                 <h4>DESAYUNO AMERICANO</h4>
                                 <p>Clásico con huevos fritos, tocineta crujiente, papas y esponjosos pancakes.</p>
                             </div>
                         </div>
-                        <div class="brunch-card reveal-up">
+                    </div>
+
+                    <!-- Card 6 (1x1) -->
+                    <div class="brunch-card bento-card-6 reveal-up">
+                        <div class="brunch-card-inner">
                             <img src="images/desayuno_general_hero.webp" alt="Nuestros Desayunos" width="380"
                                 height="380" loading="lazy" decoding="async">
                             <div class="brunch-card-overlay">
@@ -719,7 +1218,7 @@
                         <div class="morphing-card glass-card" style="margin: 0 auto;">
                             <!-- The image goes from full height to 40% height on hover -->
                             <img src="images/IMG_0639.webp" alt="Nosotros - 787 Gastronomía" class="morphing-img"
-                                loading="lazy" decoding="async">
+                                width="500" height="500" loading="lazy" decoding="async">
 
                             <!-- Initial Badge -->
                             <div class="morphing-badge">Nuestro Equipo</div>
@@ -788,11 +1287,12 @@
                         </div>
 
                         <div class="experience-actions">
-                            <a href="#contacto" class="btn btn-primary" id="nosotrosContactoBtn"><i
-                                    class="fa-solid fa-phone"></i> Contáctanos</a>
+                            <a href="#contacto" class="btn btn-primary" id="nosotrosContactoBtn">Contáctanos <span
+                                    class="btn-icon-circle"><i class="fa-solid fa-phone"></i></span></a>
                             <a href="https://drive.google.com/file/d/1VSGPszlCJiIkliUln1LGAMReY7vU1A-o/view"
                                 target="_blank" rel="noopener noreferrer" class="btn btn-outline"
-                                id="nosotrosMenuBtn">Nuestro Menú</a>
+                                id="nosotrosMenuBtn">Nuestro Menú <span class="btn-icon-circle"><i
+                                        class="fa-solid fa-arrow-right"></i></span></a>
                         </div>
                     </div>
 
@@ -806,6 +1306,7 @@
      RESERVACIONES / CTA FINAL
      ============================================================ -->
         <section id="contacto" class="section cta-section">
+            <div class="bg-glow-orb" id="reservaGlowOrb"></div>
             <div class="cta-bg-radial" aria-hidden="true"></div>
             <div id="particles-cta" class="particles-container" aria-hidden="true"></div>
 
@@ -1002,7 +1503,8 @@
 
                         <!-- Submit -->
                         <button type="submit" id="submitReserva" class="btn btn-primary btn-lg form-submit">
-                            <span id="submitText"><i class="fa-solid fa-check"></i> Confirmar Reserva</span>
+                            <span id="submitText">Confirmar Reserva <span class="btn-icon-circle"><i
+                                        class="fa-solid fa-check"></i></span></span>
                             <span id="submitSpinner" class="form-spinner" aria-hidden="true"
                                 style="display:none;"></span>
                         </button>
@@ -1094,29 +1596,250 @@
     </main>
 
     <!-- ============================================================
-     GOOGLE REVIEWS CTA
+     TESTIMONIOS — Infinite 3D Marquee
      ============================================================ -->
-    <section id="resenas" class="section reviews-cta-section">
-        <div class="reviews-cta-bg" aria-hidden="true"></div>
-        <div class="container relative">
-            <div class="text-center reveal">
-                <div class="reviews-stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
+    <section id="resenas" class="section testimonios-section">
+            <div class="particles-container" aria-hidden="true"></div>
+        <div class="container">
+            <div class="text-center reveal" style="margin-bottom: 60px;">
+                <div class="section-label"><i class="fa-solid fa-star"></i> Reseñas Reales</div>
+                <h2 class="section-title">Lo que dicen nuestros <span class="gold">comensales</span></h2>
+                <p class="section-subtitle">Más de 4.2 estrellas en Google. La satisfacción de nuestros clientes es
+                    nuestra mayor distinción.</p>
+            </div>
+        </div>
+
+        <!-- Infinite Marquee -->
+        <div class="testimonials-marquee-wrap" id="testimonialMarquee">
+            <div class="testimonials-marquee">
+
+                <!-- Track 1 -->
+                <div class="testimonial-card-inner">
+                    <div class="tc-header">
+                        <div class="tc-avatar" style="background: linear-gradient(135deg, #D4A017, #9B700A);">N</div>
+                        <div class="tc-meta"><strong>Nanny Ríos</strong><span>Medellín, CO</span></div>
+                        <div class="tc-google"><i class="fa-brands fa-google"></i></div>
+                    </div>
+                    <div class="tc-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i></div>
+                    <p class="tc-text">"Mi primera visita a Medellín, Colombia. Me encantó la amabilidad de su gente.
+                        Les recomiendo el primer restaurante puertorriqueño, un lugar hermoso con la más exquisita
+                        comida y bebidas. Sus empleados los recibirán con mucha amabilidad."</p>
                 </div>
-                <h2 class="section-title">
-                    Tu Experiencia es nuestra <span class="gold">mayor Recompensa</span>
-                </h2>
-                <p class="section-subtitle">
-                    Ayúdanos a seguir creciendo compartiendo tu opinión sobre nuestra sazón boricua en Google.
-                </p>
+
+                <div class="testimonial-card-inner">
+                    <div class="tc-header">
+                        <div class="tc-avatar" style="background: linear-gradient(135deg, #7C3AED, #4C1D95);">O</div>
+                        <div class="tc-meta"><strong>Orlando Olivera</strong><span>Local Guide</span></div>
+                        <div class="tc-google"><i class="fa-brands fa-google"></i></div>
+                    </div>
+                    <div class="tc-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i></div>
+                    <p class="tc-text">"Espectacular es la única palabra para describir el 787. El servicio increíble,
+                        nos hicieron sentir en casa. Los mojitos fuera de este planeta y la comida extremadamente
+                        deliciosa. Un consejo: vayan con hambre."</p>
+                </div>
+
+                <div class="testimonial-card-inner">
+                    <div class="tc-header">
+                        <div class="tc-avatar" style="background: linear-gradient(135deg, #059669, #064E3B);">N</div>
+                        <div class="tc-meta"><strong>Noemi Soto</strong><span>Medellín, CO</span></div>
+                        <div class="tc-google"><i class="fa-brands fa-google"></i></div>
+                    </div>
+                    <div class="tc-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i></div>
+                    <p class="tc-text">"Buena comida, ambiente y bien acogedor. Fuimos un grupo de 10 el Día de Acción
+                        de Gracias. La pasamos espectacular. ¡Viva nuestro país Puerto Rico!"</p>
+                </div>
+
+                <div class="testimonial-card-inner">
+                    <div class="tc-header">
+                        <div class="tc-avatar" style="background: linear-gradient(135deg, #DC2626, #7F1D1D);">J</div>
+                        <div class="tc-meta"><strong>Junior López</strong><span>Local Guide</span></div>
+                        <div class="tc-google"><i class="fa-brands fa-google"></i></div>
+                    </div>
+                    <div class="tc-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i></div>
+                    <p class="tc-text">"Excelente servicio, comida super rica y porciones generosas. El trato del
+                        personal es de 100. Lugar limpio y agradable con música de salsa. Altamente recomendado."</p>
+                </div>
+
+                <div class="testimonial-card-inner">
+                    <div class="tc-header">
+                        <div class="tc-avatar" style="background: linear-gradient(135deg, #D97706, #92400E);">D</div>
+                        <div class="tc-meta"><strong>Darwin Colón Maldonado</strong><span>Local Guide</span></div>
+                        <div class="tc-google"><i class="fa-brands fa-google"></i></div>
+                    </div>
+                    <div class="tc-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i></div>
+                    <p class="tc-text">"Soy puertorriqueño y estuve de visita en Medellín. Desde que llegué y escuché la
+                        música y vi las banderas fue una sensación brutal, me sentía como en casa. Un sitio que no puede
+                        faltar."</p>
+                </div>
+
+                <div class="testimonial-card-inner">
+                    <div class="tc-header">
+                        <div class="tc-avatar" style="background: linear-gradient(135deg, #0EA5E9, #0C4A6E);">J</div>
+                        <div class="tc-meta"><strong>Javier Martínez</strong><span>Local Guide</span></div>
+                        <div class="tc-google"><i class="fa-brands fa-google"></i></div>
+                    </div>
+                    <div class="tc-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i></div>
+                    <p class="tc-text">"Lo recomiendo 100%. Si quieres probar la comida puertorriqueña y estás en
+                        Medellín, tienen que ir. El sabor te transporta a lo más sabroso de Puerto Rico."</p>
+                </div>
+
+                <div class="testimonial-card-inner">
+                    <div class="tc-header">
+                        <div class="tc-avatar" style="background: linear-gradient(135deg, #EC4899, #831843);">Z</div>
+                        <div class="tc-meta"><strong>Zory Núñez</strong><span>Medellín, CO</span></div>
+                        <div class="tc-google"><i class="fa-brands fa-google"></i></div>
+                    </div>
+                    <div class="tc-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i></div>
+                    <p class="tc-text">"Un excelente lugar para compartir en familia, la comida excelente, los empleados
+                        muy atentos. Perfecto para pasar una tarde en Medellín pero como si estuvieras en PR."</p>
+                </div>
+
+                <div class="testimonial-card-inner">
+                    <div class="tc-header">
+                        <div class="tc-avatar" style="background: linear-gradient(135deg, #D4A017, #573C03);">O</div>
+                        <div class="tc-meta"><strong>Omar Pimentel</strong><span>Local Guide</span></div>
+                        <div class="tc-google"><i class="fa-brands fa-google"></i></div>
+                    </div>
+                    <div class="tc-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i></div>
+                    <p class="tc-text">"La emoción de estar tan lejos en Colombia y degustar la gastronomía de mi isla
+                        Puerto Rico... es algo para nunca olvidar. Nada mejor que el sabor de mi tierra PR."</p>
+                </div>
+
+                <!-- Track 2 (duplicate for seamless loop) -->
+                <div class="testimonial-card-inner">
+                    <div class="tc-header">
+                        <div class="tc-avatar" style="background: linear-gradient(135deg, #D4A017, #9B700A);">N</div>
+                        <div class="tc-meta"><strong>Nanny Ríos</strong><span>Medellín, CO</span></div>
+                        <div class="tc-google"><i class="fa-brands fa-google"></i></div>
+                    </div>
+                    <div class="tc-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i></div>
+                    <p class="tc-text">"Mi primera visita a Medellín, Colombia. Me encantó la amabilidad de su gente.
+                        Les recomiendo el primer restaurante puertorriqueño, un lugar hermoso con la más exquisita
+                        comida y bebidas. Sus empleados los recibirán con mucha amabilidad."</p>
+                </div>
+
+                <div class="testimonial-card-inner">
+                    <div class="tc-header">
+                        <div class="tc-avatar" style="background: linear-gradient(135deg, #7C3AED, #4C1D95);">O</div>
+                        <div class="tc-meta"><strong>Orlando Olivera</strong><span>Local Guide</span></div>
+                        <div class="tc-google"><i class="fa-brands fa-google"></i></div>
+                    </div>
+                    <div class="tc-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i></div>
+                    <p class="tc-text">"Espectacular es la única palabra para describir el 787. El servicio increíble,
+                        nos hicieron sentir en casa. Los mojitos fuera de este planeta y la comida extremadamente
+                        deliciosa. Un consejo: vayan con hambre."</p>
+                </div>
+
+                <div class="testimonial-card-inner">
+                    <div class="tc-header">
+                        <div class="tc-avatar" style="background: linear-gradient(135deg, #059669, #064E3B);">N</div>
+                        <div class="tc-meta"><strong>Noemi Soto</strong><span>Medellín, CO</span></div>
+                        <div class="tc-google"><i class="fa-brands fa-google"></i></div>
+                    </div>
+                    <div class="tc-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i></div>
+                    <p class="tc-text">"Buena comida, ambiente y bien acogedor. Fuimos un grupo de 10 el Día de Acción
+                        de Gracias. La pasamos espectacular. ¡Viva nuestro país Puerto Rico!"</p>
+                </div>
+
+                <div class="testimonial-card-inner">
+                    <div class="tc-header">
+                        <div class="tc-avatar" style="background: linear-gradient(135deg, #DC2626, #7F1D1D);">J</div>
+                        <div class="tc-meta"><strong>Junior López</strong><span>Local Guide</span></div>
+                        <div class="tc-google"><i class="fa-brands fa-google"></i></div>
+                    </div>
+                    <div class="tc-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i></div>
+                    <p class="tc-text">"Excelente servicio, comida super rica y porciones generosas. El trato del
+                        personal es de 100. Lugar limpio y agradable con música de salsa. Altamente recomendado."</p>
+                </div>
+
+                <div class="testimonial-card-inner">
+                    <div class="tc-header">
+                        <div class="tc-avatar" style="background: linear-gradient(135deg, #D97706, #92400E);">D</div>
+                        <div class="tc-meta"><strong>Darwin Colón Maldonado</strong><span>Local Guide</span></div>
+                        <div class="tc-google"><i class="fa-brands fa-google"></i></div>
+                    </div>
+                    <div class="tc-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i></div>
+                    <p class="tc-text">"Soy puertorriqueño y estuve de visita en Medellín. Desde que llegué y escuché la
+                        música y vi las banderas fue una sensación brutal, me sentía como en casa. Un sitio que no puede
+                        faltar."</p>
+                </div>
+
+                <div class="testimonial-card-inner">
+                    <div class="tc-header">
+                        <div class="tc-avatar" style="background: linear-gradient(135deg, #0EA5E9, #0C4A6E);">J</div>
+                        <div class="tc-meta"><strong>Javier Martínez</strong><span>Local Guide</span></div>
+                        <div class="tc-google"><i class="fa-brands fa-google"></i></div>
+                    </div>
+                    <div class="tc-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i></div>
+                    <p class="tc-text">"Lo recomiendo 100%. Si quieres probar la comida puertorriqueña y estás en
+                        Medellín, tienen que ir. El sabor te transporta a lo más sabroso de Puerto Rico."</p>
+                </div>
+
+                <div class="testimonial-card-inner">
+                    <div class="tc-header">
+                        <div class="tc-avatar" style="background: linear-gradient(135deg, #EC4899, #831843);">Z</div>
+                        <div class="tc-meta"><strong>Zory Núñez</strong><span>Medellín, CO</span></div>
+                        <div class="tc-google"><i class="fa-brands fa-google"></i></div>
+                    </div>
+                    <div class="tc-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i></div>
+                    <p class="tc-text">"Un excelente lugar para compartir en familia, la comida excelente, los empleados
+                        muy atentos. Perfecto para pasar una tarde en Medellín pero como si estuvieras en PR."</p>
+                </div>
+
+                <div class="testimonial-card-inner">
+                    <div class="tc-header">
+                        <div class="tc-avatar" style="background: linear-gradient(135deg, #D4A017, #573C03);">O</div>
+                        <div class="tc-meta"><strong>Omar Pimentel</strong><span>Local Guide</span></div>
+                        <div class="tc-google"><i class="fa-brands fa-google"></i></div>
+                    </div>
+                    <div class="tc-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i></div>
+                    <p class="tc-text">"La emoción de estar tan lejos en Colombia y degustar la gastronomía de mi isla
+                        Puerto Rico... es algo para nunca olvidar. Nada mejor que el sabor de mi tierra PR."</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Google CTA below marquee -->
+        <div class="container" style="margin-top: 60px;">
+            <div class="text-center reveal">
                 <div class="reviews-cta-action">
                     <a href="https://www.google.com/maps/place/787+Gastronomia+Puertorriqueña/@6.2077093,-75.5664357,17z/data=!4m8!3m7!1s0x8e4429686ecab509:0x7198886694c55953!8m2!3d6.2077093!4d-75.5664357!9m1!1b1!16s%2Fg%2F11qb099df_?entry=ttu&g_ep=EgoyMDI2MDQwNS4wIKXMDSoASAFQAw%3D%3D"
-                        target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg pulse">
-                        <i class="fa-brands fa-google"></i> Calificar en Google
+                        target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">
+                        <i class="fa-brands fa-google"></i> Dejanos tu Reseña <span class="btn-icon-circle"><i
+                                class="fa-solid fa-arrow-right"></i></span>
                     </a>
                 </div>
             </div>
@@ -1157,7 +1880,7 @@
 
                 <!-- Restaurante -->
                 <div class="footer-col">
-                    <h5>Restaurante</h5>
+                    <h4>Restaurante</h4>
                     <ul>
                         <li><a href="#nosotros">Nuestra Historia</a></li>
                         <li><a href="#menu">Ver Menú</a></li>
@@ -1170,7 +1893,7 @@
 
                 <!-- Contacto -->
                 <div class="footer-col">
-                    <h5>Contacto</h5>
+                    <h4>Contacto</h4>
                     <ul>
                         <li><a href="tel:+573153597524"><i class="fa-solid fa-phone"></i> +57 315 3597524</a></li>
                         <li><a href="https://api.whatsapp.com/message/746MFPD3TP6MO1?autoload=1&app_absent=0"
@@ -1201,7 +1924,14 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').catch(() => {});
+            });
+        }
+    </script>
+    <script src="script.js" defer></script>
 </body>
 
 </html>
