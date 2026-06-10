@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://787gastronomiapr.vercel.app/terminos">
+    <title>Términos de Uso – 787 Gastronomía Puertorriqueña</title>
+    <meta name="description" content="Términos y condiciones de uso del sitio web y servicio de reserva de 787 Gastronomía Puertorriqueña en Medellín, Colombia.">
+    <meta name="author" content="787 Gastronomía Puertorriqueña">
+
+    <!-- Preconnect Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <!-- Critical CSS -->
+    <style>
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #050507;
+            --bg-tertiary: #0a0a0d;
+            --bg-card: #0e0e12;
+            --primary-50: #FDF8E1;
+            --primary-100: #FAF0C0;
+            --primary-200: #F5E07A;
+            --primary-300: #EFD040;
+            --primary-400: #E8C030;
+            --primary-500: #D4A017;
+            --primary-600: #B8880F;
+            --primary-700: #9B700A;
+            --primary-800: #7A5506;
+            --primary-900: #573C03;
+            --primary-rgb: 212, 160, 23;
+            --text-primary: #FFFFFF;
+            --text-secondary: #E4E4E7;
+            --text-tertiary: #A1A1AA;
+            --text-quaternary: #71717A;
+            --section-padding: 140px 0;
+            --container-max: 1280px;
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            --radius-full: 9999px;
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-fast: all 0.2s var(--ease-out-expo);
+            --transition-normal: all 0.4s var(--ease-out-expo);
+            --transition-slow: all 0.8s var(--ease-out-expo);
+        }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        a {
+            color: var(--primary-400);
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+        a:hover {
+            color: var(--primary-300);
+        }
+        .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ── Navbar ── */
+        .navbar {
+            position: fixed;
+            top: 24px;
+            left: 50%;
+            transform: translate3d(-50%, 0, 0);
+            width: calc(100% - 48px);
+            max-width: var(--container-max);
+            z-index: 1000;
+            padding: 12px 24px;
+            border-radius: var(--radius-full);
+            background: rgba(5, 5, 7, 0.45);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            transition: var(--transition-slow);
+        }
+        .navbar-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.01em;
+        }
+        .nav-logo img {
+            height: 44px;
+            width: 44px;
+            object-fit: contain;
+            border-radius: var(--radius-sm);
+        }
+        .nav-logo span {
+            color: var(--primary-400);
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-size: 0.9375rem;
+            font-weight: 500;
+            color: var(--text-tertiary);
+            transition: var(--transition-fast);
+            position: relative;
+            padding-bottom: 4px;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-500), var(--primary-300));
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: var(--primary-300);
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            border-radius: var(--radius-full);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            transition: var(--transition-normal);
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+        }
+        .btn-primary {
+            background: var(--primary-500);
+            color: var(--bg-primary);
+        }
+        .btn-primary:hover {
+            background: var(--primary-400);
+            transform: scale(1.04);
+            box-shadow: 0 8px 24px rgba(var(--primary-rgb), 0.35);
+        }
+
+        /* ── Legal Content ── */
+        .legal-page {
+            padding: 160px 0 100px;
+            min-height: 100vh;
+        }
+        .legal-page .container {
+            max-width: 800px;
+        }
+        .legal-page h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+        .legal-page .last-updated {
+            font-size: 0.875rem;
+            color: var(--text-quaternary);
+            margin-bottom: 48px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .legal-page h2 {
+            font-size: 1.375rem;
+            color: var(--primary-400);
+            margin-top: 48px;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+        .legal-page h3 {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-top: 32px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .legal-page p {
+            font-size: 0.9375rem;
+            color: var(--text-tertiary);
+            margin-bottom: 16px;
+        }
+        .legal-page ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 16px;
+        }
+        .legal-page ul li {
+            font-size: 0.9375rem;
+            color: var(--text-tertiary);
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 8px;
+        }
+        .legal-page ul li::before {
+            content: '•';
+            color: var(--primary-500);
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+        }
+        .legal-page strong {
+            color: var(--text-secondary);
+        }
+        .legal-page .highlight-box {
+            background: var(--bg-card);
+            border: 1px solid rgba(var(--primary-rgb), 0.12);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            margin: 24px 0;
+        }
+        .legal-page .highlight-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ── Footer ── */
+        .legal-footer {
+            border-top: 1px solid rgba(var(--primary-rgb), 0.12);
+            padding: 32px 0;
+            text-align: center;
+        }
+        .legal-footer p {
+            font-size: 0.8125rem;
+            color: var(--text-quaternary);
+        }
+        .legal-footer a {
+            color: var(--primary-500);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .navbar {
+                top: 16px;
+                padding: 10px 16px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .nav-cta {
+                display: none;
+            }
+            .legal-page {
+                padding: 130px 0 60px;
+            }
+            .legal-page h1 {
+                font-size: 1.625rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============================================================
+     NAVBAR
+     ============================================================ -->
+    <header class="navbar" role="banner">
+        <div class="container">
+            <div class="navbar-inner">
+                <a href="/" class="nav-logo" aria-label="787 Gastronomía Puertorriqueña">
+                    <img src="images/logo.webp" alt="Logo 787 Gastronomía Puertorriqueña" width="44" height="44">
+                    <span>787</span> Gastronomía
+                </a>
+                <ul class="nav-links" role="list">
+                    <li><a href="/">Inicio</a></li>
+                    <li><a href="/#platillos">Platillos</a></li>
+                    <li><a href="/#contacto">Reservaciones</a></li>
+                </ul>
+                <a href="/#contacto" class="btn btn-primary">Reservar Mesa</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================
+     LEGAL CONTENT
+     ============================================================ -->
+    <main class="legal-page">
+        <div class="container">
+
+            <h1>Términos de Uso</h1>
+            <p class="last-updated">Última actualización: 1 de junio de 2026</p>
+
+            <p>Bienvenido al sitio web de <strong>787 Gastronomía Puertorriqueña</strong> (en adelante, "el Restaurante", "nosotros" o "nuestro"). Al acceder y utilizar este sitio web, incluyendo el formulario de reserva en línea, aceptas cumplir con los siguientes Términos de Uso. Si no estás de acuerdo con alguna de estas condiciones, te solicitamos que no utilices este sitio ni nuestros servicios de reserva en línea.</p>
+
+            <h2>1. Información del Restaurante</h2>
+            <ul>
+                <li><strong>Nombre comercial:</strong> 787 Gastronomía Puertorriqueña</li>
+                <li><strong>Dirección:</strong> Cra. 36 #8a-12, Medellín, Colombia</li>
+                <li><strong>Teléfono:</strong> <a href="tel:+573153597524">+57 315 3597524</a></li>
+                <li><strong>Correo electrónico:</strong> <a href="mailto:787gastronomiapr@gmail.com">787gastronomiapr@gmail.com</a></li>
+                <li><strong>Horario de atención:</strong> Martes a domingo, 8:00 a.m. – 10:00 p.m.</li>
+            </ul>
+
+            <h2>2. Uso del Sitio Web</h2>
+            <p>Te comprometes a utilizar este sitio web y sus servicios de conformidad con la ley, la moral, el orden público y las siguientes condiciones:</p>
+            <ul>
+                <li>No utilizar el sitio web para fines ilícitos o contrarios a lo establecido en estos Términos.</li>
+                <li>No introducir o difundir virus informáticos, malware o cualquier otro código malicioso que pueda dañar el sitio o los sistemas del Restaurante.</li>
+                <li>No realizar reservas falsas, fraudulentas o especulativas.</li>
+                <li>Proporcionar información veraz, completa y actualizada al momento de realizar una reserva.</li>
+                <li>No interferir con el funcionamiento del sitio web, incluyendo el envío automatizado de formularios (bots) o ataques de denegación de servicio.</li>
+            </ul>
+
+            <h2>3. Servicio de Reserva en Línea</h2>
+            <p>El formulario de reserva en línea es una herramienta gratuita puesta a disposición de los clientes para solicitar una mesa en el Restaurante. Al enviar una solicitud de reserva:</p>
+            <ul>
+                <li>Declaras que toda la información proporcionada es veraz y corresponde a los datos de la persona que asistirá al Restaurante.</li>
+                <li>Entiendes que la reserva está sujeta a disponibilidad y que el Restaurante se reserva el derecho de confirmar, modificar o rechazar cualquier solicitud.</li>
+                <li>Aceptas recibir una comunicación de confirmación (vía telefónica, WhatsApp o correo electrónico) para validar tu reserva.</li>
+            </ul>
+            <p>El Restaurante se reserva el derecho de:</p>
+            <ul>
+                <li>Establecer un límite máximo de comensales por reserva.</li>
+                <li>Solicitar una confirmación previa a la llegada.</li>
+                <li>Asignar una mesa según la disponibilidad del momento, incluso si la solicitud fue confirmada.</li>
+                <li>Cancelar reservas que no hayan sido confirmadas dentro del plazo indicado.</li>
+            </ul>
+
+            <h2>4. Cancelaciones y No Shows</h2>
+            <p>Valoramos la puntualidad y el compromiso de todos nuestros comensales. Por favor, ten en cuenta lo siguiente:</p>
+            <ul>
+                <li>Si necesitas cancelar o modificar tu reserva, te agradecemos que nos notifiques con al menos <strong>2 horas de antelación</strong> a través de nuestro <a href="https://api.whatsapp.com/message/746MFPD3TP6MO1?autoload=1&app_absent=0" target="_blank" rel="noopener noreferrer">WhatsApp</a> o llamando al <a href="tel:+573153597524">+57 315 3597524</a>.</li>
+                <li>El Restaurante se reserva el derecho de no aceptar reservas futuras de clientes que hayan incurrido en múltiples "no shows" (inasistencias sin previo aviso).</li>
+            </ul>
+
+            <h2>5. Propiedad Intelectual</h2>
+            <p>Todos los contenidos de este sitio web, incluyendo pero no limitado a textos, imágenes, logotipos, fotografías, videos, diseño gráfico y código fuente, son propiedad exclusiva de <strong>787 Gastronomía Puertorriqueña</strong> o de sus respectivos licenciantes, y están protegidos por las leyes de propiedad intelectual colombianas y los tratados internacionales aplicables.</p>
+            <p>Queda prohibida la reproducción, distribución, comunicación pública, transformación o cualquier otra forma de explotación de los contenidos sin la autorización previa y por escrito del Restaurante, salvo que sea para uso personal y no comercial.</p>
+
+            <h2>6. Marcas Registradas</h2>
+            <p>El nombre "787 Gastronomía Puertorriqueña", su logotipo y cualquier otro signo distintivo utilizado en este sitio son marcas registradas o en proceso de registro. Su uso no autorizado está prohibido por la legislación colombiana e internacional.</p>
+
+            <h2>7. Enlaces a Terceros</h2>
+            <p>Este sitio web puede contener enlaces a sitios web de terceros, como Google Maps, WhatsApp, Instagram y Google Drive. Estos enlaces se proporcionan únicamente para tu comodidad e información. El Restaurante no tiene control sobre el contenido, políticas de privacidad o prácticas de dichos sitios, y no asume ninguna responsabilidad por ellos. Te recomendamos leer los términos y condiciones de cada sitio que visites.</p>
+
+            <h2>8. Limitación de Responsabilidad</h2>
+            <p>El Restaurante no será responsable por:</p>
+            <ul>
+                <li>Daños directos, indirectos, incidentales o consecuentes derivados del uso o la imposibilidad de uso de este sitio web.</li>
+                <li>Errores, omisiones o imprecisiones en la información publicada en el sitio, incluyendo precios, horarios o disponibilidad de platillos.</li>
+                <li>Interrupciones del servicio, caídas del sitio web o pérdida de datos causadas por eventos fuera de nuestro control razonable (fuerza mayor, problemas de conectividad, ataques cibernéticos, etc.).</li>
+                <li>La exactitud, integridad o actualidad de los contenidos de sitios web de terceros enlazados.</li>
+            </ul>
+            <p>El sitio web se proporciona "tal cual" y "según disponibilidad", sin garantías de ningún tipo, expresas o implícitas.</p>
+
+            <h2>9. Política de Alimentos y Alergias</h2>
+            <p>En 787 Gastronomía Puertorriqueña nos esforzamos por ofrecer una experiencia gastronómica de calidad. Sin embargo:</p>
+            <ul>
+                <li>No podemos garantizar que nuestros platillos estén libres de alérgenos, ya que todos se preparan en una cocina que maneja diversos ingredientes (nueces, lácteos, gluten, mariscos, etc.).</li>
+                <li>Es responsabilidad del comensal informar al personal del Restaurante sobre cualquier alergia, intolerancia o restricción alimenticia <strong>antes de realizar su pedido</strong>.</li>
+                <li>Haremos nuestro mejor esfuerzo por acomodar tus necesidades, pero no asumimos responsabilidad por reacciones adversas derivadas del consumo de nuestros alimentos.</li>
+            </ul>
+
+            <h2>10. Conducta en el Local</h2>
+            <p>El Restaurante se reserva el derecho de admisión y permanencia. Esperamos que todos nuestros comensales mantengan una conducta respetuosa hacia el personal y los demás clientes. El incumplimiento de esta norma puede resultar en la solicitud de retiro del local sin derecho a reembolso.</p>
+
+            <h2>11. Legislación Aplicable</h2>
+            <p>Estos Términos de Uso se rigen por las leyes de la <strong>República de Colombia</strong>. Cualquier controversia que surja en relación con estos términos será sometida a la jurisdicción de los <strong>juzgados de Medellín, Antioquia</strong>, renunciando las partes a cualquier otro fuero que pudiera corresponderles.</p>
+
+            <h2>12. Modificaciones</h2>
+            <p>El Restaurante se reserva el derecho de modificar estos Términos de Uso en cualquier momento. Las modificaciones entrarán en vigor desde su publicación en esta página. Te recomendamos revisar periódicamente estos términos para mantenerte informado de cualquier cambio. El uso continuado del sitio web después de la publicación de cambios constituirá tu aceptación de dichos cambios.</p>
+
+            <h2>13. Contacto</h2>
+            <p>Si tienes preguntas sobre estos Términos de Uso, puedes contactarnos a través de:</p>
+            <ul>
+                <li><strong>Correo electrónico:</strong> <a href="mailto:787gastronomiapr@gmail.com">787gastronomiapr@gmail.com</a></li>
+                <li><strong>Teléfono / WhatsApp:</strong> <a href="https://api.whatsapp.com/message/746MFPD3TP6MO1?autoload=1&app_absent=0" target="_blank" rel="noopener noreferrer">+57 315 3597524</a></li>
+                <li><strong>Dirección:</strong> Cra. 36 #8a-12, Medellín, Colombia</li>
+            </ul>
+
+        </div>
+    </main>
+
+    <!-- ============================================================
+     FOOTER
+     ============================================================ -->
+    <footer class="legal-footer">
+        <div class="container">
+            <p>© 2026 787 Gastronomía Puertorriqueña. Todos los derechos reservados. | <a href="/">Volver al inicio</a> | <a href="privacidad.html">Política de Privacidad</a></p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
