@@ -550,7 +550,6 @@ img {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-left: auto;
 }
 
 .nav-cta .btn-primary {
