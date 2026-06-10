@@ -550,6 +550,22 @@ img {
     display: flex;
     align-items: center;
     gap: 12px;
+    margin-left: auto;
+}
+
+.nav-cta .btn-primary {
+    border-radius: var(--radius-full);
+    padding: 10px 24px;
+    font-weight: 600;
+    background: var(--primary-500);
+    animation: none;
+    box-shadow: 0 0 0 1px rgba(var(--primary-rgb), 0.3), 0 4px 20px rgba(var(--primary-rgb), 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.nav-cta .btn-primary:hover {
+    background: var(--primary-400);
+    filter: none;
+    box-shadow: 0 0 0 2px rgba(var(--primary-rgb), 0.6), 0 8px 30px rgba(var(--primary-rgb), 0.45);
 }
 
 /* Mobile Menu */
