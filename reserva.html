@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://787gastronomiapr.vercel.app/reserva">
+    <title>Reservar Mesa – 787 Gastronomía Puertorriqueña</title>
+    <meta name="description"
+        content="Reserva tu mesa en 787 Gastronomía Puertorriqueña, el único restaurante de comida típica puertorriqueña en Medellín, Colombia.">
+    <meta name="author" content="787 Gastronomía Puertorriqueña">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Reservar Mesa – 787 Gastronomía Puertorriqueña">
+    <meta property="og:description" content="Reserva tu mesa para disfrutar del mejor sabor boricua en Medellín.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://787gastronomiapr.vercel.app/reserva">
+    <meta property="og:image" content="https://787gastronomiapr.vercel.app/images/herobg.webp">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Reservar Mesa – 787 Gastronomía Puertorriqueña">
+    <meta name="twitter:description" content="Reserva tu mesa para disfrutar del mejor sabor boricua en Medellín.">
+    <meta name="twitter:image" content="https://787gastronomiapr.vercel.app/images/herobg.webp">
+
+    <!-- Preconnect Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="icon" href="images/logo.webp" type="image/png">
+
+    <style>
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #050507;
+            --bg-tertiary: #0a0a0d;
+            --bg-card: #0e0e12;
+            --primary-50: #FDF8E1;
+            --primary-100: #FAF0C0;
+            --primary-200: #F5E07A;
+            --primary-300: #EFD040;
+            --primary-400: #E8C030;
+            --primary-500: #D4A017;
+            --primary-600: #B8880F;
+            --primary-700: #9B700A;
+            --primary-800: #7A5506;
+            --primary-900: #573C03;
+            --primary-rgb: 212, 160, 23;
+            --text-primary: #FFFFFF;
+            --text-secondary: #E4E4E7;
+            --text-tertiary: #A1A1AA;
+            --text-quaternary: #71717A;
+            --success: #10B981;
+            --info: #3B82F6;
+            --warning: #F59E0B;
+            --section-padding: 140px 0;
+            --container-max: 1280px;
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            --radius-full: 9999px;
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
+            --transition-fast: all 0.2s var(--ease-out-expo);
+            --transition-normal: all 0.4s var(--ease-out-expo);
+            --transition-slow: all 0.8s var(--ease-out-expo);
+            --transition-premium: all 0.8s var(--ease-out-expo);
+            --transition-magnetic: all 0.5s var(--ease-out-expo);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            scroll-padding-top: 65px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.75rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        p {
+            color: var(--text-tertiary);
+            font-size: 1rem;
+            line-height: 1.75;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section {
+            padding: 80px 0 120px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--primary-400);
+            background: rgba(var(--primary-rgb), 0.1);
+            border: 1px solid rgba(var(--primary-rgb), 0.2);
+            padding: 8px 16px;
+            border-radius: var(--radius-full);
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .section-title .gold {
+            background: linear-gradient(135deg, var(--primary-300) 0%, var(--primary-500) 50%, var(--primary-400) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-tertiary);
+            max-width: 600px;
+            line-height: 1.75;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.9375rem;
+            padding: 12px 16px 12px 28px;
+            border-radius: var(--radius-md);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-normal);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: -0.01em;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-400) 100%);
+            color: #050507;
+            box-shadow: 0 4px 20px rgba(var(--primary-rgb), 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(var(--primary-rgb), 0.45);
+        }
+
+        .btn-lg {
+            padding: 14px 24px 14px 36px;
+            font-size: 1rem;
+        }
+
+        .btn-icon-circle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            transition: var(--transition-magnetic);
+            flex-shrink: 0;
+            will-change: transform;
+        }
+
+        .btn-primary .btn-icon-circle {
+            background: rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #050507;
+        }
+
+        .btn-primary:hover .btn-icon-circle {
+            transform: translateX(4px) scale(1.05);
+            background: rgba(0, 0, 0, 0.25);
+        }
+
+        .navbar {
+            position: fixed;
+            top: 24px;
+            left: 50%;
+            transform: translate3d(-50%, 0, 0);
+            width: calc(100% - 48px);
+            max-width: var(--container-max);
+            z-index: 1000;
+            padding: 12px 24px;
+            border-radius: var(--radius-full);
+            background: rgba(5, 5, 7, 0.45);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            transition: var(--transition-premium);
+            will-change: transform, background, border-color, box-shadow, top, padding;
+        }
+
+        .navbar.scrolled {
+            top: 16px;
+            background: rgba(5, 5, 7, 0.82);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border-color: rgba(var(--primary-rgb), 0.22);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(var(--primary-rgb), 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            padding: 8px 32px;
+        }
+
+        .navbar-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.01em;
+        }
+
+        .nav-logo img {
+            height: 44px;
+            width: 44px;
+            object-fit: contain;
+            border-radius: var(--radius-sm);
+        }
+
+        .nav-logo .logo-text span {
+            color: var(--primary-400);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.9375rem;
+            font-weight: 500;
+            color: var(--text-tertiary);
+            transition: var(--transition-fast);
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-500), var(--primary-300));
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            gap: 5px;
+            flex-direction: column;
+        }
+
+        .mobile-menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            transition: var(--transition-fast);
+        }
+
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-cta {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .navbar.scrolled {
+                padding: 8px 20px;
+            }
+
+            .navbar {
+                padding: 12px 20px;
+            }
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100dvh;
+            background: rgba(0, 0, 0, 0.96);
+            backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s var(--ease-out-expo);
+        }
+
+        .mobile-nav.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .mobile-nav a {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            transition: var(--transition-fast);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .mobile-nav a:hover {
+            color: var(--primary-400);
+        }
+
+        .mobile-nav .btn {
+            font-size: 1.125rem;
+            margin-top: 16px;
+        }
+
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 80px 0 40px;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .footer-logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-sm);
+        }
+
+        .footer-logo-text {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 1.125rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.9375rem;
+            max-width: 320px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: var(--text-tertiary);
+            transition: var(--transition-fast);
+            font-size: 1.125rem;
+        }
+
+        .social-link:hover {
+            background: rgba(var(--primary-rgb), 0.1);
+            border-color: rgba(var(--primary-rgb), 0.2);
+            color: var(--primary-400);
+            transform: translateY(-2px);
+        }
+
+        .footer-col h4 {
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-size: 0.9375rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .footer-col ul a {
+            font-size: 0.9375rem;
+            color: var(--text-tertiary);
+            transition: var(--transition-fast);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-col ul a:hover {
+            color: var(--primary-400);
+        }
+
+        .footer-col ul a svg {
+            width: 1em;
+            height: 1em;
+            flex-shrink: 0;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-bottom-links a {
+            font-size: 0.875rem;
+            color: var(--text-quaternary);
+            transition: var(--transition-fast);
+        }
+
+        .footer-bottom-links a:hover {
+            color: var(--primary-400);
+        }
+
+        @media (max-width: 768px) {
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-bottom-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="styles.css" media="all" onload="this.media='all'">
+</head>
+
+<body>
+
+    <!-- ============================================================
+     MOBILE NAV OVERLAY
+     ============================================================ -->
+    <nav id="mobileNav" class="mobile-nav" aria-label="Menú móvil">
+        <a href="/#inicio">Inicio</a>
+        <a href="/#platillos">Platillos</a>
+        <a href="/#nosotros">Nosotros</a>
+        <a href="/#resenas">Califícanos</a>
+        <a href="https://drive.google.com/file/d/1VSGPszlCJiIkliUln1LGAMReY7vU1A-o/view" target="_blank"
+            rel="noopener noreferrer">Menú</a>
+        <a href="/#contacto" class="btn btn-primary">Reservar Mesa</a>
+    </nav>
+
+    <!-- ============================================================
+     NAVBAR
+     ============================================================ -->
+    <header id="navbar" class="navbar" role="banner">
+        <div class="container">
+            <div class="navbar-inner">
+
+                <!-- Logo -->
+                <a href="/" class="nav-logo" aria-label="787 Gastronomía Puertorriqueña">
+                    <img src="images/logo.webp" alt="Logo 787 Gastronomía Puertorriqueña" width="44" height="44"
+                        fetchpriority="high" decoding="async">
+                    <div class="logo-text">
+                        <span>787</span> Gastronomía
+                    </div>
+                </a>
+
+                <!-- Desktop links -->
+                <ul class="nav-links" role="list">
+                    <li><a href="/#inicio">Inicio</a></li>
+                    <li><a href="/#platillos">Platillos</a></li>
+                    <li><a href="https://drive.google.com/file/d/1VSGPszlCJiIkliUln1LGAMReY7vU1A-o/view" target="_blank"
+                            rel="noopener noreferrer">Menú</a></li>
+                    <li><a href="/#nosotros">Nosotros</a></li>
+                    <li><a href="/#resenas">Califícanos</a></li>
+                </ul>
+
+                <!-- Desktop CTA -->
+                <div class="nav-cta">
+                    <a href="/#contacto" class="btn btn-primary" id="navReservarBtn">Reservar Mesa</a>
+                </div>
+
+                <!-- Mobile toggle -->
+                <button id="mobileMenuToggle" class="mobile-menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ============================================================
+         RESERVACIONES
+         ============================================================ -->
+        <section id="contacto" class="section cta-section" style="padding-top: 160px;">
+            <div class="bg-glow-orb" id="reservaGlowOrb"></div>
+            <div class="cta-bg-radial" aria-hidden="true"></div>
+            <div id="particles-cta" class="particles-container" aria-hidden="true"></div>
+
+            <div class="container reserva-container">
+
+                <!-- Left: Info & contacto directo -->
+                <div class="reserva-info reveal">
+                    <div class="section-label"><svg viewBox="0 0 448 512" fill="currentColor" width="1em" height="1em">
+                            <path
+                                d="M128 0c13.3 0 24 10.7 24 24V64H296V24c0-13.3 10.7-24 24-24s24 10.7 24 24V64h40c35.3 0 64 28.7 64 64v16 48V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V192 144 128C0 92.7 28.7 64 64 64h40V24c0-13.3 10.7-24 24-24zM400 192H48V448c0 8.8 7.2 16 16 16H384c8.8 0 16-7.2 16-16V192zM329 297L217 409c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47 95-95c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
+                        </svg> Reserva tu Mesa</div>
+                    <h2 class="section-title">
+                        Reserva una<br>
+                        <span class="gold">Mesa</span>
+                    </h2>
+                    <p class="reserva-info-desc">
+                        Completa el formulario y recibe confirmación inmediata. También puedes contactarnos
+                        directamente.
+                    </p>
+
+                    <div class="reserva-contact-items">
+                        <div class="reserva-contact-item">
+                            <div class="reserva-contact-icon"><svg viewBox="0 0 384 512" fill="currentColor" width="1em"
+                                    height="1em">
+                                    <path
+                                        d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z" />
+                                </svg></div>
+                            <div>
+                                <div class="reserva-contact-label">Dirección</div>
+                                <a href="https://www.google.com/maps/place/787+Gastronomia+Puertorriqueña/@6.2077093,-75.5664357,17z/data=!4m8!3m7!1s0x8e4429686ecab509:0x7198886694c55953!8m2!3d6.2077093!4d-75.5664357!9m1!1b1!16s%2Fg%2F11qb099df_?entry=ttu&g_ep=EgoyMDI2MDQwNS4wIKXMDSoASAFQAw%3D%3D"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="reserva-contact-value reserva-link">Cra. 36 #8a-12, El Poblado,<br>Medellín,
+                                    Antioquia, Colombia</a>
+                            </div>
+                        </div>
+                        <div class="reserva-contact-item">
+                            <div class="reserva-contact-icon"><svg viewBox="0 0 512 512" fill="currentColor" width="1em"
+                                    height="1em">
+                                    <path
+                                        d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
+                                </svg></div>
+                            <div>
+                                <div class="reserva-contact-label">Horario</div>
+                                <div class="reserva-contact-value">Mar – Dom: 8:00 AM – 10:00 PM</div>
+                            </div>
+                        </div>
+                        <div class="reserva-contact-item">
+                            <div class="reserva-contact-icon"><svg viewBox="0 0 512 512" fill="currentColor" width="1em"
+                                    height="1em">
+                                    <path
+                                        d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z" />
+                                </svg></div>
+                            <div>
+                                <div class="reserva-contact-label">Teléfono</div>
+                                <a href="tel:+573153597524" class="reserva-contact-value reserva-link">+57 315
+                                    3597524</a>
+                            </div>
+                        </div>
+                        <div class="reserva-contact-item">
+                            <div class="reserva-contact-icon"><svg viewBox="0 0 448 512" fill="currentColor" width="1em"
+                                    height="1em">
+                                    <path
+                                        d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+                                </svg></div>
+                            <div>
+                                <div class="reserva-contact-label">WhatsApp</div>
+                                <a href="https://api.whatsapp.com/message/746MFPD3TP6MO1?autoload=1&app_absent=0"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="reserva-contact-value reserva-link">Escríbenos ahora</a>
+                            </div>
+                        </div>
+                        <div class="reserva-contact-item">
+                            <div class="reserva-contact-icon"><svg viewBox="0 0 448 512" fill="currentColor" width="1em"
+                                    height="1em">
+                                    <path
+                                        d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
+                                </svg></div>
+                            <div>
+                                <div class="reserva-contact-label">Instagram</div>
+                                <a href="https://www.instagram.com/787gastronomiapr/" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="reserva-contact-value reserva-link">@787gastronomiapr</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Reservation Form -->
+                <div class="reserva-form-wrap reveal reveal-delay-2">
+                    <form id="reservaForm" class="reserva-form glass-card" novalidate
+                        aria-label="Formulario de reserva">
+
+                        <div class="form-header">
+                            <h3 class="form-title">Detalles de tu Reserva</h3>
+                            <p class="form-subtitle">Todos los campos marcados con <span
+                                    style="color:var(--primary-400);">*</span> son obligatorios</p>
+                        </div>
+
+                        <!-- Row 1: Nombre + Teléfono -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="reservaNombre" class="form-label">Nombre completo <span
+                                        class="req">*</span></label>
+                                <input type="text" id="reservaNombre" name="nombre" class="form-input"
+                                    placeholder="Tu nombre" required autocomplete="name">
+                                <span class="form-error" id="errorNombre"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="reservaTelefono" class="form-label">Teléfono <span
+                                        class="req">*</span></label>
+                                <input type="tel" id="reservaTelefono" name="telefono" class="form-input"
+                                    placeholder="+57 300 000 0000" required autocomplete="tel">
+                                <span class="form-error" id="errorTelefono"></span>
+                            </div>
+                        </div>
+
+                        <!-- Row 2: Email -->
+                        <div class="form-group">
+                            <label for="reservaEmail" class="form-label">Correo electrónico <span
+                                    class="req">*</span></label>
+                            <input type="email" id="reservaEmail" name="email" class="form-input"
+                                placeholder="tu@correo.com" required autocomplete="email">
+                            <span class="form-error" id="errorEmail"></span>
+                        </div>
+
+                        <!-- Row 3: Fecha + Hora -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="reservaFecha" class="form-label">Fecha <span class="req">*</span></label>
+                                <input type="text" id="reservaFecha" name="fecha" class="form-input" required
+                                    placeholder="dd/mm/aa" onfocus="(this.type='date')"
+                                    onblur="if(!this.value)this.type='text'">
+                                <span class="form-error" id="errorFecha"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="reservaHora" class="form-label">Hora <span class="req">*</span></label>
+                                <select id="reservaHora" name="hora" class="form-input form-select" required>
+                                    <option value="">Selecciona hora</option>
+                                    <option value="08:00">8:00 AM</option>
+                                    <option value="08:30">8:30 AM</option>
+                                    <option value="09:00">9:00 AM</option>
+                                    <option value="09:30">9:30 AM</option>
+                                    <option value="10:00">10:00 AM</option>
+                                    <option value="10:30">10:30 AM</option>
+                                    <option value="11:00">11:00 AM</option>
+                                    <option value="11:30">11:30 AM</option>
+                                    <option value="12:00">12:00 PM</option>
+                                    <option value="12:30">12:30 PM</option>
+                                    <option value="13:00">1:00 PM</option>
+                                    <option value="13:30">1:30 PM</option>
+                                    <option value="14:00">2:00 PM</option>
+                                    <option value="14:30">2:30 PM</option>
+                                    <option value="15:00">3:00 PM</option>
+                                    <option value="15:30">3:30 PM</option>
+                                    <option value="16:00">4:00 PM</option>
+                                    <option value="16:30">4:30 PM</option>
+                                    <option value="17:00">5:00 PM</option>
+                                    <option value="17:30">5:30 PM</option>
+                                    <option value="18:00">6:00 PM</option>
+                                    <option value="18:30">6:30 PM</option>
+                                    <option value="19:00">7:00 PM</option>
+                                    <option value="19:30">7:30 PM</option>
+                                    <option value="20:00">8:00 PM</option>
+                                    <option value="20:30">8:30 PM</option>
+                                    <option value="21:00">9:00 PM</option>
+                                    <option value="21:30">9:30 PM</option>
+                                    <option value="22:00">10:00 PM</option>
+                                </select>
+                                <span class="form-error" id="errorHora"></span>
+                            </div>
+                        </div>
+
+                        <!-- Row 4: Personas + Ocasión -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="reservaPersonas" class="form-label">N.° de personas <span
+                                        class="req">*</span></label>
+                                <select id="reservaPersonas" name="personas" class="form-input form-select" required>
+                                    <option value="">Cuántos serán</option>
+                                    <option value="1">1 persona</option>
+                                    <option value="2">2 personas</option>
+                                    <option value="3">3 personas</option>
+                                    <option value="4">4 personas</option>
+                                    <option value="5">5 personas</option>
+                                    <option value="6">6 personas</option>
+                                    <option value="7-10">7–10 personas</option>
+                                    <option value="11+">Más de 10 (evento)</option>
+                                </select>
+                                <span class="form-error" id="errorPersonas"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="reservaOcasion" class="form-label">Ocasión especial</label>
+                                <select id="reservaOcasion" name="ocasion" class="form-input form-select">
+                                    <option value="">Ninguna en particular</option>
+                                    <option value="Cumpleaños">🎂 Cumpleaños</option>
+                                    <option value="Aniversario">💍 Aniversario</option>
+                                    <option value="Reunión de negocios">💼 Reunión de negocios</option>
+                                    <option value="Cena romántica">🌹 Cena romántica</option>
+                                    <option value="Celebración familiar">👨‍👩‍👧‍👦 Celebración familiar</option>
+                                    <option value="Evento corporativo">🏢 Evento corporativo</option>
+                                    <option value="Otra">✨ Otra</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Row 5: Mensaje -->
+                        <div class="form-group">
+                            <label for="reservaMensaje" class="form-label">Mensaje o solicitudes especiales</label>
+                            <textarea id="reservaMensaje" name="mensaje" class="form-input form-textarea"
+                                placeholder="Alergias, preferencias, peticiones especiales..." rows="3"></textarea>
+                        </div>
+
+                        <!-- Widget Cloudflare Turnstile -->
+                        <div class="turnstile-container">
+                            <div class="cf-turnstile" data-sitekey="0x4AAAAAAC-qTAs8FMyeQKgb" data-theme="dark"></div>
+                        </div>
+
+                        <!-- Submit -->
+                        <button type="submit" id="submitReserva" class="btn btn-primary btn-lg form-submit">
+                            <span id="submitText">Confirmar Reserva <span class="btn-icon-circle"><svg
+                                        viewBox="0 0 448 512" fill="currentColor" width="1em" height="1em">
+                                        <path
+                                            d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                                    </svg></span></span>
+                            <span id="submitSpinner" class="form-spinner" aria-hidden="true"
+                                style="display:none;"></span>
+                        </button>
+
+                        <!-- Trust Badge -->
+                        <div class="trust-badge">
+                            <svg viewBox="0 0 512 512" fill="currentColor" width="1em" height="1em">
+                                <path
+                                    d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2c-.5 99.2-41.3 280.7-213.6 363.2c-16.7 8-36.1 8-52.8 0C57.3 420.7 16.5 239.2 16 140c-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.8 1 251.4 0 256 0zm0 66.8V444.8C394 378 431.1 230.1 432 141.4L256 66.8l0 0z" />
+                            </svg>
+                            <span>Tus datos están encriptados bajo certificado SSL y son utilizados estrictamente para
+                                gestionar tu reserva.</span>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Toast (error only) -->
+        <div id="toast" class="toast" role="alert" aria-live="polite" aria-atomic="true">
+            <span id="toastIcon" class="toast-icon"></span>
+            <span id="toastMsg" class="toast-msg"></span>
+        </div>
+
+        <!-- ============================================================
+     CONFIRMATION MODAL
+     ============================================================ -->
+        <div id="confirmModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle"
+            aria-hidden="true">
+            <div class="modal-box">
+
+                <!-- Close button -->
+                <button id="modalClose" class="modal-close" aria-label="Cerrar confirmación">✕</button>
+
+                <!-- Success animation -->
+                <div class="modal-icon-wrap" aria-hidden="true">
+                    <div class="modal-icon-ring"></div>
+                    <div class="modal-icon"><svg viewBox="0 0 448 512" fill="var(--primary-color)" width="36" height="36">
+                            <path d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H64C28.7 64 0 92.7 0 128v16 48V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192 144 128c0-35.3-28.7-64-64-64H344V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H152V24zM48 192H400V448c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192z"/>
+                            <path d="M96 72v-8H64v8 48H384V72 64H352v8 24H288V64 24 0H224V24 64H160V24 0H96V24 64H96V72zM0 128H448h-8v248c0 0 0 0 0 0V128z"/>
+                            <path d="M320 256c13.3 0 24-10.7 24-24s-10.7-24-24-24H128c-13.3 0-24 10.7-24 24s10.7 24 24 24H320zm0 96c13.3 0 24-10.7 24-24s-10.7-24-24-24H128c-13.3 0-24 10.7-24 24s10.7 24 24 24H320z"/>
+                        </svg></div>
+                </div>
+
+                <h2 id="modalTitle" class="modal-title">¡Reserva Confirmada!</h2>
+                <p class="modal-subtitle">
+                    Hemos recibido tu solicitud. Nuestro equipo te contactará en breve para confirmar los detalles de tu
+                    mesa.
+                </p>
+
+                <!-- Summary card -->
+                <div class="modal-summary">
+                    <div class="modal-summary-row">
+                        <span class="modal-summary-label"><svg viewBox="0 0 448 512" fill="currentColor" width="1em"
+                                height="1em">
+                                <path
+                                    d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
+                            </svg> Nombre</span>
+                        <span class="modal-summary-value" id="mNombre">—</span>
+                    </div>
+                    <div class="modal-summary-row">
+                        <span class="modal-summary-label"><svg viewBox="0 0 448 512" fill="currentColor" width="1em"
+                                height="1em">
+                                <path
+                                    d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H64C28.7 64 0 92.7 0 128v16 48V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192 144 128c0-35.3-28.7-64-64-64H344V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H152V24zM48 192H400V448c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192z" />
+                            </svg> Fecha</span>
+                        <span class="modal-summary-value" id="mFecha">—</span>
+                    </div>
+                    <div class="modal-summary-row">
+                        <span class="modal-summary-label"><svg viewBox="0 0 512 512" fill="currentColor" width="1em"
+                                height="1em">
+                                <path
+                                    d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
+                            </svg> Hora</span>
+                        <span class="modal-summary-value" id="mHora">—</span>
+                    </div>
+                    <div class="modal-summary-row">
+                        <span class="modal-summary-label"><svg viewBox="0 0 640 512" fill="currentColor" width="1em"
+                                height="1em">
+                                <path
+                                    d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM609.3 512H471.4c5.4-9.4 8.6-20.3 8.6-32v-8c0-60.7-27.1-115.2-69.8-151.8c2.4-.1 4.7-.2 7.1-.2h61.4C567.8 320 640 392.2 640 482.3c0 16.4-13.3 29.7-29.7 29.7zM432 256c0 17.7-14.3 32-32 32s-32-14.3-32-32s14.3-32 32-32s32 14.3 32 32z" />
+                            </svg> Personas</span>
+                        <span class="modal-summary-value" id="mPersonas">—</span>
+                    </div>
+                    <div class="modal-summary-row" id="mOcasionRow">
+                        <span class="modal-summary-label"><svg viewBox="0 0 576 512" fill="currentColor" width="1em"
+                                height="1em">
+                                <path
+                                    d="M112 48C112 21.5 85.5 0 64 0S16 21.5 16 48V320c0 53 43 96 96 96H464c53 0 96-43 96-96s-43-96-96-96H160c-26.5 0-48-21.5-48-48s21.5-48 48-48H496c8.8 0 16-7.2 16-16s-7.2-16-16-16H160c-44.2 0-80 35.8-80 80s35.8 80 80 80H464c35.3 0 64 28.7 64 64s-28.7 64-64 64H112c-35.3 0-64-28.7-64-64V48z" />
+                            </svg> Ocasión</span>
+                        <span class="modal-summary-value" id="mOcasion">—</span>
+                    </div>
+                    <div class="modal-summary-row">
+                        <span class="modal-summary-label"><svg viewBox="0 0 384 512" fill="currentColor" width="1em"
+                                height="1em">
+                                <path
+                                    d="M80 0C44.7 0 16 28.7 16 64V448c0 35.3 28.7 64 64 64H304c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H80zM192 400a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
+                            </svg> Teléfono</span>
+                        <span class="modal-summary-value" id="mTelefono">—</span>
+                    </div>
+                </div>
+
+                <p class="modal-note">
+                    Si no recibes la confirmación en unos minutos, escríbenos por
+                    <a href="https://api.whatsapp.com/message/746MFPD3TP6MO1?autoload=1&app_absent=0" target="_blank"
+                        rel="noopener noreferrer" class="modal-wa-link">WhatsApp <svg viewBox="0 0 448 512"
+                            fill="currentColor" width="1em" height="1em">
+                            <path
+                                d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+                        </svg></a>.
+                </p>
+
+                <button id="modalCloseBtn" class="btn btn-primary btn-lg modal-cta">
+                    ¡Nos vemos pronto!
+                </button>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ============================================================
+     FOOTER
+     ============================================================ -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+
+            <div class="footer-top">
+
+                <!-- Brand -->
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="images/logo.webp" alt="Logo 787 Gastronomía Puertorriqueña" width="40" height="40"
+                            loading="lazy">
+                        <span class="footer-logo-text">787 Gastronomía</span>
+                    </div>
+                    <p>El único restaurante de gastronomía puertorriqueña auténtica en Medellín, Colombia. Sabor
+                        boricua, corazón colombiano.</p>
+                    <div class="social-links" aria-label="Redes sociales">
+                        <a href="https://www.instagram.com/787gastronomiapr/" target="_blank" rel="noopener noreferrer"
+                            class="social-link" aria-label="Instagram" title="Instagram">
+                            <svg viewBox="0 0 448 512" fill="currentColor" width="1em" height="1em">
+                                <path
+                                    d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
+                            </svg>
+                        </a>
+                        <a href="https://api.whatsapp.com/message/746MFPD3TP6MO1?autoload=1&app_absent=0"
+                            target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp"
+                            title="WhatsApp">
+                            <svg viewBox="0 0 448 512" fill="currentColor" width="1em" height="1em">
+                                <path
+                                    d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Restaurante -->
+                <div class="footer-col">
+                    <h4>Restaurante</h4>
+                    <ul>
+                        <li><a href="/#nosotros">Nuestra Historia</a></li>
+                        <li><a href="/#menu">Ver Menú</a></li>
+                        <li><a href="/#resenas">Reseñas</a></li>
+                        <li><a href="/#contacto">Reservaciones</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contacto -->
+                <div class="footer-col">
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li><a href="tel:+573153597524"><svg viewBox="0 0 512 512" fill="currentColor" width="1em"
+                                    height="1em">
+                                    <path
+                                        d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z" />
+                                </svg> +57 315 3597524</a></li>
+                        <li><a href="https://api.whatsapp.com/message/746MFPD3TP6MO1?autoload=1&app_absent=0"
+                                target="_blank" rel="noopener"><svg viewBox="0 0 448 512" fill="currentColor"
+                                    width="1em" height="1em">
+                                    <path
+                                        d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+                                </svg> WhatsApp Reservas</a></li>
+                        <li><a href="https://www.instagram.com/787gastronomiapr/" target="_blank" rel="noopener"><svg
+                                    viewBox="0 0 448 512" fill="currentColor" width="1em" height="1em">
+                                    <path
+                                        d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
+                                </svg> @787gastronomiapr</a></li>
+                        <li><a href="/#contacto"><svg viewBox="0 0 512 512" fill="currentColor" width="1em" height="1em">
+                                    <path
+                                        d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
+                                </svg> Mar–Dom: 8AM–10PM</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">
+                    © 2026 787 Gastronomía Puertorriqueña. Todos los derechos reservados. 🇵🇷
+                </p>
+                <div class="footer-bottom-links">
+                    <a href="privacidad.html">Política de Privacidad</a>
+                    <a href="terminos.html">Términos de Uso</a>
+                    <a href="/">Hecho con ❤️ en Medellín</a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').catch(() => { });
+            });
+        }
+    </script>
+    <script src="script.js" defer></script>
+</body>
+
+</html>
