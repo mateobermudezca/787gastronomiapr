@@ -310,7 +310,7 @@ function initReservationForm() {
         const cfToken = formData.get('cf-turnstile-response');
         
         if (!cfToken) {
-            showToast('error', '<svg viewBox="0 0 640 512" fill="currentColor" width="1.2em" height="1.2em"><path d="M320 0c17.7 0 32 14.3 32 32l0 64 120 0c39.8 0 72 32.2 72 72l0 272c0 39.8-32.2 72-72 72l-304 0c-39.8 0-72-32.2-72-72l0-272c0-39.8 32.2-72 72-72l120 0 0-64c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16l32 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-32 0zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l32 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-32 0zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l32 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-32 0zM264 256a40 40 0 1 0 -80 0 40 40 0 1 0 80 0zm152 40a40 40 0 1 0 0-80 40 40 0 1 0 0 80zM48 224l16 0 0 192-16 0c-26.5 0-48-21.5-48-48l0-96c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48l0 96c0 26.5-21.5 48-48 48l-16 0 0-192 16 0z"/></svg>', 'Por favor verifica que eres humano para continuar.');
+            showToast('error', '\uD83E\uDD16', 'Por favor verifica que eres humano para continuar.');
             return;
         }
 
@@ -354,7 +354,7 @@ function initReservationForm() {
 
         } catch (err) {
             console.error('Reservation error:', err);
-            showToast('error', '<svg viewBox="0 0 384 512" fill="currentColor" width="1.2em" height="1.2em"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>', 'Error al conectar con el sistema. Inténtalo de nuevo.');
+            showToast('error', '\u274C', 'Error al conectar con el sistema. Inténtalo de nuevo.');
         } finally {
             setLoading(false, submitBtn, submitText, spinner);
             submitText.textContent = 'Reservar Mesa';
@@ -377,11 +377,11 @@ async function checkSlotAvailability(fecha, hora) {
 
         if (!data.available) {
             if (errorHora) {
-                errorHora.innerHTML = '<svg viewBox="0 0 512 512" fill="currentColor" width="1em" height="1em" style="vertical-align:middle;margin-right:4px"><path d="M256 32c14.2 0 27.3 7.5 33.8 19.6l224 384c6.5 11.2 6.1 25-.9 35.9s-16.4 16.4-28.9 16.4L28 488c-12.5 0-24-4.6-32.9-13.4s-12.3-20.1-9.9-32.2c2.4-12.1 9.6-22.6 20.1-29.3L222.9 51.7c9.2-6.1 20.7-9.7 33.1-9.7zM224 352l64 0 0 64-64 0 0-64zm0-160l0 96 64 0 0-96-64 0z"/></svg> Este horario ya está reservado. Por favor elige otro.';
+                errorHora.innerHTML = '\u26A0\uFE0F Este horario ya está reservado. Por favor elige otro.';
                 errorHora.classList.add('visible');
             }
             timeSelect.classList.add('input-error');
-            showToast('warning', '<svg viewBox="0 0 448 512" fill="currentColor" width="1.2em" height="1.2em"><path d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L64 64C28.7 64 0 92.7 0 128l0 16 0 48L0 448c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-256 0-48 0-16c0-35.3-28.7-64-64-64l-40 0 0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L192 64l0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L152 104l0-80zM48 192l80 0 0 56-80 0 0-56zm0 104l80 0 0 64-80 0 0-64zm128 0l96 0 0 64-96 0 0-64zm144 0l80 0 0 64-80 0 0-64zm80-48l-80 0 0-56 80 0 0 56zm-128 0l-96 0 0-56 96 0 0 56zm-128 152l80 0 0 64-80 0 0-64zm144 0l96 0 0 64-96 0 0-64z"/></svg>', 'El horario seleccionado ya no está disponible.');
+            showToast('warning', '\uD83D\uDCC5', 'El horario seleccionado ya no está disponible.');
             return false;
         } else {
             if (errorHora && errorHora.textContent.includes('ya está reservado')) {
@@ -431,7 +431,7 @@ function validateField(input) {
         } else if (dayOfWeek === 1 && !COLOMBIAN_HOLIDAYS.includes(val)) {
             msg = 'Los lunes no abrimos (excepto si es festivo).';
             // Mostrar pop-up como solicitó el usuario
-            showToast('warning', '<svg viewBox="0 0 448 512" fill="currentColor" width="1.2em" height="1.2em"><path d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L64 64C28.7 64 0 92.7 0 128l0 16 0 48L0 448c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-256 0-48 0-16c0-35.3-28.7-64-64-64l-40 0 0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L192 64l0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L152 104l0-80zM48 192l80 0 0 56-80 0 0-56zm0 104l80 0 0 64-80 0 0-64zm128 0l96 0 0 64-96 0 0-64zm144 0l80 0 0 64-80 0 0-64zm80-48l-80 0 0-56 80 0 0 56zm-128 0l-96 0 0-56 96 0 0 56zm-128 152l80 0 0 64-80 0 0-64zm144 0l96 0 0 64-96 0 0-64z"/></svg>', 'Este día no es válido para reservar. Los lunes solo abrimos si es festivo.');
+            showToast('warning', '\uD83D\uDCC5', 'Este día no es válido para reservar. Los lunes solo abrimos si es festivo.');
         } else {
             // Re-validar la hora si la fecha cambia (ej: si cambian de mañana a hoy)
             const timeInput = document.getElementById('reservaHora');
@@ -480,7 +480,7 @@ function showToast(type, icon, message, durationMs = 5000) {
     if (!toast) return;
 
     toast.className = `toast toast-${type} toast-show`;
-    iconEl.innerHTML = icon;
+    iconEl.textContent = icon;
     msgEl.textContent = message;
 
     clearTimeout(toast._timer);

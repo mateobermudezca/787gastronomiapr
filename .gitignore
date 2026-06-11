@@ -1,1 +1,11 @@
+node_modules/
+.agents/
+__*.js
+psi-report*.json
+skills-lock.json
+performance-plan.md
+seo-audit-report.md
+seo-implementation-plan.md
+reseñas.md
+README.md
 .vercel
