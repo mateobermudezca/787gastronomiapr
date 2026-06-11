@@ -93,11 +93,10 @@
     height: 600px;
     border-radius: 50%;
     background: radial-gradient(circle, rgba(var(--primary-rgb), 0.12) 0%, transparent 70%);
-    filter: blur(80px);
+    filter: blur(40px);
     pointer-events: none;
     z-index: 0;
     animation: float-glow 25s infinite ease-in-out alternate;
-    will-change: transform;
 }
 
 @keyframes float-glow {
@@ -295,8 +294,8 @@ img {
             rgba(var(--primary-rgb), 0.08) 0%,
             rgba(var(--primary-rgb), 0.03) 50%,
             rgba(var(--primary-rgb), 0.08) 100%);
-    backdrop-filter: blur(24px) saturate(180%);
-    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(var(--primary-rgb), 0.15);
     border-radius: var(--radius-lg);
     padding: 32px;
@@ -309,11 +308,8 @@ img {
 
 .glass-card:hover {
     border-color: rgba(var(--primary-rgb), 0.3);
-    box-shadow:
-        0 25px 50px -12px rgba(var(--primary-rgb), 0.25),
-        inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+    box-shadow: 0 25px 50px -12px rgba(var(--primary-rgb), 0.25);
     transform: translateY(-4px);
-    will-change: transform, box-shadow;
 }
 
 /* ---- BUTTONS ---- */
@@ -397,7 +393,6 @@ img {
     border-radius: 50%;
     transition: var(--transition-magnetic);
     flex-shrink: 0;
-    will-change: transform;
 }
 
 .btn-primary .btn-icon-circle {
@@ -460,23 +455,21 @@ img {
     padding: 12px 24px;
     border-radius: var(--radius-full);
     background: rgba(5, 5, 7, 0.45);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.05);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
     transition: var(--transition-premium);
-    will-change: transform, background, border-color, box-shadow, top, padding;
 }
 
 .navbar.scrolled {
     top: 16px;
     background: rgba(5, 5, 7, 0.82);
-    backdrop-filter: blur(24px) saturate(180%);
-    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
     border-color: rgba(var(--primary-rgb), 0.22);
     box-shadow: 
         0 20px 40px rgba(0, 0, 0, 0.6),
-        0 0 0 1px rgba(var(--primary-rgb), 0.05),
         inset 0 1px 0 rgba(255, 255, 255, 0.05);
     padding: 8px 32px;
 }
@@ -673,9 +666,6 @@ img {
     background: rgba(var(--primary-rgb), 0.9);
     border-radius: 50%;
     animation: float-particle 20s infinite ease-in-out;
-    box-shadow: 0 0 8px rgba(var(--primary-rgb), 0.9), 0 0 16px rgba(var(--primary-rgb), 0.4);
-    will-change: transform;
-    transform: translate3d(0, 0, 0);
 }
 
 @keyframes float-particle {
@@ -975,11 +965,9 @@ img {
     /* required for child tilt */
     border-radius: var(--radius-xl);
     cursor: pointer;
-    will-change: transform, opacity;
     transition:
         transform 0.65s cubic-bezier(0.4, 0, 0.2, 1),
-        opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1),
-        box-shadow 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+        opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .slider-card__inner {
@@ -998,7 +986,6 @@ img {
         0 0 0 1px rgba(var(--primary-rgb), 0.12),
         0 24px 60px -8px rgba(0, 0, 0, 0.8),
         0 0 40px rgba(var(--primary-rgb), 0.10);
-    will-change: transform;
     backface-visibility: hidden;
 }
 
@@ -1584,7 +1571,6 @@ img {
     flex-direction: column;
     height: 100%;
     width: 100%;
-    will-change: transform, border-color, box-shadow;
 }
 
 .brunch-card-inner {
@@ -1922,7 +1908,6 @@ img {
     gap: 24px;
     width: max-content;
     animation: marquee-scroll 40s linear infinite;
-    will-change: transform;
     padding: 0 12px;
 }
 
@@ -2185,7 +2170,7 @@ img {
     inset: 0;
     background:
         linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
-        url('images/reviews_bg.avif') center/cover no-repeat;
+        url('images/reviews_bg.webp') center/cover no-repeat;
     filter: brightness(0.7) contrast(1.1) blur(1px);
     z-index: 0;
     pointer-events: none;

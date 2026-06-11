@@ -7,6 +7,7 @@
 // ─── DOM Ready ───────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
     initParticles();
+    initMarqueeClone();
     initReservationForm();
     initConfirmModal();
     initNavbar();
@@ -22,6 +23,20 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ============================================================
+   MARQUEE CLONE — duplicate testimonial cards for seamless CSS loop
+   ============================================================ */
+function initMarqueeClone() {
+    const marquee = document.querySelector('.testimonials-marquee');
+    if (!marquee) return;
+    const cards = Array.from(marquee.children);
+    if (!cards.length) return;
+    cards.forEach(card => {
+        const clone = card.cloneNode(true);
+        marquee.appendChild(clone);
+    });
+}
+
+/* ============================================================
    PARTICLE SYSTEM
    ============================================================ */
 function initParticles() {
@@ -32,9 +47,9 @@ function initParticles() {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isMobile = window.innerWidth < 768;
     
-    let count = 80;
+    let count = 50;
     if (prefersReducedMotion) count = 15;
-    else if (isMobile) count = 40;
+    else if (isMobile) count = 20;
 
     containers.forEach(container => {
         for (let i = 0; i < count; i++) {
