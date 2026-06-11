@@ -2599,6 +2599,7 @@ img {
 .form-select option {
     background: #18181B;
     color: var(--text-primary);
+    font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'EmojiOne Color', 'Android Emoji', sans-serif;
 }
 
 /* Date input */
