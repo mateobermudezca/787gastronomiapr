@@ -93,465 +93,633 @@
 
     <!-- Critical CSS inline (render-blocking eliminated) -->
     <style>
-    :root {
-        --bg-primary: #000000;
-        --bg-secondary: #050507;
-        --bg-tertiary: #0a0a0d;
-        --bg-card: #0e0e12;
-        --primary-50: #FDF8E1;
-        --primary-100: #FAF0C0;
-        --primary-200: #F5E07A;
-        --primary-300: #EFD040;
-        --primary-400: #E8C030;
-        --primary-500: #D4A017;
-        --primary-600: #B8880F;
-        --primary-700: #9B700A;
-        --primary-800: #7A5506;
-        --primary-900: #573C03;
-        --primary-rgb: 212, 160, 23;
-        --text-primary: #FFFFFF;
-        --text-secondary: #E4E4E7;
-        --text-tertiary: #A1A1AA;
-        --text-quaternary: #71717A;
-        --success: #10B981;
-        --info: #3B82F6;
-        --warning: #F59E0B;
-        --section-padding: 140px 0;
-        --container-max: 1280px;
-        --radius-sm: 8px;
-        --radius-md: 16px;
-        --radius-lg: 24px;
-        --radius-xl: 32px;
-        --radius-full: 9999px;
-        --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-        --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
-        --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
-        --transition-fast: all 0.2s var(--ease-out-expo);
-        --transition-normal: all 0.4s var(--ease-out-expo);
-        --transition-slow: all 0.8s var(--ease-out-expo);
-        --transition-premium: all 0.8s var(--ease-out-expo);
-        --transition-magnetic: all 0.5s var(--ease-out-expo);
-    }
-    *,
-    *::before,
-    *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-    html {
-        scroll-behavior: smooth;
-        font-size: 16px;
-        scroll-padding-top: 65px;
-    }
-    body {
-        font-family: 'Inter', sans-serif;
-        background-color: var(--bg-primary);
-        color: var(--text-primary);
-        line-height: 1.7;
-        overflow-x: hidden;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
-    h1, h2, h3, h4, h5, h6 {
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        font-weight: 700;
-        line-height: 1.2;
-    }
-    h1 {
-        font-size: clamp(2.5rem, 6vw, 4.75rem);
-        font-weight: 800;
-        letter-spacing: -0.02em;
-    }
-    h2 {
-        font-size: clamp(2rem, 4vw, 3rem);
-        font-weight: 700;
-        letter-spacing: -0.01em;
-    }
-    h3 { font-size: 1.5rem; font-weight: 600; }
-    h4 { font-size: 1.125rem; font-weight: 600; }
-    p {
-        color: var(--text-tertiary);
-        font-size: 1rem;
-        line-height: 1.75;
-    }
-    a { text-decoration: none; color: inherit; }
-    img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-    }
-    .container {
-        max-width: var(--container-max);
-        margin: 0 auto;
-        padding: 0 24px;
-    }
-    .section {
-        padding: 80px 0 120px;
-        position: relative;
-        overflow: hidden;
-        content-visibility: auto;
-        contain-intrinsic-size: 1000px;
-    }
-    .section-label {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 0.75rem;
-        font-weight: 600;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--primary-400);
-        background: rgba(var(--primary-rgb), 0.1);
-        border: 1px solid rgba(var(--primary-rgb), 0.2);
-        padding: 8px 16px;
-        border-radius: var(--radius-full);
-        margin-bottom: 24px;
-    }
-    .section-title {
-        color: var(--text-primary);
-        margin-bottom: 16px;
-    }
-    .section-title .gold {
-        background: linear-gradient(135deg, var(--primary-300) 0%, var(--primary-500) 50%, var(--primary-400) 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-    .section-subtitle {
-        font-size: 1.125rem;
-        color: var(--text-tertiary);
-        max-width: 600px;
-        line-height: 1.75;
-    }
-    .text-center { text-align: center; }
-    .text-center .section-subtitle { margin: 0 auto; }
-    .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        font-weight: 700;
-        font-size: 0.9375rem;
-        padding: 12px 16px 12px 28px;
-        border-radius: var(--radius-md);
-        border: none;
-        cursor: pointer;
-        transition: var(--transition-normal);
-        text-decoration: none;
-        position: relative;
-        overflow: hidden;
-        letter-spacing: -0.01em;
-    }
-    .btn-primary {
-        background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-500) 30%, var(--primary-400) 60%, var(--primary-500) 100%);
-        background-size: 200% 200%;
-        animation: gradient-shift 4s ease infinite;
-        color: #050507;
-        box-shadow: 0 0 0 1px rgba(var(--primary-rgb), 0.3), 0 4px 20px rgba(var(--primary-rgb), 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    }
-    .btn-primary:hover {
-        transform: translateY(-2px);
-        filter: brightness(1.12);
-        box-shadow: 0 0 0 2px rgba(var(--primary-rgb), 0.6), 0 8px 30px rgba(var(--primary-rgb), 0.45);
-    }
-    .btn-primary.pulse {
-        animation: gradient-shift 4s ease infinite, pulse-glow 3s ease-in-out infinite;
-    }
-    .btn-outline {
-        background: rgba(var(--primary-rgb), 0.03);
-        color: var(--primary-400);
-        border: 1px solid rgba(var(--primary-rgb), 0.35);
-        padding: 11px 16px 11px 28px;
-    }
-    .btn-outline:hover {
-        background: rgba(var(--primary-rgb), 0.1);
-        border-color: var(--primary-400);
-        color: var(--text-primary);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 20px rgba(var(--primary-rgb), 0.15);
-    }
-    .btn-lg { padding: 16px 28px; font-size: 1.0625rem; border-radius: var(--radius-lg); }
-    .btn-lg.btn-outline { padding: 15px 20px 15px 36px; }
-    .btn-icon-circle {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        transition: var(--transition-magnetic);
-        flex-shrink: 0;
-        will-change: transform;
-    }
-    .btn-primary .btn-icon-circle {
-        background: rgba(0, 0, 0, 0.15);
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        color: #050507;
-    }
-    .btn-primary:hover .btn-icon-circle {
-        transform: translateX(4px) scale(1.05);
-        background: rgba(0, 0, 0, 0.25);
-    }
-    .btn-outline .btn-icon-circle {
-        background: rgba(var(--primary-rgb), 0.1);
-        border: 1px solid rgba(var(--primary-rgb), 0.2);
-        color: var(--primary-400);
-    }
-    .btn-outline:hover .btn-icon-circle {
-        transform: translateX(4px) scale(1.05);
-        background: var(--primary-500);
-        color: #050507;
-        border-color: var(--primary-500);
-    }
-    .btn-icon-circle i { font-size: 0.875rem; transition: var(--transition-fast); }
-    .btn:hover .btn-icon-circle i { transform: translate3d(1px, -1px, 0); }
-    .navbar {
-        position: fixed;
-        top: 24px;
-        left: 50%;
-        transform: translate3d(-50%, 0, 0);
-        width: calc(100% - 48px);
-        max-width: var(--container-max);
-        z-index: 1000;
-        padding: 12px 24px;
-        border-radius: var(--radius-full);
-        background: rgba(5, 5, 7, 0.45);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-        transition: var(--transition-premium);
-        will-change: transform, background, border-color, box-shadow, top, padding;
-    }
-    .navbar.scrolled {
-        top: 16px;
-        background: rgba(5, 5, 7, 0.82);
-        backdrop-filter: blur(24px) saturate(180%);
-        -webkit-backdrop-filter: blur(24px) saturate(180%);
-        border-color: rgba(var(--primary-rgb), 0.22);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(var(--primary-rgb), 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        padding: 8px 32px;
-    }
-    .navbar-inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .nav-logo {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        font-weight: 800;
-        font-size: 1.25rem;
-        color: var(--text-primary);
-        text-decoration: none;
-        letter-spacing: -0.01em;
-    }
-    .nav-logo img { height: 44px; width: 44px; object-fit: contain; border-radius: var(--radius-sm); }
-    .nav-logo .logo-text span { color: var(--primary-400); }
-    .nav-links {
-        display: flex;
-        align-items: center;
-        gap: 32px;
-        list-style: none;
-    }
-    .nav-links a {
-        font-size: 0.9375rem;
-        font-weight: 500;
-        color: var(--text-tertiary);
-        transition: var(--transition-fast);
-        position: relative;
-        padding-bottom: 4px;
-    }
-    .nav-links a::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: linear-gradient(90deg, var(--primary-500), var(--primary-300));
-        border-radius: 2px;
-        transition: width 0.3s ease;
-    }
-    .nav-links a:hover { color: var(--primary-300); }
-    .nav-links a:hover::after { width: 100%; }
-    .nav-cta { display: flex; align-items: center; gap: 12px; }
-    .mobile-menu-toggle {
-        display: none;
-        flex-direction: column;
-        gap: 5px;
-        cursor: pointer;
-        padding: 4px;
-        background: none;
-        border: none;
-    }
-    .mobile-menu-toggle span {
-        display: block;
-        width: 24px;
-        height: 2px;
-        background: var(--primary-400);
-        border-radius: 2px;
-        transition: var(--transition-normal);
-    }
-    .mobile-menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .mobile-menu-toggle.open span:nth-child(2) { opacity: 0; }
-    .mobile-menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    .mobile-nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: rgba(5, 5, 7, 0.94);
-        backdrop-filter: blur(32px);
-        -webkit-backdrop-filter: blur(32px);
-        z-index: 999;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 24px;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.5s var(--ease-out-expo);
-    }
-    .mobile-nav.open { opacity: 1; pointer-events: auto; }
-    .mobile-nav a {
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        font-size: 1.75rem;
-        font-weight: 800;
-        color: var(--text-secondary);
-        transition: var(--transition-normal);
-        transform: translate3d(0, 24px, 0);
-        opacity: 0;
-    }
-    .hero {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        position: relative;
-        padding-top: 100px;
-        overflow: hidden;
-    }
-    .hero-bg-gradient {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), url('images/herobg.webp') center/cover no-repeat;
-        z-index: 0;
-    }
-    .hero-grid {
-        display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        align-items: center;
-        gap: 100px;
-        position: relative;
-        z-index: 1;
-    }
-    .hero-content {
-        position: relative;
-        z-index: 10;
-        opacity: 0;
-        padding-right: 48px;
-        margin-left: -60px;
-        animation: fade-in-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
-    }
-    .hero-label {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 0.8125rem;
-        font-weight: 600;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--primary-400);
-        background: rgba(var(--primary-rgb), 0.1);
-        border: 1px solid rgba(var(--primary-rgb), 0.25);
-        padding: 8px 18px;
-        border-radius: var(--radius-full);
-        margin-bottom: 28px;
-    }
-    .hero-title {
-        font-size: clamp(2.75rem, 5.5vw, 5rem);
-        font-weight: 800;
-        line-height: 1.08;
-        letter-spacing: -0.03em;
-        margin-bottom: 24px;
-        color: var(--text-primary);
-    }
-    .word-mask {
-        display: block;
-        overflow: hidden;
-        height: auto;
-        padding-bottom: 0.05em;
-    }
-    .word-reveal {
-        display: block;
-        transform: translate3d(0, 110%, 0);
-        animation: reveal-word 1.4s var(--ease-out-expo) forwards;
-    }
-    .hero-title .word-mask:nth-child(1) .word-reveal { animation-delay: 0.1s; }
-    .hero-title .word-mask:nth-child(2) .word-reveal { animation-delay: 0.22s; }
-    .hero-title .word-mask:nth-child(3) .word-reveal { animation-delay: 0.34s; }
-    .hero-title .brand-name {
-        background: linear-gradient(135deg, var(--primary-200) 0%, var(--primary-500) 40%, var(--primary-400) 70%, var(--primary-300) 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        display: inline-block;
-        padding-bottom: 0.05em;
-    }
-    .hero-subtitle {
-        font-size: 1.125rem;
-        color: var(--text-tertiary);
-        line-height: 1.75;
-        margin-bottom: 40px;
-        max-width: 500px;
-        opacity: 0;
-        animation: fade-in-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
-    }
-    .hero-actions {
-        display: flex;
-        gap: 16px;
-        flex-wrap: wrap;
-        opacity: 0;
-        animation: scale-in 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.5s forwards;
-    }
-    .hero-stats {
-        display: flex;
-        gap: 32px;
-        margin-top: 48px;
-        padding-top: 32px;
-        border-top: 1px solid rgba(var(--primary-rgb), 0.12);
-    }
-    @keyframes reveal-word {
-        0% { transform: translate3d(0, 110%, 0); }
-        100% { transform: translate3d(0, 0, 0); }
-    }
-    @keyframes fade-in-up {
-        from { opacity: 0; transform: translateY(30px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes scale-in {
-        from { opacity: 0; transform: scale(0.85); }
-        to { opacity: 1; transform: scale(1); }
-    }
-    @keyframes gradient-shift {
-        0%, 100% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-    }
-    @keyframes pulse-glow {
-        0%, 100% { box-shadow: 0 0 0 1px rgba(var(--primary-rgb), 0.4), 0 4px 24px rgba(var(--primary-rgb), 0.35), 0 0 60px rgba(var(--primary-rgb), 0.2); }
-        50% { box-shadow: 0 0 0 2px rgba(var(--primary-rgb), 0.7), 0 8px 40px rgba(var(--primary-rgb), 0.55), 0 0 80px rgba(var(--primary-rgb), 0.4); }
-    }
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #050507;
+            --bg-tertiary: #0a0a0d;
+            --bg-card: #0e0e12;
+            --primary-50: #FDF8E1;
+            --primary-100: #FAF0C0;
+            --primary-200: #F5E07A;
+            --primary-300: #EFD040;
+            --primary-400: #E8C030;
+            --primary-500: #D4A017;
+            --primary-600: #B8880F;
+            --primary-700: #9B700A;
+            --primary-800: #7A5506;
+            --primary-900: #573C03;
+            --primary-rgb: 212, 160, 23;
+            --text-primary: #FFFFFF;
+            --text-secondary: #E4E4E7;
+            --text-tertiary: #A1A1AA;
+            --text-quaternary: #71717A;
+            --success: #10B981;
+            --info: #3B82F6;
+            --warning: #F59E0B;
+            --section-padding: 140px 0;
+            --container-max: 1280px;
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            --radius-full: 9999px;
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
+            --transition-fast: all 0.2s var(--ease-out-expo);
+            --transition-normal: all 0.4s var(--ease-out-expo);
+            --transition-slow: all 0.8s var(--ease-out-expo);
+            --transition-premium: all 0.8s var(--ease-out-expo);
+            --transition-magnetic: all 0.5s var(--ease-out-expo);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            scroll-padding-top: 65px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.75rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        p {
+            color: var(--text-tertiary);
+            font-size: 1rem;
+            line-height: 1.75;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section {
+            padding: 80px 0 120px;
+            position: relative;
+            overflow: hidden;
+            content-visibility: auto;
+            contain-intrinsic-size: 1000px;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--primary-400);
+            background: rgba(var(--primary-rgb), 0.1);
+            border: 1px solid rgba(var(--primary-rgb), 0.2);
+            padding: 8px 16px;
+            border-radius: var(--radius-full);
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .section-title .gold {
+            background: linear-gradient(135deg, var(--primary-300) 0%, var(--primary-500) 50%, var(--primary-400) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-tertiary);
+            max-width: 600px;
+            line-height: 1.75;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-center .section-subtitle {
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.9375rem;
+            padding: 12px 16px 12px 28px;
+            border-radius: var(--radius-md);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-normal);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: -0.01em;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-500) 30%, var(--primary-400) 60%, var(--primary-500) 100%);
+            background-size: 200% 200%;
+            animation: gradient-shift 4s ease infinite;
+            color: #050507;
+            box-shadow: 0 0 0 1px rgba(var(--primary-rgb), 0.3), 0 4px 20px rgba(var(--primary-rgb), 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.12);
+            box-shadow: 0 0 0 2px rgba(var(--primary-rgb), 0.6), 0 8px 30px rgba(var(--primary-rgb), 0.45);
+        }
+
+        .btn-primary.pulse {
+            animation: gradient-shift 4s ease infinite, pulse-glow 3s ease-in-out infinite;
+        }
+
+        .btn-outline {
+            background: rgba(var(--primary-rgb), 0.03);
+            color: var(--primary-400);
+            border: 1px solid rgba(var(--primary-rgb), 0.35);
+            padding: 11px 16px 11px 28px;
+        }
+
+        .btn-outline:hover {
+            background: rgba(var(--primary-rgb), 0.1);
+            border-color: var(--primary-400);
+            color: var(--text-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(var(--primary-rgb), 0.15);
+        }
+
+        .btn-lg {
+            padding: 16px 28px;
+            font-size: 1.0625rem;
+            border-radius: var(--radius-lg);
+        }
+
+        .btn-lg.btn-outline {
+            padding: 15px 20px 15px 36px;
+        }
+
+        .btn-icon-circle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            transition: var(--transition-magnetic);
+            flex-shrink: 0;
+            will-change: transform;
+        }
+
+        .btn-primary .btn-icon-circle {
+            background: rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #050507;
+        }
+
+        .btn-primary:hover .btn-icon-circle {
+            transform: translateX(4px) scale(1.05);
+            background: rgba(0, 0, 0, 0.25);
+        }
+
+        .btn-outline .btn-icon-circle {
+            background: rgba(var(--primary-rgb), 0.1);
+            border: 1px solid rgba(var(--primary-rgb), 0.2);
+            color: var(--primary-400);
+        }
+
+        .btn-outline:hover .btn-icon-circle {
+            transform: translateX(4px) scale(1.05);
+            background: var(--primary-500);
+            color: #050507;
+            border-color: var(--primary-500);
+        }
+
+        .btn-icon-circle i {
+            font-size: 0.875rem;
+            transition: var(--transition-fast);
+        }
+
+        .btn:hover .btn-icon-circle i {
+            transform: translate3d(1px, -1px, 0);
+        }
+
+        .navbar {
+            position: fixed;
+            top: 24px;
+            left: 50%;
+            transform: translate3d(-50%, 0, 0);
+            width: calc(100% - 48px);
+            max-width: var(--container-max);
+            z-index: 1000;
+            padding: 12px 24px;
+            border-radius: var(--radius-full);
+            background: rgba(5, 5, 7, 0.45);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            transition: var(--transition-premium);
+            will-change: transform, background, border-color, box-shadow, top, padding;
+        }
+
+        .navbar.scrolled {
+            top: 16px;
+            background: rgba(5, 5, 7, 0.82);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border-color: rgba(var(--primary-rgb), 0.22);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(var(--primary-rgb), 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            padding: 8px 32px;
+        }
+
+        .navbar-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.01em;
+        }
+
+        .nav-logo img {
+            height: 44px;
+            width: 44px;
+            object-fit: contain;
+            border-radius: var(--radius-sm);
+        }
+
+        .nav-logo .logo-text span {
+            color: var(--primary-400);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.9375rem;
+            font-weight: 500;
+            color: var(--text-tertiary);
+            transition: var(--transition-fast);
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-500), var(--primary-300));
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-300);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+            background: none;
+            border: none;
+        }
+
+        .mobile-menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--primary-400);
+            border-radius: 2px;
+            transition: var(--transition-normal);
+        }
+
+        .mobile-menu-toggle.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .mobile-menu-toggle.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(5, 5, 7, 0.94);
+            backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s var(--ease-out-expo);
+        }
+
+        .mobile-nav.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .mobile-nav a {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--text-secondary);
+            transition: var(--transition-normal);
+            transform: translate3d(0, 24px, 0);
+            opacity: 0;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 100px;
+            overflow: hidden;
+        }
+
+        .hero-bg-gradient {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), url('images/herobg.webp') center/cover no-repeat;
+            z-index: 0;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 100px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            opacity: 0;
+            padding-right: 48px;
+            margin-left: -60px;
+            animation: fade-in-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+        }
+
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--primary-400);
+            background: rgba(var(--primary-rgb), 0.1);
+            border: 1px solid rgba(var(--primary-rgb), 0.25);
+            padding: 8px 18px;
+            border-radius: var(--radius-full);
+            margin-bottom: 28px;
+        }
+
+        .hero-title {
+            font-size: clamp(2.75rem, 5.5vw, 5rem);
+            font-weight: 800;
+            line-height: 1.08;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+
+        .word-mask {
+            display: block;
+            overflow: hidden;
+            height: auto;
+            padding-bottom: 0.05em;
+        }
+
+        .word-reveal {
+            display: block;
+            transform: translate3d(0, 110%, 0);
+            animation: reveal-word 1.4s var(--ease-out-expo) forwards;
+        }
+
+        .hero-title .word-mask:nth-child(1) .word-reveal {
+            animation-delay: 0.1s;
+        }
+
+        .hero-title .word-mask:nth-child(2) .word-reveal {
+            animation-delay: 0.22s;
+        }
+
+        .hero-title .word-mask:nth-child(3) .word-reveal {
+            animation-delay: 0.34s;
+        }
+
+        .hero-title .brand-name {
+            background: linear-gradient(135deg, var(--primary-200) 0%, var(--primary-500) 40%, var(--primary-400) 70%, var(--primary-300) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+            padding-bottom: 0.05em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-tertiary);
+            line-height: 1.75;
+            margin-bottom: 40px;
+            max-width: 500px;
+            opacity: 0;
+            animation: fade-in-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: scale-in 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.5s forwards;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(var(--primary-rgb), 0.12);
+        }
+
+        @keyframes reveal-word {
+            0% {
+                transform: translate3d(0, 110%, 0);
+            }
+
+            100% {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scale-in {
+            from {
+                opacity: 0;
+                transform: scale(0.85);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes gradient-shift {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 1px rgba(var(--primary-rgb), 0.4), 0 4px 24px rgba(var(--primary-rgb), 0.35), 0 0 60px rgba(var(--primary-rgb), 0.2);
+            }
+
+            50% {
+                box-shadow: 0 0 0 2px rgba(var(--primary-rgb), 0.7), 0 8px 40px rgba(var(--primary-rgb), 0.55), 0 0 80px rgba(var(--primary-rgb), 0.4);
+            }
+        }
     </style>
 
     <!-- Deferred stylesheets -->
     <link rel="preload" href="styles.css?v=2" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="styles.css?v=2"></noscript>
+    <noscript>
+        <link rel="stylesheet" href="styles.css?v=2">
+    </noscript>
 
     <!-- Cargar Cloudflare Turnstile -->
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
@@ -657,10 +825,18 @@
                             <a href="https://drive.google.com/file/d/1VSGPszlCJiIkliUln1LGAMReY7vU1A-o/view"
                                 target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg pulse"
                                 id="heroMenuBtn">
-                                Ver Menú Completo <span class="btn-icon-circle"><svg viewBox="0 0 448 512" fill="currentColor" width="1em" height="1em"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></span>
+                                Ver Menú Completo <span class="btn-icon-circle"><svg viewBox="0 0 448 512"
+                                        fill="currentColor" width="1em" height="1em">
+                                        <path
+                                            d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
+                                    </svg></span>
                             </a>
                             <a href="#platillos" class="btn btn-outline btn-lg" id="heroPlatillosBtn">
-                                Nuestros Platillos <span class="btn-icon-circle"><svg viewBox="0 0 448 512" fill="currentColor" width="1em" height="1em"><path d="M416 0C400 0 288 32 288 176l0 112c0 35.3 28.7 64 64 64l32 0 0 128c0 17.7 14.3 32 32 32s32-14.3 32-32l0-128 0-112 0-208c0-17.7-14.3-32-32-32zM64 16C64 7.8 57.9 1 49.7 .1S34.2 4.6 32.4 12.5L2.1 148.8C.7 155.1 0 161.5 0 167.9c0 45.9 35.1 83.6 80 87.7L80 480c0 17.7 14.3 32 32 32s32-14.3 32-32l0-224.4c44.9-4.1 80-41.8 80-87.7c0-6.4-.7-12.8-2.1-19.1L143.6 12.5C141.8 4.6 134.6 0 128 0s-13.8 4.6-15.6 12.5L82.1 148.8C80.7 155.1 80 161.5 80 167.9c0 17.9 8.9 33.8 22.5 43.8L96 256l32 0 6.5-44.3C148 201.7 160 185.4 160 167.9c0-6.4-.7-12.8-2.1-19.1L128 16z"/></svg></span>
+                                Nuestros Platillos <span class="btn-icon-circle"><svg viewBox="0 0 448 512"
+                                        fill="currentColor" width="1em" height="1em">
+                                        <path
+                                            d="M416 0C400 0 288 32 288 176l0 112c0 35.3 28.7 64 64 64l32 0 0 128c0 17.7 14.3 32 32 32s32-14.3 32-32l0-128 0-112 0-208c0-17.7-14.3-32-32-32zM64 16C64 7.8 57.9 1 49.7 .1S34.2 4.6 32.4 12.5L2.1 148.8C.7 155.1 0 161.5 0 167.9c0 45.9 35.1 83.6 80 87.7L80 480c0 17.7 14.3 32 32 32s32-14.3 32-32l0-224.4c44.9-4.1 80-41.8 80-87.7c0-6.4-.7-12.8-2.1-19.1L143.6 12.5C141.8 4.6 134.6 0 128 0s-13.8 4.6-15.6 12.5L82.1 148.8C80.7 155.1 80 161.5 80 167.9c0 17.9 8.9 33.8 22.5 43.8L96 256l32 0 6.5-44.3C148 201.7 160 185.4 160 167.9c0-6.4-.7-12.8-2.1-19.1L128 16z" />
+                                    </svg></span>
                             </a>
                         </div>
 
@@ -720,7 +896,8 @@
                                         <div class="slider-card__inner">
                                             <div class="slider-card__img-wrap">
                                                 <img src="images/platillo_1.webp" alt="Mofongo Tradicional"
-                                                    class="slider-card__img" width="520" height="390" loading="lazy" decoding="async">
+                                                    class="slider-card__img" width="520" height="390" loading="lazy"
+                                                    decoding="async">
                                                 <div class="slider-card__shine"></div>
                                             </div>
                                             <div class="slider-card__info">
@@ -737,7 +914,8 @@
                                         <div class="slider-card__inner">
                                             <div class="slider-card__img-wrap">
                                                 <img src="images/platillo_2.webp" alt="Platillos Puertorriqueños"
-                                                    class="slider-card__img" width="520" height="390" loading="lazy" decoding="async">
+                                                    class="slider-card__img" width="520" height="390" loading="lazy"
+                                                    decoding="async">
                                                 <div class="slider-card__shine"></div>
                                             </div>
                                             <div class="slider-card__info">
@@ -754,7 +932,8 @@
                                         <div class="slider-card__inner">
                                             <div class="slider-card__img-wrap">
                                                 <img src="images/coctel_1.webp" alt="Coctel Tropical"
-                                                    class="slider-card__img" width="520" height="390" loading="lazy" decoding="async">
+                                                    class="slider-card__img" width="520" height="390" loading="lazy"
+                                                    decoding="async">
                                                 <div class="slider-card__shine"></div>
                                             </div>
                                             <div class="slider-card__info">
@@ -771,7 +950,8 @@
                                         <div class="slider-card__inner">
                                             <div class="slider-card__img-wrap">
                                                 <img src="images/coctel_2.webp" alt="Mixología Boricua"
-                                                    class="slider-card__img" width="520" height="390" loading="lazy" decoding="async">
+                                                    class="slider-card__img" width="520" height="390" loading="lazy"
+                                                    decoding="async">
                                                 <div class="slider-card__shine"></div>
                                             </div>
                                             <div class="slider-card__info">
@@ -788,7 +968,8 @@
                                         <div class="slider-card__inner">
                                             <div class="slider-card__img-wrap">
                                                 <img src="images/coctel_3.webp" alt="Trago de la Isla"
-                                                    class="slider-card__img" width="520" height="390" loading="lazy" decoding="async">
+                                                    class="slider-card__img" width="520" height="390" loading="lazy"
+                                                    decoding="async">
                                                 <div class="slider-card__shine"></div>
                                             </div>
                                             <div class="slider-card__info">
@@ -805,7 +986,8 @@
                                         <div class="slider-card__inner">
                                             <div class="slider-card__img-wrap">
                                                 <img src="images/desayuno.webp" alt="Desayuno Internacional"
-                                                    class="slider-card__img" width="520" height="390" loading="lazy" decoding="async">
+                                                    class="slider-card__img" width="520" height="390" loading="lazy"
+                                                    decoding="async">
                                                 <div class="slider-card__shine"></div>
                                             </div>
                                             <div class="slider-card__info">
@@ -822,7 +1004,8 @@
                                         <div class="slider-card__inner">
                                             <div class="slider-card__img-wrap">
                                                 <img src="images/calidad.webp" alt="Productos de Calidad"
-                                                    class="slider-card__img" width="520" height="390" loading="lazy" decoding="async">
+                                                    class="slider-card__img" width="520" height="390" loading="lazy"
+                                                    decoding="async">
                                                 <div class="slider-card__shine"></div>
                                             </div>
                                             <div class="slider-card__info">
@@ -839,7 +1022,8 @@
                                         <div class="slider-card__inner">
                                             <div class="slider-card__img-wrap">
                                                 <img src="images/surtido_boricua.webp" alt="Surtido Boricua"
-                                                    class="slider-card__img" width="520" height="390" loading="lazy" decoding="async">
+                                                    class="slider-card__img" width="520" height="390" loading="lazy"
+                                                    decoding="async">
                                                 <div class="slider-card__shine"></div>
                                             </div>
                                             <div class="slider-card__info">
@@ -856,7 +1040,8 @@
                                         <div class="slider-card__inner">
                                             <div class="slider-card__img-wrap">
                                                 <img src="images/aguacate_relleno.webp" alt="Aguacate Relleno"
-                                                    class="slider-card__img" width="520" height="390" loading="lazy" decoding="async">
+                                                    class="slider-card__img" width="520" height="390" loading="lazy"
+                                                    decoding="async">
                                                 <div class="slider-card__shine"></div>
                                             </div>
                                             <div class="slider-card__info">
@@ -1011,13 +1196,13 @@
                                 <img src="images/mofongo_relleno.webp" alt="Mofongo Relleno" class="service-image"
                                     width="400" height="420" loading="lazy" decoding="async">
                                 <div class="service-overlay">
-                                    <div class="service-emoji-front">🧚</div>
+                                    <div class="service-emoji-front">🥘</div>
                                     <h3 class="service-title-front">Mofongo Relleno</h3>
                                     <span class="service-hint-front">✦ Ver detalles</span>
                                 </div>
                             </div>
                             <div class="service-card-back">
-                                <div class="service-back-icon">🧚</div>
+                                <div class="service-back-icon">🥘</div>
                                 <h3 class="service-title-back">Mofongo Relleno</h3>
                                 <p class="service-description">
                                     Frescos plátanos majados con tocineta, mantequilla, ajo y salsa a escoger<br>
@@ -1244,7 +1429,11 @@
 
                     <!-- Right: Content -->
                     <div class="experience-content reveal reveal-delay-2">
-                        <div class="section-label"><svg viewBox="0 0 448 512" fill="currentColor" width="1em" height="1em"><path d="M96 0C43 0 0 43 0 96V416c0 53 43 96 96 96H384h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V384c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H384 96zm0 384H352v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm0 64c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16z"/></svg> Nuestra Historia</div>
+                        <div class="section-label"><svg viewBox="0 0 448 512" fill="currentColor" width="1em"
+                                height="1em">
+                                <path
+                                    d="M96 0C43 0 0 43 0 96V416c0 53 43 96 96 96H384h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V384c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H384 96zm0 384H352v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm0 64c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16z" />
+                            </svg> Nuestra Historia</div>
                         <h2 class="section-title">
                             Más que un Restaurante,<br>
                             <span class="gold">un Hogar Boricua</span>
@@ -1262,7 +1451,11 @@
 
                         <div class="experience-points">
                             <div class="exp-point">
-                                <div class="exp-point-icon"><svg viewBox="0 0 512 512" fill="currentColor" width="1em" height="1em"><path d="M428.3 3c11.6-6.4 26.2-2.3 32.6 9.3c4.8 8.8 4.4 19-1.1 27.5c-9.8 15-17.5 31.7-22.8 49.6c22.5 18.8 43.4 39.9 61.1 62.7c10.2 13.1 7.8 31.9-5.4 42c-13.1 10.2-31.9 7.8-42-5.4c-29.8-38.3-66.8-68.5-106-91.5c-11.2-6.6-20.8-17-26.4-29.9c-5.6-13-6.9-27.5-3.6-41.3c3.3-13.8 11.1-25.7 22.4-33.9c11.6-8.4 26.2-7.4 36.7 1.4c8.6 7.2 20.3 14.3 34.7 20.7c0 0 0 0 0 0l.2 .1c3.3 1.6 6.9 3.2 10.9 5c0 0 0 0 0 0c8.2 3.7 18.3 8.1 29.5 13.2c0 0 0 0 0 0c4.4 2 9.1 4.1 14 6.3c0 0 0 0 0 0c10.5 4.8 22.3 10.7 34.3 18.1c0 0 0 0 0 0c1.8 1.1 3.6 2.3 5.4 3.5c0 0 0 0 0 0c-9-27.6-22.8-53.1-40-75.1c-7.4-9.5-5.7-23.1 3.8-30.5s23-5.7 30.5 3.8c12 15.5 26.4 36.4 37.4 62.3c.2 .4 .4 .8 .5 1.2zM160 144c0-4.3 .3-8.6 .9-12.8c-5.7-.2-11.4-.3-17.2-.3C64.5 131 0 195.5 0 274.1V376c0 66.3 53.7 120 120 120h88c66.3 0 120-53.7 120-120V274.1c0-39.5-16-75.2-41.6-101.5c-4.5 46.2-42.5 82.6-89.4 86.7c-3 .3-6.1 .5-9.2 .5H234c-40.9 0-74-33.1-74-74zm72.5 32.7c1.8 .5 3.6 .9 5.5 1.1c2.2 .3 4.5 .4 6.8 .4c30.5 0 55.2-24.7 55.2-55.2c0-19.5-10.1-36.6-25.4-46.1c-14.6-9.1-33.6-11.7-50.5-5.6c-1.8 .7-3.6 1.4-5.3 2.3c-16.1 8-27.3 24.1-28.3 42.7c-.2 3.1 .1 6.2 .8 9.2c5.1 22.6 23.5 39.6 46.4 45.2z"/></svg></div>
+                                <div class="exp-point-icon"><svg viewBox="0 0 512 512" fill="currentColor" width="1em"
+                                        height="1em">
+                                        <path
+                                            d="M428.3 3c11.6-6.4 26.2-2.3 32.6 9.3c4.8 8.8 4.4 19-1.1 27.5c-9.8 15-17.5 31.7-22.8 49.6c22.5 18.8 43.4 39.9 61.1 62.7c10.2 13.1 7.8 31.9-5.4 42c-13.1 10.2-31.9 7.8-42-5.4c-29.8-38.3-66.8-68.5-106-91.5c-11.2-6.6-20.8-17-26.4-29.9c-5.6-13-6.9-27.5-3.6-41.3c3.3-13.8 11.1-25.7 22.4-33.9c11.6-8.4 26.2-7.4 36.7 1.4c8.6 7.2 20.3 14.3 34.7 20.7c0 0 0 0 0 0l.2 .1c3.3 1.6 6.9 3.2 10.9 5c0 0 0 0 0 0c8.2 3.7 18.3 8.1 29.5 13.2c0 0 0 0 0 0c4.4 2 9.1 4.1 14 6.3c0 0 0 0 0 0c10.5 4.8 22.3 10.7 34.3 18.1c0 0 0 0 0 0c1.8 1.1 3.6 2.3 5.4 3.5c0 0 0 0 0 0c-9-27.6-22.8-53.1-40-75.1c-7.4-9.5-5.7-23.1 3.8-30.5s23-5.7 30.5 3.8c12 15.5 26.4 36.4 37.4 62.3c.2 .4 .4 .8 .5 1.2zM160 144c0-4.3 .3-8.6 .9-12.8c-5.7-.2-11.4-.3-17.2-.3C64.5 131 0 195.5 0 274.1V376c0 66.3 53.7 120 120 120h88c66.3 0 120-53.7 120-120V274.1c0-39.5-16-75.2-41.6-101.5c-4.5 46.2-42.5 82.6-89.4 86.7c-3 .3-6.1 .5-9.2 .5H234c-40.9 0-74-33.1-74-74zm72.5 32.7c1.8 .5 3.6 .9 5.5 1.1c2.2 .3 4.5 .4 6.8 .4c30.5 0 55.2-24.7 55.2-55.2c0-19.5-10.1-36.6-25.4-46.1c-14.6-9.1-33.6-11.7-50.5-5.6c-1.8 .7-3.6 1.4-5.3 2.3c-16.1 8-27.3 24.1-28.3 42.7c-.2 3.1 .1 6.2 .8 9.2c5.1 22.6 23.5 39.6 46.4 45.2z" />
+                                    </svg></div>
                                 <div class="exp-point-text">
                                     <h4>Ingredientes Auténticos</h4>
                                     <p>Sofrito, sazón, achiote y especias traídas de Puerto Rico para un sabor genuino.
@@ -1271,7 +1464,11 @@
                             </div>
 
                             <div class="exp-point">
-                                <div class="exp-point-icon"><svg viewBox="0 0 512 512" fill="currentColor" width="1em" height="1em"><path d="M499.1 6.3c8.1 6 12.9 15.6 12.9 25.7v72V368c0 44.2-43 80-96 80s-96-35.8-96-80s43-80 96-80c11.2 0 22 1.6 32 4.6V147L192 223.8V432c0 44.2-43 80-96 80s-96-35.8-96-80s43-80 96-80c11.2 0 22 1.6 32 4.6V128c0-12.8 8.3-24.2 20.9-28.4l336-128c8.5-3.2 17.9-2.4 25.8 2.3z"/></svg></div>
+                                <div class="exp-point-icon"><svg viewBox="0 0 512 512" fill="currentColor" width="1em"
+                                        height="1em">
+                                        <path
+                                            d="M499.1 6.3c8.1 6 12.9 15.6 12.9 25.7v72V368c0 44.2-43 80-96 80s-96-35.8-96-80s43-80 96-80c11.2 0 22 1.6 32 4.6V147L192 223.8V432c0 44.2-43 80-96 80s-96-35.8-96-80s43-80 96-80c11.2 0 22 1.6 32 4.6V128c0-12.8 8.3-24.2 20.9-28.4l336-128c8.5-3.2 17.9-2.4 25.8 2.3z" />
+                                    </svg></div>
                                 <div class="exp-point-text">
                                     <h4>Ambiente Cultural Único</h4>
                                     <p>Música, decoración y hospitalidad boricua. Un viaje a Puerto Rico sin salir de
@@ -1282,10 +1479,18 @@
 
                         <div class="experience-actions">
                             <a href="#contacto" class="btn btn-primary" id="nosotrosContactoBtn">Contáctanos <span
-                                    class="btn-icon-circle"><svg viewBox="0 0 512 512" fill="currentColor" width="1em" height="1em"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg></span></a>
+                                    class="btn-icon-circle"><svg viewBox="0 0 512 512" fill="currentColor" width="1em"
+                                        height="1em">
+                                        <path
+                                            d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z" />
+                                    </svg></span></a>
                             <a href="https://drive.google.com/file/d/1VSGPszlCJiIkliUln1LGAMReY7vU1A-o/view"
                                 target="_blank" rel="noopener noreferrer" class="btn btn-outline"
-                                id="nosotrosMenuBtn">Nuestro Menú <span class="btn-icon-circle"><svg viewBox="0 0 448 512" fill="currentColor" width="1em" height="1em"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></span></a>
+                                id="nosotrosMenuBtn">Nuestro Menú <span class="btn-icon-circle"><svg
+                                        viewBox="0 0 448 512" fill="currentColor" width="1em" height="1em">
+                                        <path
+                                            d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
+                                    </svg></span></a>
                         </div>
                     </div>
 
@@ -1307,7 +1512,10 @@
 
                 <!-- Left: Info & contacto directo -->
                 <div class="reserva-info reveal">
-                    <div class="section-label"><svg viewBox="0 0 448 512" fill="currentColor" width="1em" height="1em"><path d="M128 0c13.3 0 24 10.7 24 24V64H296V24c0-13.3 10.7-24 24-24s24 10.7 24 24V64h40c35.3 0 64 28.7 64 64v16 48V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V192 144 128C0 92.7 28.7 64 64 64h40V24c0-13.3 10.7-24 24-24zM400 192H48V448c0 8.8 7.2 16 16 16H384c8.8 0 16-7.2 16-16V192zM329 297L217 409c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47 95-95c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg> Reserva tu Mesa</div>
+                    <div class="section-label"><svg viewBox="0 0 448 512" fill="currentColor" width="1em" height="1em">
+                            <path
+                                d="M128 0c13.3 0 24 10.7 24 24V64H296V24c0-13.3 10.7-24 24-24s24 10.7 24 24V64h40c35.3 0 64 28.7 64 64v16 48V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V192 144 128C0 92.7 28.7 64 64 64h40V24c0-13.3 10.7-24 24-24zM400 192H48V448c0 8.8 7.2 16 16 16H384c8.8 0 16-7.2 16-16V192zM329 297L217 409c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47 95-95c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
+                        </svg> Reserva tu Mesa</div>
                     <h2 class="section-title">
                         Reserva una<br>
                         <span class="gold">Mesa</span>
@@ -1319,7 +1527,11 @@
 
                     <div class="reserva-contact-items">
                         <div class="reserva-contact-item">
-                            <div class="reserva-contact-icon"><svg viewBox="0 0 384 512" fill="currentColor" width="1em" height="1em"><path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></svg></div>
+                            <div class="reserva-contact-icon"><svg viewBox="0 0 384 512" fill="currentColor" width="1em"
+                                    height="1em">
+                                    <path
+                                        d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z" />
+                                </svg></div>
                             <div>
                                 <div class="reserva-contact-label">Dirección</div>
                                 <a href="https://www.google.com/maps/place/787+Gastronomia+Puertorriqueña/@6.2077093,-75.5664357,17z/data=!4m8!3m7!1s0x8e4429686ecab509:0x7198886694c55953!8m2!3d6.2077093!4d-75.5664357!9m1!1b1!16s%2Fg%2F11qb099df_?entry=ttu&g_ep=EgoyMDI2MDQwNS4wIKXMDSoASAFQAw%3D%3D"
@@ -1329,14 +1541,22 @@
                             </div>
                         </div>
                         <div class="reserva-contact-item">
-                            <div class="reserva-contact-icon"><svg viewBox="0 0 512 512" fill="currentColor" width="1em" height="1em"><path d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg></div>
+                            <div class="reserva-contact-icon"><svg viewBox="0 0 512 512" fill="currentColor" width="1em"
+                                    height="1em">
+                                    <path
+                                        d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
+                                </svg></div>
                             <div>
                                 <div class="reserva-contact-label">Horario</div>
                                 <div class="reserva-contact-value">Mar – Dom: 8:00 AM – 10:00 PM</div>
                             </div>
                         </div>
                         <div class="reserva-contact-item">
-                            <div class="reserva-contact-icon"><svg viewBox="0 0 512 512" fill="currentColor" width="1em" height="1em"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg></div>
+                            <div class="reserva-contact-icon"><svg viewBox="0 0 512 512" fill="currentColor" width="1em"
+                                    height="1em">
+                                    <path
+                                        d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z" />
+                                </svg></div>
                             <div>
                                 <div class="reserva-contact-label">Teléfono</div>
                                 <a href="tel:+573153597524" class="reserva-contact-value reserva-link">+57 315
@@ -1344,7 +1564,11 @@
                             </div>
                         </div>
                         <div class="reserva-contact-item">
-                            <div class="reserva-contact-icon"><svg viewBox="0 0 448 512" fill="currentColor" width="1em" height="1em"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg></div>
+                            <div class="reserva-contact-icon"><svg viewBox="0 0 448 512" fill="currentColor" width="1em"
+                                    height="1em">
+                                    <path
+                                        d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+                                </svg></div>
                             <div>
                                 <div class="reserva-contact-label">WhatsApp</div>
                                 <a href="https://api.whatsapp.com/message/746MFPD3TP6MO1?autoload=1&app_absent=0"
@@ -1353,7 +1577,11 @@
                             </div>
                         </div>
                         <div class="reserva-contact-item">
-                            <div class="reserva-contact-icon"><svg viewBox="0 0 448 512" fill="currentColor" width="1em" height="1em"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg></div>
+                            <div class="reserva-contact-icon"><svg viewBox="0 0 448 512" fill="currentColor" width="1em"
+                                    height="1em">
+                                    <path
+                                        d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
+                                </svg></div>
                             <div>
                                 <div class="reserva-contact-label">Instagram</div>
                                 <a href="https://www.instagram.com/787gastronomiapr/" target="_blank"
@@ -1496,14 +1724,21 @@
 
                         <!-- Submit -->
                         <button type="submit" id="submitReserva" class="btn btn-primary btn-lg form-submit">
-                            <span id="submitText">Confirmar Reserva <span class="btn-icon-circle"><svg viewBox="0 0 448 512" fill="currentColor" width="1em" height="1em"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg></span></span>
+                            <span id="submitText">Confirmar Reserva <span class="btn-icon-circle"><svg
+                                        viewBox="0 0 448 512" fill="currentColor" width="1em" height="1em">
+                                        <path
+                                            d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                                    </svg></span></span>
                             <span id="submitSpinner" class="form-spinner" aria-hidden="true"
                                 style="display:none;"></span>
                         </button>
 
                         <!-- Trust Badge -->
                         <div class="trust-badge">
-                            <svg viewBox="0 0 512 512" fill="currentColor" width="1em" height="1em"><path d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2c-.5 99.2-41.3 280.7-213.6 363.2c-16.7 8-36.1 8-52.8 0C57.3 420.7 16.5 239.2 16 140c-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.8 1 251.4 0 256 0zm0 66.8V444.8C394 378 431.1 230.1 432 141.4L256 66.8l0 0z"/></svg>
+                            <svg viewBox="0 0 512 512" fill="currentColor" width="1em" height="1em">
+                                <path
+                                    d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2c-.5 99.2-41.3 280.7-213.6 363.2c-16.7 8-36.1 8-52.8 0C57.3 420.7 16.5 239.2 16 140c-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.8 1 251.4 0 256 0zm0 66.8V444.8C394 378 431.1 230.1 432 141.4L256 66.8l0 0z" />
+                            </svg>
                             <span>Tus datos están encriptados bajo certificado SSL y son utilizados estrictamente para
                                 gestionar tu reserva.</span>
                         </div>
@@ -1533,7 +1768,10 @@
                 <!-- Success animation -->
                 <div class="modal-icon-wrap" aria-hidden="true">
                     <div class="modal-icon-ring"></div>
-                    <div class="modal-icon"><svg viewBox="0 0 640 512" fill="currentColor" width="1em" height="1em"><path d="M320 128V49.1C386.4 61.1 438.8 98.8 464 155.2l-35.2 14.1c-20-47.6-63.5-80-108.8-88.4V128h0zm0 0V49.1C233.6 61.1 181.2 98.8 156 155.2l35.2 14.1c20-47.6 63.5-80 108.8-88.4V128h0zM245.8 200.5L130.1 246.8C115 253.1 102.9 264.3 96 278.6L64 351.8c-6.8 14-7.8 29.8-2.8 44.5s16 26.6 30.4 33.8L256 516.2c0 0 0 0 0 0c18.3 8.2 39.3 6.5 56-4.5l0 0 .1-.1 0 0 0 0c.3-.2 .5-.4 .8-.6l.4-.3c5.7-4.2 10.9-9.3 15.4-15l55-68.8c4.7-5.9 8.2-12.6 10.2-19.8L329 393.5l.2-.5 22.8-68.9L416 298.3l-32.1 96.3c-3.5 10.6 2.2 22 12.7 25.5s22-2.2 25.5-12.7l48-144c3.5-10.6-2.2-22-12.7-25.5s-22 2.2-25.5 12.7l-20.3 61-48.5-16.1 27.8-83.5c5.2-15.7-.6-32.9-14.6-42.1L306.2 211.7l-10.3-6.5c-21.4-13.5-49.3-11.7-68.8 4.3l-6.3 5.1 0 0 0 0zM96 393.2L74.2 352.1c-3.5-8.4-3.2-17.8 .9-26l14.2-30.8c3.3 2.8 7 5.1 11.1 6.7l105.9 44.5c12.3 5.2 25.7 6 38.5 2.4L170.8 444.4 96 393.2zm173.6 53.7l50.3-62.9c-2.1 3-4.8 5.7-8 7.7l-56.7 39.5c-11.5 8-24.8 12.6-38.5 13.6l52.9-85.7c5.1-1.9 10-4.5 14.5-7.5L376 305.9l-.3 .9-106.1 37.4v0l0 0zm128.5-133.3L320 384l0 0 0 0 47.8-69.4 30.2 10.1v0z"/></svg></div>
+                    <div class="modal-icon"><svg viewBox="0 0 640 512" fill="currentColor" width="1em" height="1em">
+                            <path
+                                d="M320 128V49.1C386.4 61.1 438.8 98.8 464 155.2l-35.2 14.1c-20-47.6-63.5-80-108.8-88.4V128h0zm0 0V49.1C233.6 61.1 181.2 98.8 156 155.2l35.2 14.1c20-47.6 63.5-80 108.8-88.4V128h0zM245.8 200.5L130.1 246.8C115 253.1 102.9 264.3 96 278.6L64 351.8c-6.8 14-7.8 29.8-2.8 44.5s16 26.6 30.4 33.8L256 516.2c0 0 0 0 0 0c18.3 8.2 39.3 6.5 56-4.5l0 0 .1-.1 0 0 0 0c.3-.2 .5-.4 .8-.6l.4-.3c5.7-4.2 10.9-9.3 15.4-15l55-68.8c4.7-5.9 8.2-12.6 10.2-19.8L329 393.5l.2-.5 22.8-68.9L416 298.3l-32.1 96.3c-3.5 10.6 2.2 22 12.7 25.5s22-2.2 25.5-12.7l48-144c3.5-10.6-2.2-22-12.7-25.5s-22 2.2-25.5 12.7l-20.3 61-48.5-16.1 27.8-83.5c5.2-15.7-.6-32.9-14.6-42.1L306.2 211.7l-10.3-6.5c-21.4-13.5-49.3-11.7-68.8 4.3l-6.3 5.1 0 0 0 0zM96 393.2L74.2 352.1c-3.5-8.4-3.2-17.8 .9-26l14.2-30.8c3.3 2.8 7 5.1 11.1 6.7l105.9 44.5c12.3 5.2 25.7 6 38.5 2.4L170.8 444.4 96 393.2zm173.6 53.7l50.3-62.9c-2.1 3-4.8 5.7-8 7.7l-56.7 39.5c-11.5 8-24.8 12.6-38.5 13.6l52.9-85.7c5.1-1.9 10-4.5 14.5-7.5L376 305.9l-.3 .9-106.1 37.4v0l0 0zm128.5-133.3L320 384l0 0 0 0 47.8-69.4 30.2 10.1v0z" />
+                        </svg></div>
                 </div>
 
                 <h2 id="modalTitle" class="modal-title">¡Reserva Confirmada!</h2>
@@ -1545,27 +1783,51 @@
                 <!-- Summary card -->
                 <div class="modal-summary">
                     <div class="modal-summary-row">
-                        <span class="modal-summary-label"><svg viewBox="0 0 448 512" fill="currentColor" width="1em" height="1em"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg> Nombre</span>
+                        <span class="modal-summary-label"><svg viewBox="0 0 448 512" fill="currentColor" width="1em"
+                                height="1em">
+                                <path
+                                    d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
+                            </svg> Nombre</span>
                         <span class="modal-summary-value" id="mNombre">—</span>
                     </div>
                     <div class="modal-summary-row">
-                        <span class="modal-summary-label"><svg viewBox="0 0 448 512" fill="currentColor" width="1em" height="1em"><path d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H64C28.7 64 0 92.7 0 128v16 48V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192 144 128c0-35.3-28.7-64-64-64H344V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H152V24zM48 192H400V448c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192z"/></svg> Fecha</span>
+                        <span class="modal-summary-label"><svg viewBox="0 0 448 512" fill="currentColor" width="1em"
+                                height="1em">
+                                <path
+                                    d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H64C28.7 64 0 92.7 0 128v16 48V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192 144 128c0-35.3-28.7-64-64-64H344V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H152V24zM48 192H400V448c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192z" />
+                            </svg> Fecha</span>
                         <span class="modal-summary-value" id="mFecha">—</span>
                     </div>
                     <div class="modal-summary-row">
-                        <span class="modal-summary-label"><svg viewBox="0 0 512 512" fill="currentColor" width="1em" height="1em"><path d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg> Hora</span>
+                        <span class="modal-summary-label"><svg viewBox="0 0 512 512" fill="currentColor" width="1em"
+                                height="1em">
+                                <path
+                                    d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
+                            </svg> Hora</span>
                         <span class="modal-summary-value" id="mHora">—</span>
                     </div>
                     <div class="modal-summary-row">
-                        <span class="modal-summary-label"><svg viewBox="0 0 640 512" fill="currentColor" width="1em" height="1em"><path d="M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0zM512 0a80 80 0 1 1 0 160A80 80 0 1 1 512 0zM0 298.7C0 239.8 47.8 192 106.7 192h42.7c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0H21.3C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15.1-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7h42.7C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3H405.3zM224 224a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zM128 485.3C128 411.7 187.7 352 261.3 352H378.7C452.3 352 512 411.7 512 485.3c0 14.7-11.9 26.7-26.7 26.7H154.7c-14.7 0-26.7-11.9-26.7-26.7z"/></svg> Personas</span>
+                        <span class="modal-summary-label"><svg viewBox="0 0 640 512" fill="currentColor" width="1em"
+                                height="1em">
+                                <path
+                                    d="M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0zM512 0a80 80 0 1 1 0 160A80 80 0 1 1 512 0zM0 298.7C0 239.8 47.8 192 106.7 192h42.7c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0H21.3C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15.1-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7h42.7C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3H405.3zM224 224a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zM128 485.3C128 411.7 187.7 352 261.3 352H378.7C452.3 352 512 411.7 512 485.3c0 14.7-11.9 26.7-26.7 26.7H154.7c-14.7 0-26.7-11.9-26.7-26.7z" />
+                            </svg> Personas</span>
                         <span class="modal-summary-value" id="mPersonas">—</span>
                     </div>
                     <div class="modal-summary-row" id="mOcasionRow">
-                        <span class="modal-summary-label"><svg viewBox="0 0 576 512" fill="currentColor" width="1em" height="1em"><path d="M234.7 42.7L197 56.8c-3 1.1-5 4-5 7.2s2 6.1 5 7.2l37.7 14.1L248.8 123c1.1 3 4 5 7.2 5s6.1-2 7.2-5l14.1-37.7L315 71.2c3-1.1 5-4 5-7.2s-2-6.1-5-7.2L277.3 42.7 263.2 5c-1.1-3-4-5-7.2-5s-6.1 2-7.2 5L234.7 42.7zM46.1 395.4c-18.7 18.7-18.7 49.1 0 67.9l34.6 34.6c18.7 18.7 49.1 18.7 67.9 0L529.9 116.5c18.7-18.7 18.7-49.1 0-67.9L495.3 14.1c-18.7-18.7-49.1-18.7-67.9 0L46.1 395.4zM484.6 82.6l-105 105-35.3-35.3 105-105 35.3 35.3zM142.7 465.4L79.4 402.1 313.5 168 376.8 231.3 142.7 465.4z"/></svg> Ocasión</span>
+                        <span class="modal-summary-label"><svg viewBox="0 0 576 512" fill="currentColor" width="1em"
+                                height="1em">
+                                <path
+                                    d="M234.7 42.7L197 56.8c-3 1.1-5 4-5 7.2s2 6.1 5 7.2l37.7 14.1L248.8 123c1.1 3 4 5 7.2 5s6.1-2 7.2-5l14.1-37.7L315 71.2c3-1.1 5-4 5-7.2s-2-6.1-5-7.2L277.3 42.7 263.2 5c-1.1-3-4-5-7.2-5s-6.1 2-7.2 5L234.7 42.7zM46.1 395.4c-18.7 18.7-18.7 49.1 0 67.9l34.6 34.6c18.7 18.7 49.1 18.7 67.9 0L529.9 116.5c18.7-18.7 18.7-49.1 0-67.9L495.3 14.1c-18.7-18.7-49.1-18.7-67.9 0L46.1 395.4zM484.6 82.6l-105 105-35.3-35.3 105-105 35.3 35.3zM142.7 465.4L79.4 402.1 313.5 168 376.8 231.3 142.7 465.4z" />
+                            </svg> Ocasión</span>
                         <span class="modal-summary-value" id="mOcasion">—</span>
                     </div>
                     <div class="modal-summary-row">
-                        <span class="modal-summary-label"><svg viewBox="0 0 384 512" fill="currentColor" width="1em" height="1em"><path d="M16 64C16 28.7 44.7 0 80 0H304c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H80c-35.3 0-64-28.7-64-64V64zM144 448h96c8.8 0 16-7.2 16-16s-7.2-16-16-16H144c-8.8 0-16 7.2-16 16s7.2 16 16 16zM304 64H80V384H304V64z"/></svg>
+                        <span class="modal-summary-label"><svg viewBox="0 0 384 512" fill="currentColor" width="1em"
+                                height="1em">
+                                <path
+                                    d="M16 64C16 28.7 44.7 0 80 0H304c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H80c-35.3 0-64-28.7-64-64V64zM144 448h96c8.8 0 16-7.2 16-16s-7.2-16-16-16H144c-8.8 0-16 7.2-16 16s7.2 16 16 16zM304 64H80V384H304V64z" />
+                            </svg>
                             Contacto</span>
                         <span class="modal-summary-value" id="mTelefono">—</span>
                     </div>
@@ -1574,7 +1836,11 @@
                 <p class="modal-note">
                     ¿Tienes alguna pregunta? Escríbenos por
                     <a href="https://api.whatsapp.com/message/746MFPD3TP6MO1?autoload=1&app_absent=0" target="_blank"
-                        rel="noopener noreferrer" class="modal-wa-link">WhatsApp <svg viewBox="0 0 448 512" fill="currentColor" width="1em" height="1em"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg></a>
+                        rel="noopener noreferrer" class="modal-wa-link">WhatsApp <svg viewBox="0 0 448 512"
+                            fill="currentColor" width="1em" height="1em">
+                            <path
+                                d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+                        </svg></a>
                 </p>
 
                 <button id="modalCloseBtn" class="btn btn-primary btn-lg modal-cta">
@@ -1590,7 +1856,7 @@
      TESTIMONIOS — Infinite 3D Marquee
      ============================================================ -->
     <section id="resenas" class="section testimonios-section">
-            <div class="particles-container" aria-hidden="true"></div>
+        <div class="particles-container" aria-hidden="true"></div>
         <div class="container">
             <div class="text-center reveal" style="margin-bottom: 60px;">
                 <div class="section-label">⭐ Reseñas Reales</div>
@@ -1609,7 +1875,10 @@
                     <div class="tc-header">
                         <div class="tc-avatar" style="background: linear-gradient(135deg, #D4A017, #9B700A);">N</div>
                         <div class="tc-meta"><strong>Nanny Ríos</strong><span>Medellín, CO</span></div>
-                        <div class="tc-google"><svg viewBox="0 0 488 512" fill="currentColor" width="1em" height="1em"><path d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"/></svg></div>
+                        <div class="tc-google"><svg viewBox="0 0 488 512" fill="currentColor" width="1em" height="1em">
+                                <path
+                                    d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z" />
+                            </svg></div>
                     </div>
                     <div class="tc-stars">⭐⭐⭐⭐⭐</div>
                     <p class="tc-text">"Mi primera visita a Medellín, Colombia. Me encantó la amabilidad de su gente.
@@ -1621,7 +1890,10 @@
                     <div class="tc-header">
                         <div class="tc-avatar" style="background: linear-gradient(135deg, #7C3AED, #4C1D95);">O</div>
                         <div class="tc-meta"><strong>Orlando Olivera</strong><span>Local Guide</span></div>
-                        <div class="tc-google"><svg viewBox="0 0 488 512" fill="currentColor" width="1em" height="1em"><path d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"/></svg></div>
+                        <div class="tc-google"><svg viewBox="0 0 488 512" fill="currentColor" width="1em" height="1em">
+                                <path
+                                    d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z" />
+                            </svg></div>
                     </div>
                     <div class="tc-stars">⭐⭐⭐⭐⭐</div>
                     <p class="tc-text">"Espectacular es la única palabra para describir el 787. El servicio increíble,
@@ -1633,7 +1905,10 @@
                     <div class="tc-header">
                         <div class="tc-avatar" style="background: linear-gradient(135deg, #059669, #064E3B);">N</div>
                         <div class="tc-meta"><strong>Noemi Soto</strong><span>Medellín, CO</span></div>
-                        <div class="tc-google"><svg viewBox="0 0 488 512" fill="currentColor" width="1em" height="1em"><path d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"/></svg></div>
+                        <div class="tc-google"><svg viewBox="0 0 488 512" fill="currentColor" width="1em" height="1em">
+                                <path
+                                    d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z" />
+                            </svg></div>
                     </div>
                     <div class="tc-stars">⭐⭐⭐⭐⭐</div>
                     <p class="tc-text">"Buena comida, ambiente y bien acogedor. Fuimos un grupo de 10 el Día de Acción
@@ -1644,7 +1919,10 @@
                     <div class="tc-header">
                         <div class="tc-avatar" style="background: linear-gradient(135deg, #DC2626, #7F1D1D);">J</div>
                         <div class="tc-meta"><strong>Junior López</strong><span>Local Guide</span></div>
-                        <div class="tc-google"><svg viewBox="0 0 488 512" fill="currentColor" width="1em" height="1em"><path d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"/></svg></div>
+                        <div class="tc-google"><svg viewBox="0 0 488 512" fill="currentColor" width="1em" height="1em">
+                                <path
+                                    d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z" />
+                            </svg></div>
                     </div>
                     <div class="tc-stars">⭐⭐⭐⭐⭐</div>
                     <p class="tc-text">"Excelente servicio, comida super rica y porciones generosas. El trato del
@@ -1655,7 +1933,10 @@
                     <div class="tc-header">
                         <div class="tc-avatar" style="background: linear-gradient(135deg, #D97706, #92400E);">D</div>
                         <div class="tc-meta"><strong>Darwin Colón Maldonado</strong><span>Local Guide</span></div>
-                        <div class="tc-google"><svg viewBox="0 0 488 512" fill="currentColor" width="1em" height="1em"><path d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"/></svg></div>
+                        <div class="tc-google"><svg viewBox="0 0 488 512" fill="currentColor" width="1em" height="1em">
+                                <path
+                                    d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z" />
+                            </svg></div>
                     </div>
                     <div class="tc-stars">⭐⭐⭐⭐⭐</div>
                     <p class="tc-text">"Soy puertorriqueño y estuve de visita en Medellín. Desde que llegué y escuché la
@@ -1667,7 +1948,10 @@
                     <div class="tc-header">
                         <div class="tc-avatar" style="background: linear-gradient(135deg, #0EA5E9, #0C4A6E);">J</div>
                         <div class="tc-meta"><strong>Javier Martínez</strong><span>Local Guide</span></div>
-                        <div class="tc-google"><svg viewBox="0 0 488 512" fill="currentColor" width="1em" height="1em"><path d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"/></svg></div>
+                        <div class="tc-google"><svg viewBox="0 0 488 512" fill="currentColor" width="1em" height="1em">
+                                <path
+                                    d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z" />
+                            </svg></div>
                     </div>
                     <div class="tc-stars">⭐⭐⭐⭐⭐</div>
                     <p class="tc-text">"Lo recomiendo 100%. Si quieres probar la comida puertorriqueña y estás en
@@ -1678,7 +1962,10 @@
                     <div class="tc-header">
                         <div class="tc-avatar" style="background: linear-gradient(135deg, #EC4899, #831843);">Z</div>
                         <div class="tc-meta"><strong>Zory Núñez</strong><span>Medellín, CO</span></div>
-                        <div class="tc-google"><svg viewBox="0 0 488 512" fill="currentColor" width="1em" height="1em"><path d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"/></svg></div>
+                        <div class="tc-google"><svg viewBox="0 0 488 512" fill="currentColor" width="1em" height="1em">
+                                <path
+                                    d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z" />
+                            </svg></div>
                     </div>
                     <div class="tc-stars">⭐⭐⭐⭐⭐</div>
                     <p class="tc-text">"Un excelente lugar para compartir en familia, la comida excelente, los empleados
@@ -1689,7 +1976,10 @@
                     <div class="tc-header">
                         <div class="tc-avatar" style="background: linear-gradient(135deg, #D4A017, #573C03);">O</div>
                         <div class="tc-meta"><strong>Omar Pimentel</strong><span>Local Guide</span></div>
-                        <div class="tc-google"><svg viewBox="0 0 488 512" fill="currentColor" width="1em" height="1em"><path d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"/></svg></div>
+                        <div class="tc-google"><svg viewBox="0 0 488 512" fill="currentColor" width="1em" height="1em">
+                                <path
+                                    d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z" />
+                            </svg></div>
                     </div>
                     <div class="tc-stars">⭐⭐⭐⭐⭐</div>
                     <p class="tc-text">"La emoción de estar tan lejos en Colombia y degustar la gastronomía de mi isla
@@ -1706,7 +1996,14 @@
                 <div class="reviews-cta-action">
                     <a href="https://www.google.com/maps/place/787+Gastronomia+Puertorriqueña/@6.2077093,-75.5664357,17z/data=!4m8!3m7!1s0x8e4429686ecab509:0x7198886694c55953!8m2!3d6.2077093!4d-75.5664357!9m1!1b1!16s%2Fg%2F11qb099df_?entry=ttu&g_ep=EgoyMDI2MDQwNS4wIKXMDSoASAFQAw%3D%3D"
                         target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">
-                        <svg viewBox="0 0 488 512" fill="currentColor" width="1em" height="1em"><path d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"/></svg> Dejanos tu Reseña <span class="btn-icon-circle"><svg viewBox="0 0 448 512" fill="currentColor" width="1em" height="1em"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></span>
+                        <svg viewBox="0 0 488 512" fill="currentColor" width="1em" height="1em">
+                            <path
+                                d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z" />
+                        </svg> Dejanos tu Reseña <span class="btn-icon-circle"><svg viewBox="0 0 448 512"
+                                fill="currentColor" width="1em" height="1em">
+                                <path
+                                    d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
+                            </svg></span>
                     </a>
                 </div>
             </div>
@@ -1733,12 +2030,18 @@
                     <div class="social-links" aria-label="Redes sociales">
                         <a href="https://www.instagram.com/787gastronomiapr/" target="_blank" rel="noopener noreferrer"
                             class="social-link" aria-label="Instagram" title="Instagram">
-                            <svg viewBox="0 0 448 512" fill="currentColor" width="1em" height="1em"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+                            <svg viewBox="0 0 448 512" fill="currentColor" width="1em" height="1em">
+                                <path
+                                    d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
+                            </svg>
                         </a>
                         <a href="https://api.whatsapp.com/message/746MFPD3TP6MO1?autoload=1&app_absent=0"
                             target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp"
                             title="WhatsApp">
-                            <svg viewBox="0 0 448 512" fill="currentColor" width="1em" height="1em"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+                            <svg viewBox="0 0 448 512" fill="currentColor" width="1em" height="1em">
+                                <path
+                                    d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+                            </svg>
                         </a>
                     </div>
                 </div>
@@ -1762,15 +2065,34 @@
                 <div class="footer-col">
                     <h4>Contacto</h4>
                     <ul>
-                        <li><a href="tel:+573153597524"><svg viewBox="0 0 512 512" fill="currentColor" width="1em" height="1em"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg> +57 315 3597524</a></li>
+                        <li><a href="tel:+573153597524"><svg viewBox="0 0 512 512" fill="currentColor" width="1em"
+                                    height="1em">
+                                    <path
+                                        d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z" />
+                                </svg> +57 315 3597524</a></li>
                         <li><a href="https://api.whatsapp.com/message/746MFPD3TP6MO1?autoload=1&app_absent=0"
-                                target="_blank" rel="noopener"><svg viewBox="0 0 448 512" fill="currentColor" width="1em" height="1em"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg> WhatsApp
+                                target="_blank" rel="noopener"><svg viewBox="0 0 448 512" fill="currentColor"
+                                    width="1em" height="1em">
+                                    <path
+                                        d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+                                </svg> WhatsApp
                                 Reservas</a></li>
-                        <li><a href="https://www.instagram.com/787gastronomiapr/" target="_blank" rel="noopener"><svg viewBox="0 0 448 512" fill="currentColor" width="1em" height="1em"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg> @787gastronomiapr</a></li>
+                        <li><a href="https://www.instagram.com/787gastronomiapr/" target="_blank" rel="noopener"><svg
+                                    viewBox="0 0 448 512" fill="currentColor" width="1em" height="1em">
+                                    <path
+                                        d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
+                                </svg> @787gastronomiapr</a></li>
                         <li><a href="https://www.google.com/maps/place/787+Gastronomia+Puertorriqueña/@6.2077093,-75.5664357,17z/data=!4m8!3m7!1s0x8e4429686ecab509:0x7198886694c55953!8m2!3d6.2077093!4d-75.5664357!9m1!1b1!16s%2Fg%2F11qb099df_?entry=ttu&g_ep=EgoyMDI2MDQwNS4wIKXMDSoASAFQAw%3D%3D"
-                                target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 384 512" fill="currentColor" width="1em" height="1em"><path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></svg> Cra.
+                                target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 384 512" fill="currentColor"
+                                    width="1em" height="1em">
+                                    <path
+                                        d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z" />
+                                </svg> Cra.
                                 36 #8a-12, Medellín</a></li>
-                        <li><a href="#contacto"><svg viewBox="0 0 512 512" fill="currentColor" width="1em" height="1em"><path d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg> Mar–Dom: 8AM–10PM</a></li>
+                        <li><a href="#contacto"><svg viewBox="0 0 512 512" fill="currentColor" width="1em" height="1em">
+                                    <path
+                                        d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
+                                </svg> Mar–Dom: 8AM–10PM</a></li>
                     </ul>
                 </div>
 
@@ -1793,7 +2115,7 @@
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js').catch(() => {});
+                navigator.serviceWorker.register('/sw.js').catch(() => { });
             });
         }
     </script>
