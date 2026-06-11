@@ -2889,8 +2889,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
     align-items: center;
     justify-content: center;
     font-size: 2rem;
-    animation: modal-icon-pop 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.2s both,
-               icon-float 3s ease-in-out 1s infinite;
+    animation: modal-icon-pop 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.2s both;
     box-shadow: 0 0 30px rgba(var(--primary-rgb), 0.3);
     position: relative;
     z-index: 1;
@@ -2999,11 +2998,6 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
         transform: scale(1.08);
         opacity: 1;
     }
-}
-
-@keyframes icon-float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
 }
 
 @keyframes modal-icon-pop {
